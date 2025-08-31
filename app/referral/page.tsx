@@ -1,5 +1,6 @@
 // app/referral/page.tsx  (Next.js 13 App Router)
 "use client";
+import "@/app/style/referral.css";
 
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
@@ -133,12 +134,27 @@ export default function ReferralPage() {
       <Header />
 
       {/* Referral Hero */}
-      <section className='referral-hero py-20 text-center'>
-        <h1 className='text-5xl font-extrabold text-purple-400'>Referral Program</h1>
-        <p className='mt-4 text-gray-300'>Invite friends and earn rewards together!</p>
-        <div className='mt-6 bg-purple-900/40 p-6 rounded-lg'>
-          <h2 className='text-xl font-bold'>Earn 5 $PPO for each friend who joins!</h2>
-          <p className='text-gray-400'>Plus, your friends get 2 $PPO bonus when they sign up with your code</p>
+      <section className='referral-hero padding-large' data-v-422bf7a9=''>
+        <div className='container' data-v-422bf7a9=''>
+          <div className='row' data-v-422bf7a9=''>
+            <div className='col-12' data-v-422bf7a9=''>
+              <div className='referral-header text-center flex-col' data-v-422bf7a9=''>
+                <h1 className='referral-title' data-v-422bf7a9=''>
+                  Referral Program
+                </h1>
+                <p className='referral-subtitle' data-v-422bf7a9=''>
+                  {" "}
+                  Invite friends and earn rewards together!{" "}
+                </p>
+                <div className='referral-banner' data-v-422bf7a9=''>
+                  <div className='banner-content' data-v-422bf7a9=''>
+                    <h2 data-v-422bf7a9=''>Earn 5 $PPO for each friend who joins!</h2>
+                    <p data-v-422bf7a9=''> Plus, your friends get 2 $PPO bonus when they sign up with your code </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

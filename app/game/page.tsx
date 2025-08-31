@@ -56,7 +56,7 @@ export default function GamePage() {
                   <span>🎴 Your NFT Cards</span>
                   <button
                     onClick={showCardSelection}
-                    className='btn btn-sm border border-green-400 px-3 py-1 rounded text-green-400 hover:bg-green-400/20'
+                    className='btn btn-sm border border-green-400 px-3 py-1 !my-0 rounded !text-white hover:bg-green-400/20'
                   >
                     ➕ Select Card
                   </button>
@@ -87,17 +87,15 @@ export default function GamePage() {
         <div className='container mx-auto px-4'>
           <h2 className='text-white text-3xl mb-8 flex items-center gap-2'>🎮 Available Games</h2>
 
-          {/* <div className='grid md:grid-cols-2 gap-6'>
-            <div className='game-card bg-black/70 border border-blue-400 rounded-lg overflow-hidden hover:-translate-y-2 transition-all'>
-              <div className='relative'>
-                <Image
-                  src='/images/arrow-game-preview.png'
+          <div className='grid md:grid-cols-2 gap-6'>
+            <div className='game-card bg-dark  border border-blue-400 rounded-lg overflow-hidden hover:-translate-y-2 transition-all flex flex-col !animate-none !p-0'>
+              <div className='relative game-image w-full'>
+                <img
+                  src='https://pixelpayot.com/assets/arrow-game-preview-CVpfk9G-.png'
                   alt='Arrow Game Classic'
-                  width={600}
-                  height={250}
-                  className='w-full h-[250px] object-cover'
+                  className='w-full !h-[250px] !object-cover'
                 />
-                <div className='absolute inset-0 bg-white/90 opacity-0 hover:opacity-100 transition flex items-center justify-center'>
+                <div className='absolute inset-0 game-overlay bg-white/90 transition flex items-center justify-center'>
                   <div className='text-center'>
                     <h3 className='text-black text-2xl mb-2'>Arrow Game Classic</h3>
                     <p className='text-black mb-4'>Classic archery challenge with NFT card integration</p>
@@ -130,16 +128,14 @@ export default function GamePage() {
               </div>
             </div>
 
-            <div className='game-card bg-black/70 border border-green-400 rounded-lg overflow-hidden hover:-translate-y-2 transition-all'>
-              <div className='relative'>
-                <Image
-                  src='/images/arrow-game-modern-preview.png'
+            <div className='game-card  bg-dark  border border-green-400 rounded-lg overflow-hidden hover:-translate-y-2 transition-all flex flex-col !animate-none !p-0'>
+              <div className='game-image relative w-full'>
+                <img
+                  src='https://pixelpayot.com/assets/arrow-game-modern-preview-B8a98Bj_.png'
                   alt='Arrow Game Modern'
-                  width={600}
-                  height={250}
-                  className='w-full h-[250px] object-cover'
+                  className='w-full !h-[250px] !object-cover'
                 />
-                <div className='absolute inset-0 bg-white/90 opacity-0 hover:opacity-100 transition flex items-center justify-center'>
+                <div className='absolute inset-0 game-overlay bg-white/90 transition flex items-center justify-center'>
                   <div className='text-center'>
                     <h3 className='text-black text-2xl mb-2'>Arrow Game Modern</h3>
                     <p className='text-black mb-4'>Enhanced archery experience with modern UI and effects</p>
@@ -171,7 +167,7 @@ export default function GamePage() {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
 
           {/* Coming Soon */}
           <h2 className='text-white text-3xl mt-16 mb-8 flex items-center gap-2'>⏳ Coming Soon</h2>
@@ -211,7 +207,7 @@ export default function GamePage() {
             <h3 className='text-white text-2xl mb-6'>📖 Game Rules & Rewards</h3>
             <div className='grid md:grid-cols-2 gap-6'>
               <div>
-                <h5 className='text-cyan-400 mb-3'>💰 How to Earn PPO</h5>
+                <h5 className='!text-cyan-400 mb-3'>💰 How to Earn PPO</h5>
                 <ul className='space-y-2 text-white/70'>
                   <li>Daily Check-in: 1 PPO per day</li>
                   <li>Complete Daily Tasks: 1-5 PPO per task</li>

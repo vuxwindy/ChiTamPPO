@@ -4,6 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
+import { FaFacebook, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -45,13 +46,19 @@ export default function Footer() {
                 {/* Social Media */}
                 <div className='social-media mt-4'>
                   <ul className='flex gap-4 list-none'>
-                    {["facebook", "twitter", "instagram", "youtube", "linkedin"].map((platform) => (
+                    {[
+                      { name: "facebook", icon: <FaFacebook /> },
+                      { name: "twitter", icon: <FaTwitter /> },
+                      { name: "instagram", icon: <FaInstagram /> },
+                      { name: "youtube", icon: <FaYoutube /> },
+                      { name: "linkedin", icon: <FaLinkedinIn /> },
+                    ].map((platform) => (
                       <li
-                        key={platform}
-                        className='w-10 h-10 flex items-center justify-center rounded-full bg-[rgba(204,0,255,0.2)] cursor-pointer transition hover:bg-[rgba(204,0,255,0.4)] hover:-translate-y-1'
+                        key={platform.name}
+                        className='w-10 h-10 flex items-center justify-center rounded-full bg-[rgba(204,0,255,0.2)] cursor-pointer transition hover:bg-[rgba(204,0,255,0.4)] hover:-translate-y-1 '
                       >
-                        <a onClick={() => openSocialLink(platform)}>
-                          <i className={`icon icon-${platform} text-white text-lg`}></i>
+                        <a className='flex justify-center items-center w-full h-full' onClick={() => openSocialLink(platform.name)}>
+                          {platform.icon}
                         </a>
                       </li>
                     ))}

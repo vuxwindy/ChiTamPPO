@@ -5,6 +5,7 @@ import { useAccount, useChainId } from "wagmi";
 import Header from "@/components/Header";
 import ReownWalletButton from "@/components/ReownWalletButton";
 import Link from "next/link";
+import { FaChartLine } from "react-icons/fa";
 // import { ethers } from "ethers";
 
 export default function SwapPage() {
@@ -126,7 +127,7 @@ export default function SwapPage() {
                       <div className='price-chart'>
                         <h5>PPO Price Chart</h5>
                         <div className='chart-placeholder'>
-                          <i className='fas fa-chart-line' />
+                          <FaChartLine />
                           <p>Price chart will be displayed here</p>
                         </div>
                       </div>

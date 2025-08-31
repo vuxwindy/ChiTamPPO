@@ -1,177 +1,54 @@
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaCrosshairs, FaShieldAlt, FaBolt } from "react-icons/fa";
+import {
+  FaCalendarCheck,
+  FaTelegramPlane,
+  FaTwitter,
+  FaUserPlus,
+  FaShareAlt,
+  FaShare,
+  FaGift,
+  FaDownload,
+  FaWallet,
+  FaUserFriends,
+} from "react-icons/fa";
 import Link from "next/link";
+import Header from "@/components/Header";
+import { BiRocket } from "react-icons/bi";
+import { FaChartLine, FaEthereum, FaGamepad, FaRocket, FaTrophy, FaUsers } from "react-icons/fa";
+import { FaBitcoinSign } from "react-icons/fa6";
+import planetArrow from "@/app/access/image/planet-arrow-BTo6e6jt.png";
+import Image from "next/image";
 export default function Home() {
   return (
     <>
       <div id='app'>
         <div id='app'>
           <div className='home'>
-            <header className='header'>
-              <nav className='navbar'>
-                <div className='nav-container'>
-                  <div className='nav-logo'>
-                    <div className='logo'>
-                      <img src='https://pixelpayot.com/assets/header-icon-DThv0V1b.png' alt='PixelPayot' className='logo-img' />
-                      <span className='logo-text'>PixelPayot</span>
-                    </div>
-                  </div>
-                  <div className='nav-menu desktop-menu'>
-                    <ul className='nav-list'>
-                      <li className='nav-item'>
-                        <Link href={"/referral"} className='nav-link'>
-                          <i className='fas fa-users' />
-                          <span>Referral</span>
-                        </Link>
-                      </li>
-                      <li className='nav-item'>
-                        <Link href={"/game"} className='nav-link'>
-                          <i className='fas fa-gamepad' />
-                          <span>Game</span>
-                        </Link>
-                      </li>
-                      <li className='nav-item'>
-                        <Link href={"/investment"} className='nav-link'>
-                          <i className='fas fa-chart-pie' />
-                          <span>Investment</span>
-                        </Link>
-                      </li>
-                      <li className='nav-item'>
-                        <Link href={"/swap"} className='nav-link'>
-                          <i className='fas fa-exchange-alt' />
-                          <span>Swap</span>
-                        </Link>
-                      </li>
-                      <li className='nav-item'>
-                        <div className='nav-dropdown'>
-                          <div className='nav-link dropdown-toggle'>
-                            <i className='fas fa-ellipsis-h' />
-                            <span>More</span>
-                            <i className='fas fa-chevron-down' />
-                          </div>
-                          <ul className='dropdown-menu'>
-                            <li>
-                              <div className='dropdown-item'>
-                                <i className='fas fa-file-alt' />
-                                <span>Whitepaper</span>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className='nav-actions'>
-                    <div className='wallet-section'>{/* <Linkppkit-button features='[object Object]' /> */}</div>
-                    <div className='signup-section'>
-                      <Link href='/signup' className='btn-signup'>
-                        <i className='fas fa-user-plus me-2' /> Sign Up{" "}
-                      </Link>
-                    </div>
-                    {/**/}
-                  </div>
-                  <div className='mobile-menu-toggle'>
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div>
-                <div className='mobile-menu'>
-                  <div className='flex flex-col p-5 h-[calc(100vh-70px)] overflow-y-auto pb-[80px]'>
-                    <ul className='mobile-nav-list list-none m-0 p-0 flex-1'>
-                      <li className='mobile-nav-item mb-2'>
-                        <Link
-                          href='/referral'
-                          className='mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white font-medium bg-white/5 border border-white/10 transition-all text-base hover:bg-pink-100/20 hover:text-pink-600'
-                        >
-                          <i className='fas fa-users' />
-                          <span>Referral</span>
-                        </Link>
-                      </li>
-                      <li className='mobile-nav-item mb-2'>
-                        <Link
-                          href='/game'
-                          className='mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white font-medium bg-white/5 border border-white/10 transition-all text-base hover:bg-pink-100/20 hover:text-pink-600'
-                        >
-                          <i className='fas fa-gamepad' />
-                          <span>Game</span>
-                        </Link>
-                      </li>
-                      <li className='mobile-nav-item mb-2'>
-                        <Link
-                          href='/investment'
-                          className='mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white font-medium bg-white/5 border border-white/10 transition-all text-base hover:bg-pink-100/20 hover:text-pink-600'
-                        >
-                          <i className='fas fa-chart-pie' />
-                          <span>Investment</span>
-                        </Link>
-                      </li>
-                      <li className='mobile-nav-item mb-2'>
-                        <Link
-                          href='/swap'
-                          className='mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white font-medium bg-white/5 border border-white/10 transition-all text-base hover:bg-pink-100/20 hover:text-pink-600'
-                        >
-                          <i className='fas fa-exchange-alt' />
-                          <span>Swap</span>
-                        </Link>
-                      </li>
-                      <li className='mobile-nav-item mb-2'>
-                        <div className='mobile-dropdown'>
-                          <Link
-                            className='mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white font-medium bg-white/5 border border-white/10 transition-all text-base hover:bg-pink-100/20 hover:text-pink-600'
-                            href='#'
-                          >
-                            <i className='fas fa-ellipsis-h' />
-                            <span>More</span>
-                            <i className='fas fa-chevron-down' />
-                          </Link>
-                          <ul className='mobile-dropdown-menu'>
-                            <li>
-                              <Link
-                                href='/whitepaper'
-                                className='mobile-dropdown-item flex items-center gap-2 px-4 py-2 rounded-lg text-white hover:bg-pink-100/20 hover:text-pink-600'
-                              >
-                                <i className='fas fa-file-alt' />
-                                <span>Whitepaper</span>
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                    </ul>
-                    <div className='mobile-actions'>
-                      <div className='mobile-wallet-section'>{/* <Linkppkit-button features='[object Object]' /> */}</div>
-                      <div className='mobile-signup-section'>
-                        <Link href='/signup' className='mobile-btn-signup'>
-                          <i className='fas fa-user-plus me-2' /> Sign Up{" "}
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </nav>
-            </header>
+            <Header />
+
             <section className='hero-section'>
               <div className='hero-background'>
                 <div className='floating-elements'>
                   <div className='floating-icon floating-icon-1'>
-                    <i className='fas fa-gamepad' />
+                    <FaGamepad />
                   </div>
                   <div className='floating-icon floating-icon-2'>
-                    <i className='fas fa-coins' />
+                    <FaBitcoinSign />
                   </div>
                   <div className='floating-icon floating-icon-3'>
-                    <i className='fab fa-ethereum' />
+                    <FaEthereum />
                   </div>
                   <div className='floating-icon floating-icon-4'>
-                    <i className='fas fa-trophy' />
+                    <FaTrophy />
                   </div>
                 </div>
               </div>
               <div className='container'>
                 <div className='row align-items-center min-vh-100'>
                   <div className='col-lg-6 col-md-12'>
-                    <div className='hero-content'>
-                      <div className='hero-badge'>
-                        <i className='fas fa-rocket me-2' />
+                    <div className='hero-content my-4'>
+                      <div className='hero-badge gap-2 '>
+                        <FaRocket />
                         <span>Play-to-Earn Gaming Platform</span>
                       </div>
                       <h1 className='hero-title'>
@@ -274,12 +151,33 @@ export default function Home() {
                         </div>
                       </div>
                       <div className='hero-actions'>
-                        <Link href='/arrow-game' className='btn btn-hero-primary'>
+                        <Link href='/arrow-game' className='btn btn-hero-primary !rounded-md'>
                           <i className='fas fa-crosshairs me-2' /> Play Archery{" "}
                         </Link>
-                        <Link href='/arrow-game-modern' className='btn btn-hero-secondary'>
+                        <Link href='/arrow-game-modern' className='btn btn-hero-primary !rounded-md'>
                           <i className='fas fa-gamepad me-2' /> Modern Archery{" "}
                         </Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='col-lg-6 col-md-12'>
+                    <div className='hero-visual'>
+                      <div className='hero-image-container'>
+                        <Image src={planetArrow} alt='PixelPayot Gaming' className='hero-image' />
+                        {/* <div className='floating-cards'>
+                          <div className='game-card card-1'>
+                            <FaTrophy />
+                            <span>Win Rewards</span>
+                          </div>
+                          <div className='game-card card-2'>
+                            <FaChartLine />
+                            <span>Earn PPO</span>
+                          </div>
+                          <div className='game-card card-3'>
+                            <FaUsers />
+                            <span>Join Community</span>
+                          </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -324,43 +222,46 @@ export default function Home() {
                         <div className='task-list'>
                           <div className='modern-task-item'>
                             <div className='task-icon'>
-                              <i className='fas fa-calendar-check' />
+                              <FaCalendarCheck />
                             </div>
                             <div className='task-content'>
                               <h5>Daily Check-in</h5>
                               <p className='task-reward'>+0.25 PPO</p>
                             </div>
                             <button className='btn btn-task'>
-                              <i className='fas fa-calendar-check' />
+                              <FaCalendarCheck />
                             </button>
                           </div>
+
                           <div className='modern-task-item'>
                             <div className='task-icon'>
-                              <i className='fab fa-telegram' />
+                              <FaTelegramPlane />
                             </div>
                             <div className='task-content'>
                               <h5>Join Telegram Group</h5>
                               <p className='task-reward'>+0.25 PPO</p>
                             </div>
                             <button className='btn btn-task'>
-                              <i className='fas fa-users' />
+                              <FaUsers />
                             </button>
                           </div>
+
                           <div className='modern-task-item'>
                             <div className='task-icon'>
-                              <i className='fab fa-twitter' />
+                              <FaTwitter />
                             </div>
                             <div className='task-content'>
                               <h5>Follow on X</h5>
                               <p className='task-reward'>+0.25 PPO</p>
                             </div>
                             <button className='btn btn-task'>
-                              <i className='fas fa-user-plus' />
+                              <FaUserPlus />
                             </button>
                           </div>
+
                           <div className='modern-task-item special'>
                             <div className='task-icon'>
-                              <i className='fas fa-share-alt' />
+                              <FaShareAlt />
                             </div>
                             <div className='task-content'>
                               <h5>Share &amp; Earn</h5>
@@ -368,24 +269,26 @@ export default function Home() {
                               <small className='task-note'>Share about PixelPayot</small>
                             </div>
                             <button className='btn btn-task'>
-                              <i className='fas fa-share' />
+                              <FaShare />
                             </button>
                           </div>
                         </div>
+
                         <div className='claim-section'>
                           <div className='rewards-summary'>
                             <div className='rewards-icon'>
-                              <i className='fas fa-gift' />
+                              <FaGift />
                             </div>
                             <div className='rewards-content'>
                               <h4>Available Rewards</h4>
                               <span className='rewards-amount'>0 PPO</span>
                               <small className='rewards-info'>⏳ Need 200 more PPO</small>
                             </div>
-                            <button className='btn btn-claim-rewards'>
-                              <i className='fas fa-download' /> Claim{" "}
+                            <button className='btn btn-claim-rewards !flex gap-1 text-white items-center'>
+                              <FaDownload /> Claim
                             </button>
                           </div>
+
                           <div className='rewards-details'>
                             <div className='reward-stat'>
                               <span className='stat-label'>Total Earned:</span>
@@ -408,7 +311,7 @@ export default function Home() {
                     <div className='stats-card'>
                       <div className='card-header'>
                         <div className='header-icon'>
-                          <i className='fas fa-chart-line' />
+                          <FaChartLine />
                         </div>
                         <div className='header-content'>
                           <h3>Your Statistics</h3>
@@ -418,20 +321,22 @@ export default function Home() {
                           <span className='level-text'>Level 0</span>
                         </div>
                       </div>
+
                       <div className='card-body'>
                         <div className='stats-grid'>
                           <div className='stat-item'>
                             <div className='stat-icon wallet'>
-                              <i className='fas fa-wallet' />
+                              <FaWallet />
                             </div>
                             <div className='stat-content'>
                               <span className='stat-value'>0.00</span>
                               <span className='stat-label'>PPO Balance</span>
                             </div>
                           </div>
+
                           <div className='stat-item'>
                             <div className='stat-icon referral'>
-                              <i className='fas fa-users' />
+                              <FaUsers />
                             </div>
                             <div className='stat-content'>
                               <span className='stat-value'>0</span>
@@ -439,16 +344,18 @@ export default function Home() {
                             </div>
                           </div>
                         </div>
+
                         <div className='referral-section wallet-required'>
                           <div className='referral-header'>
                             <div className='referral-icon'>
-                              <i className='fas fa-user-friends' />
+                              <FaUserFriends />
                             </div>
                             <div className='referral-content'>
                               <h4>Invite Friends</h4>
-                              <p> Connect your wallet to get your referral link and start earning PPO! </p>
+                              <p>Connect your wallet to get your referral link and start earning PPO!</p>
                             </div>
                           </div>
+
                           <div className='referral-connect'>{/* <Linkppkit-button features='[object Object]' /> */}</div>
                         </div>
                       </div>
@@ -468,11 +375,9 @@ export default function Home() {
                   <p className='section-description'> Play exciting games and earn PPO tokens while having fun </p>
                 </div>
                 <div className='games-grid'>
-                  <div className='game-card'>
-                    <div className='game-icon'>
-                      <i className='fas fa-crosshairs' />
-                    </div>
-                    <div className='game-content'>
+                  <div className='game-card flex-col'>
+                    <div className='game-content flex-col text-center p-4'>
+                      <FaCrosshairs size={40} className='mb-4' />
                       <h3>PPO Archery</h3>
                       <p> Test your aim and precision in this classic archery game. Hit targets to earn PPO tokens! </p>
                       <div className='game-features'>
@@ -480,17 +385,15 @@ export default function Home() {
                         <span className='feature'>💰 Earn PPO Tokens</span>
                         <span className='feature'>🏆 Leaderboards</span>
                       </div>
-                      <Link href='/arrow-game' className='btn btn-game'>
+                      <Link href='/arrow-game' className='btn btn-game mt-4'>
                         <i className='fas fa-play me-2' /> Play Now{" "}
                       </Link>
                     </div>
                     <div className='game-glow' />
                   </div>
-                  <div className='game-card'>
-                    <div className='game-icon'>
-                      <i className='fas fa-gamepad' />
-                    </div>
-                    <div className='game-content'>
+                  <div className='game-card flex-col'>
+                    <div className='game-content flex-col text-center p-4'>
+                      <FaGamepad size={40} className='mb-4' />
                       <h3>Modern Archery</h3>
                       <p> Experience the next generation of archery with enhanced graphics and gameplay mechanics. </p>
                       <div className='game-features'>
@@ -498,7 +401,7 @@ export default function Home() {
                         <span className='feature'>⚡ Enhanced Gameplay</span>
                         <span className='feature'>🎮 Mobile Optimized</span>
                       </div>
-                      <Link href='/arrow-game-modern' className='btn btn-game'>
+                      <Link href='/arrow-game-modern' className='btn btn-game mt-4 '>
                         <i className='fas fa-play me-2' /> Play Now{" "}
                       </Link>
                     </div>
@@ -517,14 +420,14 @@ export default function Home() {
                   <h2 className='section-title'>Experience Next-Gen Gaming</h2>
                   <p className='section-description'> Discover powerful features that make PixelPayot the ultimate GameFi destination </p>
                 </div>
-                <div className='features-grid'>
-                  <div className='feature-card'>
-                    <div className='feature-icon'>
-                      <i className='fas fa-bolt' />
-                    </div>
-                    <div className='feature-content'>
-                      <h3>Lightning Fast</h3>
-                      <p> Experience instant transactions with our optimized blockchain integration </p>
+                <div className='flex gap-8 max-md:flex-col'>
+                  <div className='feature-card game-card flex flex-row items-center !animate-none flex-1'>
+                    <div className='feature-content text-center flex flex-col items-center'>
+                      <div className='feature-icon mx-auto'>
+                        <FaBolt size={32} />
+                      </div>
+                      <h3 className='text-white'>Lightning Fast</h3>
+                      <p className='opacity-70'> Experience instant transactions with our optimized blockchain integration </p>
                       <div className='feature-stats'>
                         <span className='stat'>0.1s</span>
                         <span className='stat-label'>Transaction Time</span>
@@ -532,13 +435,13 @@ export default function Home() {
                     </div>
                     <div className='feature-glow' />
                   </div>
-                  <div className='feature-card'>
-                    <div className='feature-icon'>
-                      <i className='fas fa-shield-alt' />
-                    </div>
-                    <div className='feature-content'>
-                      <h3>Secure &amp; Safe</h3>
-                      <p>Bank-grade security with multi-signature wallet protection</p>
+                  <div className='feature-card game-card flex flex-row items-center !animate-none flex-1'>
+                    <div className='feature-content text-center flex flex-col items-center'>
+                      <div className='feature-icon mx-auto'>
+                        <FaShieldAlt size={32} />
+                      </div>
+                      <h3 className='text-white'>Secure &amp; Safe</h3>
+                      <p className='opacity-70'>Bank-grade security with multi-signature wallet protection</p>
                       <div className='feature-stats'>
                         <span className='stat'>99.9%</span>
                         <span className='stat-label'>Uptime</span>
@@ -546,13 +449,13 @@ export default function Home() {
                     </div>
                     <div className='feature-glow' />
                   </div>
-                  <div className='feature-card'>
-                    <div className='feature-icon'>
-                      <i className='fas fa-users' />
-                    </div>
-                    <div className='feature-content'>
-                      <h3>Community Driven</h3>
-                      <p>Join a thriving community of gamers and earn together</p>
+                  <div className='feature-card game-card flex flex-row items-center !animate-none flex-1'>
+                    <div className='feature-content text-center flex flex-col items-center'>
+                      <div className='feature-icon mx-auto'>
+                        <FaUsers size={32} />
+                      </div>
+                      <h3 className='text-white'>Community Driven</h3>
+                      <p className='opacity-70'>Join a thriving community of gamers and earn together</p>
                       <div className='feature-stats'>
                         <span className='stat'>24/7</span>
                         <span className='stat-label'>Support</span>
@@ -631,28 +534,28 @@ export default function Home() {
                       <div className='social-media'>
                         <ul className='d-flex list-unstyled'>
                           <li className='bg-blue-trans border-rounded-circle'>
-                            <Link href='#'>
-                              <i className='icon icon-facebook' />
+                            <Link href='#' className='flex justify-center items-center w-full h-full'>
+                              <FaFacebookF />
                             </Link>
                           </li>
                           <li className='bg-blue-trans border-rounded-circle'>
-                            <Link href='#'>
-                              <i className='icon icon-twitter' />
+                            <Link href='#' className='flex justify-center items-center w-full h-full'>
+                              <FaTwitter />
                             </Link>
                           </li>
                           <li className='bg-blue-trans border-rounded-circle'>
-                            <Link href='#'>
-                              <i className='icon icon-instagram' />
+                            <Link href='#' className='flex justify-center items-center w-full h-full'>
+                              <FaInstagram />
                             </Link>
                           </li>
                           <li className='bg-blue-trans border-rounded-circle'>
-                            <Link href='#'>
-                              <i className='icon icon-youtube' />
+                            <Link href='#' className='flex justify-center items-center w-full h-full'>
+                              <FaYoutube />
                             </Link>
                           </li>
                           <li className='bg-blue-trans border-rounded-circle'>
-                            <Link href='#'>
-                              <i className='icon icon-linkedin' />
+                            <Link href='#' className='flex justify-center items-center w-full h-full'>
+                              <FaLinkedinIn />
                             </Link>
                           </li>
                         </ul>

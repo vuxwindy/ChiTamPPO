@@ -4,6 +4,9 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { IoPeople } from "react-icons/io5";
+import { FaChartPie, FaFilePdf, FaGamepad, FaUserPlus } from "react-icons/fa";
+import { IoIosMore, IoMdSwap } from "react-icons/io";
 // import WalletStatus from "./WalletStatus"
 
 export default function Header() {
@@ -18,10 +21,10 @@ export default function Header() {
   };
 
   const menuItems = [
-    { id: "referral", name: "Referral", url: "/referral", icon: "fas fa-images" },
-    { id: "game", name: "Game", url: "/game", icon: "fas fa-gamepad" },
-    { id: "investment", name: "Investment", url: "/investment", icon: "fas fa-images" },
-    { id: "swap", name: "Swap", url: "/swap", icon: "fas fa-chart-pie" },
+    { id: "referral", name: "Referral", url: "/referral", icon: <IoPeople /> },
+    { id: "game", name: "Game", url: "/game", icon: <FaGamepad /> },
+    { id: "investment", name: "Investment", url: "/investment", icon: <FaChartPie /> },
+    { id: "swap", name: "Swap", url: "/swap", icon: <IoMdSwap /> },
     // {
     //   id: "profile",
     //   name: "Profile",
@@ -39,12 +42,12 @@ export default function Header() {
       id: "more",
       name: "More",
       url: "#",
-      icon: "fas fa-ellipsis-h",
+      icon: <IoIosMore />,
       submenu: [
         // { id: "blindbox", name: "Blindbox", url: "/blindbox", icon: "fas fa-box-open" },
         // { id: "swap", name: "Swap", url: "/swap", icon: "fas fa-exchange-alt" },
         // { id: "creators", name: "Creators", url: "/creators", icon: "fas fa-palette" },
-        { id: "whitepaper", name: "Whitepaper", url: "/whitepaper", icon: "fas fa-file-alt" },
+        { id: "whitepaper", name: "Whitepaper", url: "/", icon: <FaFilePdf /> },
       ],
     },
   ];
@@ -70,7 +73,6 @@ export default function Header() {
 
   const handleLogout = useCallback(() => {
     if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
-      // TODO: signOut + disconnectWallet
       router.push("/");
       setIsUserMenuOpen(false);
     }
@@ -88,31 +90,29 @@ export default function Header() {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  console.log("activeDropdown", activeDropdown);
-
   return (
     <header className='fixed top-0 left-0 right-0 h-[70px] bg-black/95 backdrop-blur-xl border-b border-white/10 z-50 flex items-center'>
       <nav className='w-full h-full'>
         <div className='max-w-[1400px] mx-auto px-5 h-full flex items-center justify-between'>
           {/* Logo */}
           <div className='flex items-center cursor-pointer' onClick={() => handleMenuClick("/")}>
-            <img src='https://pixelpayot.com/assets//header-icon-DThv0V1b.png' alt='PixelPayot' width={35} height={35} />
+            <img src='https://pixelpayot.com/assets//header-icon-DThv0V1b.png' alt='PixelPayot' className='!h-[35px]' />
             <span className='ml-2 text-xl font-bold bg-gradient-to-r from-fuchsia-600 to-pink-400 bg-clip-text text-transparent'>PixelPayot</span>
           </div>
 
           {/* Desktop Menu */}
-          <ul className='hidden md:flex gap-2'>
+          <ul className='hidden md:flex gap-2 mb-0'>
             {menuItems.map((item) => (
               <li key={item.id} className='relative my-auto'>
                 {item.submenu ? (
                   <div className='group relative'>
                     <button
                       onClick={() => handleDropdownClick(item.id)}
-                      className={`flex items-center !my-0 gap-2 px-3 py-2 rounded-md hover:bg-pink-500/10 transition ${
+                      className={`flex flex-row  justify-center items-center !my-0 gap-2 px-3 py-2 !rounded-md hover:bg-pink-500/10 transition ${
                         activeDropdown === item.id ? "text-pink-500" : "text-white"
                       }`}
                     >
-                      <i className={item.icon}></i>
+                      <span>{item.icon}</span>
                       {item.name}
                       <i className='fas fa-chevron-down text-xs'></i>
                     </button>
@@ -122,9 +122,9 @@ export default function Header() {
                           <li key={sub.id}>
                             <button
                               onClick={() => handleMenuClick(sub.url)}
-                              className='w-full flex items-center !my-0 gap-2 px-3 py-2 rounded-md text-white hover:text-pink-500 hover:bg-pink-500/10'
+                              className='w-full flex flex-row  justify-center items-center !my-0 gap-2 px-3 py-2 !rounded-md text-white hover:text-pink-500 hover:bg-pink-500/10'
                             >
-                              <i className={sub.icon}></i>
+                              <span>{sub.icon}</span>
                               {sub.name}
                             </button>
                           </li>
@@ -135,9 +135,9 @@ export default function Header() {
                 ) : (
                   <button
                     onClick={() => handleMenuClick(item.url)}
-                    className='flex items-center gap-2 px-3 py-2 rounded-md text-white hover:text-pink-500 !my-0 hover:bg-pink-500/10'
+                    className='flex flex-row  justify-center items-center  gap-2 px-3 py-2 !rounded-md text-white hover:text-pink-500 !my-0 hover:bg-pink-500/10'
                   >
-                    <i className={item.icon}></i>
+                    <span>{item.icon}</span>
                     {item.name}
                   </button>
                 )}
@@ -146,8 +146,16 @@ export default function Header() {
           </ul>
 
           <div className='flex items-center gap-4'>
+            <div className='nav-actions'>
+              <div className='wallet-section'></div>
+              <div className='signup-section'>
+                <Link href='/signup' className='btn-signup'>
+                  <FaUserPlus className='me-2' /> Sign Up{" "}
+                </Link>
+              </div>
+            </div>
             {/* <WalletStatus /> */}
-            {currentUser && (
+            {/* {currentUser && (
               <div className='relative user-menu'>
                 <button
                   onClick={() => setIsUserMenuOpen((prev) => !prev)}
@@ -185,7 +193,7 @@ export default function Header() {
                   </ul>
                 )}
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -208,8 +216,8 @@ export default function Header() {
                         onClick={() => handleDropdownClick(item.id)}
                         className='flex items-center justify-between w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white hover:text-pink-500 hover:bg-pink-500/10'
                       >
-                        <span className='flex items-center gap-2'>
-                          <i className={item.icon}></i>
+                        <span className='flex items-center gap-2 flex-row'>
+                          <span>{item.icon}</span>
                           {item.name}
                         </span>
                         <i className='fas fa-chevron-down'></i>
@@ -220,9 +228,9 @@ export default function Header() {
                             <li key={sub.id}>
                               <button
                                 onClick={() => handleMenuClick(sub.url)}
-                                className='flex items-center gap-2 w-full px-4 py-2 rounded-lg text-white hover:text-pink-500 hover:bg-pink-500/10'
+                                className='flex items-center gap-2 flex-row w-full px-4 py-2 rounded-lg text-white hover:text-pink-500 hover:bg-pink-500/10'
                               >
-                                <i className={sub.icon}></i>
+                                <span>{item.icon}</span>
                                 {sub.name}
                               </button>
                             </li>
@@ -233,9 +241,9 @@ export default function Header() {
                   ) : (
                     <button
                       onClick={() => handleMenuClick(item.url)}
-                      className='flex items-center gap-2 w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white hover:text-pink-500 hover:bg-pink-500/10'
+                      className='flex items-center gap-2 flex-row w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white hover:text-pink-500 hover:bg-pink-500/10'
                     >
-                      <i className={item.icon}></i>
+                      <span>{item.icon}</span>
                       {item.name}
                     </button>
                   )}
