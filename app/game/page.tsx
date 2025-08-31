@@ -97,7 +97,7 @@ export default function GamePage() {
                 />
                 <div className='absolute inset-0 game-overlay bg-white/90 transition flex items-center justify-center'>
                   <div className='text-center'>
-                    <h3 className='text-black text-2xl mb-2'>Arrow Game Classic</h3>
+                    <h3 className='max-md:!text-xl text-black text-2xl mb-2'>Arrow Game Classic</h3>
                     <p className='text-black mb-4'>Classic archery challenge with NFT card integration</p>
                     <Link href='/arrow-game' className='bg-blue-600 text-white px-5 py-2 rounded-lg'>
                       ▶ Play Now
@@ -137,7 +137,7 @@ export default function GamePage() {
                 />
                 <div className='absolute inset-0 game-overlay bg-white/90 transition flex items-center justify-center'>
                   <div className='text-center'>
-                    <h3 className='text-black text-2xl mb-2'>Arrow Game Modern</h3>
+                    <h3 className='max-md:!text-xl text-black text-2xl mb-2'>Arrow Game Modern</h3>
                     <p className='text-black mb-4'>Enhanced archery experience with modern UI and effects</p>
                     <Link href='/arrow-game-modern' className='bg-green-600 text-white px-5 py-2 rounded-lg'>
                       ▶ Play Now
@@ -182,7 +182,7 @@ export default function GamePage() {
                   <img src={game.image} alt={game.name} width={600} height={200} className='w-full h-[200px] object-cover' />
                   <div className='absolute inset-0 bg-black/50 flex items-center justify-center'>
                     <div className='text-center'>
-                      <h3 className='text-white text-xl'>Coming Soon</h3>
+                      <h3 className='max-md:!text-xl text-white text-xl'>Coming Soon</h3>
                       <p className='text-white/70'>New games are being developed</p>
                     </div>
                   </div>
@@ -204,26 +204,26 @@ export default function GamePage() {
 
           {/* Rules */}
           <div className='game-rules bg-black/70 border border-cyan-400 rounded-lg p-6 mt-16 bg-dark  border-info'>
-            <h3 className='text-white text-2xl mb-6'>📖 Game Rules & Rewards</h3>
+            <h3 className='max-md:!text-xl text-white text-2xl mb-6'>📖 Game Rules & Rewards</h3>
             <div className='grid md:grid-cols-2 gap-6'>
               <div>
                 <h5 className='!text-cyan-400 mb-3'>💰 How to Earn PPO</h5>
                 <ul className='space-y-2 text-white/70'>
-                  <li>Daily Check-in: 1 PPO per day</li>
-                  <li>Complete Daily Tasks: 1-5 PPO per task</li>
-                  <li>Game Points: 1 PPO per point scored</li>
-                  <li>NFT Card Bonuses: Extra points based on rarity</li>
-                  <li>Deposit: Direct PPO transfer to platform</li>
+                  <li className='max-md:text-base'>Daily Check-in: 1 PPO per day</li>
+                  <li className='max-md:text-base'>Complete Daily Tasks: 1-5 PPO per task</li>
+                  <li className='max-md:text-base'>Game Points: 1 PPO per point scored</li>
+                  <li className='max-md:text-base'>NFT Card Bonuses: Extra points based on rarity</li>
+                  <li className='max-md:text-base'>Deposit: Direct PPO transfer to platform</li>
                 </ul>
               </div>
               <div>
                 <h5 className='text-green-400 mb-3'>🎴 NFT Card System</h5>
                 <ul className='space-y-2 text-white/70'>
-                  <li>Use NFT cards to boost game performance</li>
-                  <li>Rarity bonuses: Common (+5), Rare (+15), Epic (+30), Legendary (+50)</li>
-                  <li>Card attributes provide additional bonuses</li>
-                  <li>Cards can be purchased in marketplace</li>
-                  <li>Collect rare cards for max rewards</li>
+                  <li className='max-md:text-base'>Use NFT cards to boost game performance</li>
+                  <li className='max-md:text-base'>Rarity bonuses: Common (+5), Rare (+15), Epic (+30), Legendary (+50)</li>
+                  <li className='max-md:text-base'>Card attributes provide additional bonuses</li>
+                  <li className='max-md:text-base'>Cards can be purchased in marketplace</li>
+                  <li className='max-md:text-base'>Collect rare cards for max rewards</li>
                 </ul>
               </div>
             </div>

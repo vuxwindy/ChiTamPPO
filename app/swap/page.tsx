@@ -109,19 +109,19 @@ export default function SwapPage() {
                       <div className='market-stats'>
                         <div className='market-stat'>
                           <span className='stat-label'>24h Volume</span>
-                          <span className='stat-value'>$2.5M</span>
+                          <span className='stat-value max-md:!text-base'>$2.5M</span>
                         </div>
                         <div className='market-stat'>
                           <span className='stat-label'>Total Liquidity</span>
-                          <span className='stat-value'>$15.2M</span>
+                          <span className='stat-value max-md:!text-base'>$15.2M</span>
                         </div>
                         <div className='market-stat'>
                           <span className='stat-label'>BNB Price</span>
-                          <span className='stat-value'>{/**/} $853.79</span>
+                          <span className='stat-value max-md:!text-base'>{/**/} $853.79</span>
                         </div>
                         <div className='market-stat'>
                           <span className='stat-label'>PPO Price</span>
-                          <span className='stat-value'>$0.05</span>
+                          <span className='stat-value max-md:!text-base'>$0.05</span>
                         </div>
                       </div>
                       <div className='price-chart'>

@@ -209,14 +209,6 @@
   border-radius: 50%;
 }
 
-.stat-value {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 10px;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
 .stat-label {
   color: #b0b0b0;
   font-size: 1rem;

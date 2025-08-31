@@ -95,7 +95,7 @@ export default function InvestNFTCard({ nft, onClaimed }: InvestNFTCardProps) {
           {nft.tier === 2 && <img src='/nft/ppo-gold.png' alt='Gold NFT' className='w-full h-full object-cover rounded-full' />}
         </div>
         <div className='pool-info'>
-          <h3 className='pool-name'>{tier}</h3>
+          <h3 className='max-md:!text-xl pool-name'>{tier}</h3>
         </div>
         <div className={`pool-status ${isActive ? "active" : "inactive"}`}>{isActive ? "Active" : "Inactive"}</div>
       </div>
@@ -103,19 +103,19 @@ export default function InvestNFTCard({ nft, onClaimed }: InvestNFTCardProps) {
       <div className='pool-stats'>
         <div className='stat-row'>
           <span className='stat-label'>Lock Period</span>
-          <span className='stat-value'>{lockPeriod} days</span>
+          <span className='stat-value max-md:!text-base'>{lockPeriod} days</span>
         </div>
         <div className='stat-row'>
           <span className='stat-label'>Min Stake</span>
-          <span className='stat-value'>{mintStake} BNB</span>
+          <span className='stat-value max-md:!text-base'>{mintStake} BNB</span>
         </div>
         <div className='stat-row'>
           <span className='stat-label'>PPO per day</span>
-          <span className='stat-value'>{ppoPerDay} PPO</span>
+          <span className='stat-value max-md:!text-base'>{ppoPerDay} PPO</span>
         </div>
         <div className='stat-row'>
           <span className='stat-label'>Pending PPO</span>
-          <span className='stat-value'>{pendingPPO} PPO</span>
+          <span className='stat-value max-md:!text-base'>{pendingPPO} PPO</span>
         </div>
       </div>
 

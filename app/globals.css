@@ -58,3 +58,9 @@ body {
 .fab {
   font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Regular" !important;
 }
+
+@media (max-width: 900px) {
+  p {
+    font-size: 15px;
+  }
+}

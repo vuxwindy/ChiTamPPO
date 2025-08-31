@@ -541,7 +541,7 @@ button:hover:not(:disabled) .fas.fa-chevron-right{
     position: relative
 }
 
-.mobile-menu-toggle{
+.mobile-menu-toggle:hover{
     background: #ffffff1a
 }
 
@@ -555,16 +555,16 @@ button:hover:not(:disabled) .fas.fa-chevron-right{
     transform-origin: center
 }
 
-.mobile-menu-toggle.active span{
+.mobile-menu-toggle.active span:nth-child(1){
     transform: rotate(45deg) translate(6px,6px)
 }
 
-.mobile-menu-toggle.active span{
+.mobile-menu-toggle.active span:nth-child(2){
     opacity: 0;
     transform: scale(0)
 }
 
-.mobile-menu-toggle.active span{
+.mobile-menu-toggle.active span:nth-child(3){
     transform: rotate(-45deg) translate(6px,-6px)
 }
 
@@ -1618,6 +1618,7 @@ hr{
 }
 
 .referral-icon{
+    min-width:40px;
     width: 40px;
     height: 40px;
     background: linear-gradient(135deg,#34d399,#10b981);
@@ -1874,7 +1875,8 @@ hr{
     }
 
     .section-title{
-        font-size: 2rem
+        font-size: 2rem!important;
+        line-height: 1.2!important;
     }
 
     .achievement-stats{
@@ -20096,6 +20098,14 @@ i,.icon,[class*=icon-] {
   color: #fff;
   font-weight: 600;
   font-size: 1rem;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .price-chart {

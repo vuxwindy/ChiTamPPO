@@ -148,7 +148,7 @@ export default function Header() {
           <div className='flex items-center gap-4'>
             <div className='nav-actions'>
               <div className='wallet-section'></div>
-              <div className='signup-section'>
+              <div className='signup-section max-md:!hidden'>
                 <Link href='/signup' className='btn-signup'>
                   <FaUserPlus className='me-2' /> Sign Up{" "}
                 </Link>
@@ -197,16 +197,17 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button className={`md:hidden flex flex-col gap-1 p-2 ${isMobileMenuOpen ? "active" : ""}`} onClick={toggleMobileMenu}>
-            <span className='w-6 h-[2px] bg-white'></span>
-            <span className='w-6 h-[2px] bg-white'></span>
-            <span className='w-6 h-[2px] bg-white'></span>
-          </button>
+          <div data-v-2e0e4a19='' className={`mobile-menu-toggle ${isMobileMenuOpen ? "active" : ""}`} onClick={toggleMobileMenu}>
+            <span data-v-2e0e4a19=''></span>
+            <span data-v-2e0e4a19=''></span>
+            <span data-v-2e0e4a19=''></span>
+          </div>
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className='md:hidden fixed top-[70px] left-0 right-0 bottom-0 bg-black/95 backdrop-blur-xl p-5 overflow-y-auto z-40'>
+
+        <div className={`mobile-menu ${isMobileMenuOpen ? "show" : ""}`}>
+          <div className='flex flex-col p-5 h-[calc(100vh-70px)] overflow-y-auto pb-[80px]'>
             <ul className='flex flex-col gap-2'>
               {menuItems.map((item) => (
                 <li key={item.id}>
@@ -252,7 +253,7 @@ export default function Header() {
             </ul>
             <div className='mt-6'>{/* <WalletStatus /> */}</div>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );

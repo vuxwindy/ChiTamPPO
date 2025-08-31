@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 // import MysteryBox from "@/views/investment/MysteryBox";
 // import Dialog from "@/components/Dialog";
 import InvestNFTCard from "./InvestNFTCard";
+import { FaWallet } from "react-icons/fa";
 
 export default function InvestmentPage() {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
@@ -64,10 +65,10 @@ export default function InvestmentPage() {
             <div className='w-full md:w-1/2 mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
-                  <i className='fas fa-wallet'></i>
+                  <FaWallet />
                 </div>
                 <div className='stat-content'>
-                  <h3 className='stat-value'>{investmentStats.totalNfts}</h3>
+                  <h3 className='max-md:!text-xl stat-value'>{investmentStats.totalNfts}</h3>
                   <p className='stat-label'>Total NFTs</p>
                 </div>
               </div>
@@ -79,7 +80,7 @@ export default function InvestmentPage() {
                   <i className='fas fa-chart-line'></i>
                 </div>
                 <div className='stat-content'>
-                  <h3 className='stat-value'>{investmentStats.totalMyNfts}</h3>
+                  <h3 className='max-md:!text-xl stat-value'>{investmentStats.totalMyNfts}</h3>
                   <p className='stat-label'>Total My NFTs</p>
                 </div>
               </div>
@@ -94,17 +95,17 @@ export default function InvestmentPage() {
           <div className='container mx-auto'>
             <div className='flex flex-wrap'>
               <div className='w-full'>
-                <h2 className='section-title text-center mb-5'>Your Investment Summary</h2>
+                <h2 className='section-title max-md:text-[24px]  text-center mb-5'>Your Investment Summary</h2>
               </div>
             </div>
             <div className='flex flex-wrap'>
               <div className='w-full md:w-1/2 lg:w-1/4 mb-4'>
                 <div className='stat-card personal'>
                   <div className='stat-icon'>
-                    <i className='fas fa-wallet'></i>
+                    <FaWallet />
                   </div>
                   <div className='stat-content'>
-                    <h3 className='stat-value'>{personalStats.totalStaked}</h3>
+                    <h3 className='max-md:!text-xl stat-value'>{personalStats.totalStaked}</h3>
                     <p className='stat-label'>Your Total Staked</p>
                   </div>
                 </div>
@@ -115,7 +116,7 @@ export default function InvestmentPage() {
                     <i className='fas fa-chart-line'></i>
                   </div>
                   <div className='stat-content'>
-                    <h3 className='stat-value'>{personalStats.totalEarned}</h3>
+                    <h3 className='max-md:!text-xl stat-value'>{personalStats.totalEarned}</h3>
                     <p className='stat-label'>Your Total Earned</p>
                   </div>
                 </div>
@@ -126,7 +127,7 @@ export default function InvestmentPage() {
                     <i className='fas fa-percentage'></i>
                   </div>
                   <div className='stat-content'>
-                    <h3 className='stat-value'>{personalStats.apy}%</h3>
+                    <h3 className='max-md:!text-xl stat-value'>{personalStats.apy}%</h3>
                     <p className='stat-label'>Your Average APY</p>
                   </div>
                 </div>
@@ -137,7 +138,7 @@ export default function InvestmentPage() {
                     <i className='fas fa-coins'></i>
                   </div>
                   <div className='stat-content'>
-                    <h3 className='stat-value'>0</h3>
+                    <h3 className='max-md:!text-xl stat-value'>0</h3>
                     <p className='stat-label'>Available Balance</p>
                   </div>
                 </div>
@@ -160,7 +161,7 @@ export default function InvestmentPage() {
           </div>
           <div className='flex flex-wrap'>
             <div className='w-full'>
-              <h2 className='section-title text-center mb-5'>My NFTs</h2>
+              <h2 className='section-title max-md:text-[24px]  text-center mb-5'>My NFTs</h2>
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]'>
                 {/* Example card */}
                 <InvestNFTCard nft={{ tier: 1 }} onClaimed={() => {}} />

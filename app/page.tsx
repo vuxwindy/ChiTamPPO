@@ -192,13 +192,13 @@ export default function Home() {
                     <i className='fas fa-tasks me-2' />
                     <span>Daily Missions</span>
                   </div>
-                  <h2 className='section-title'>Complete Tasks &amp; Earn Rewards</h2>
+                  <h2 className='section-title max-md:text-[24px] '>Complete Tasks &amp; Earn Rewards</h2>
                   <p className='section-description'> Join thousands of players earning $PPO tokens daily through engaging missions </p>
                 </div>
                 <div className='row g-4'>
                   <div className='col-lg-6 col-md-12'>
                     <div className='tasks-card'>
-                      <div className='card-header'>
+                      <div className='card-header max-md:gap-2'>
                         <div className='header-icon'>
                           <svg width='32px' height='32px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                             <g id='SVGRepo_bgCarrier' strokeWidth={0} />
@@ -212,7 +212,7 @@ export default function Home() {
                           </svg>
                         </div>
                         <div className='header-content'>
-                          <h3>Daily Tasks</h3>
+                          <h3 className='max-md:!text-xl'>Daily Tasks</h3>
                           <p>Complete tasks to earn $PPO tokens</p>
                         </div>
                         <div className='progress-indicator'>
@@ -293,15 +293,15 @@ export default function Home() {
                           <div className='rewards-details'>
                             <div className='reward-stat'>
                               <span className='stat-label'>Total Earned:</span>
-                              <span className='stat-value'>0 PPO</span>
+                              <span className='stat-value max-md:!text-base'>0 PPO</span>
                             </div>
                             <div className='reward-stat'>
                               <span className='stat-label'>Already Claimed:</span>
-                              <span className='stat-value'>0 PPO</span>
+                              <span className='stat-value max-md:!text-base'>0 PPO</span>
                             </div>
                             <div className='reward-stat'>
                               <span className='stat-label'>Pending:</span>
-                              <span className='stat-value'>0 PPO</span>
+                              <span className='stat-value max-md:!text-base'>0 PPO</span>
                             </div>
                           </div>
                         </div>
@@ -310,12 +310,12 @@ export default function Home() {
                   </div>
                   <div className='col-lg-6 col-md-12'>
                     <div className='stats-card'>
-                      <div className='card-header'>
+                      <div className='card-header max-md:gap-2'>
                         <div className='header-icon'>
                           <FaChartLine />
                         </div>
                         <div className='header-content'>
-                          <h3>Your Statistics</h3>
+                          <h3 className='max-md:!text-xl'>Your Statistics</h3>
                           <p>Track your progress and earnings</p>
                         </div>
                         <div className='level-badge'>
@@ -330,7 +330,7 @@ export default function Home() {
                               <FaWallet />
                             </div>
                             <div className='stat-content'>
-                              <span className='stat-value'>0.00</span>
+                              <span className='stat-value max-md:!text-base'>0.00</span>
                               <span className='stat-label'>PPO Balance</span>
                             </div>
                           </div>
@@ -340,7 +340,7 @@ export default function Home() {
                               <FaUsers />
                             </div>
                             <div className='stat-content'>
-                              <span className='stat-value'>0</span>
+                              <span className='stat-value max-md:!text-base'>0</span>
                               <span className='stat-label'>Referrals</span>
                             </div>
                           </div>
@@ -372,21 +372,21 @@ export default function Home() {
                     <i className='fas fa-gamepad me-2' />
                     <span>Play &amp; Earn Games</span>
                   </div>
-                  <h2 className='section-title'>Choose Your Adventure</h2>
+                  <h2 className='section-title max-md:text-[24px] '>Choose Your Adventure</h2>
                   <p className='section-description'> Play exciting games and earn PPO tokens while having fun </p>
                 </div>
                 <div className='games-grid'>
                   <div className='game-card flex-col'>
                     <div className='game-content flex-col text-center p-4'>
                       <FaCrosshairs size={40} className='mb-4' />
-                      <h3>PPO Archery</h3>
+                      <h3 className='max-md:!text-xl'>PPO Archery</h3>
                       <p> Test your aim and precision in this classic archery game. Hit targets to earn PPO tokens! </p>
-                      <div className='game-features'>
-                        <span className='feature'>🎯 Precision Aiming</span>
-                        <span className='feature'>💰 Earn PPO Tokens</span>
-                        <span className='feature'>🏆 Leaderboards</span>
+                      <div className='game-features max-md:!leading-[1]'>
+                        <span className='feature max-md:!text-base '>🎯 Precision Aiming</span>
+                        <span className='feature max-md:!text-base '>💰 Earn PPO Tokens</span>
+                        <span className='feature max-md:!text-base '>🏆 Leaderboards</span>
                       </div>
-                      <Link href='/arrow-game' className='btn btn-game mt-4'>
+                      <Link href='/arrow-game' className='btn btn-game mt-4 '>
                         <i className='fas fa-play me-2' /> Play Now{" "}
                       </Link>
                     </div>
@@ -395,12 +395,12 @@ export default function Home() {
                   <div className='game-card flex-col'>
                     <div className='game-content flex-col text-center p-4'>
                       <FaGamepad size={40} className='mb-4' />
-                      <h3>Modern Archery</h3>
+                      <h3 className='max-md:!text-xl'>Modern Archery</h3>
                       <p> Experience the next generation of archery with enhanced graphics and gameplay mechanics. </p>
-                      <div className='game-features'>
-                        <span className='feature'>🎨 Modern Graphics</span>
-                        <span className='feature'>⚡ Enhanced Gameplay</span>
-                        <span className='feature'>🎮 Mobile Optimized</span>
+                      <div className='game-features max-md:!leading-[1]'>
+                        <span className='feature max-md:!text-base '>🎨 Modern Graphics</span>
+                        <span className='feature max-md:!text-base '>⚡ Enhanced Gameplay</span>
+                        <span className='feature max-md:!text-base '>🎮 Mobile Optimized</span>
                       </div>
                       <Link href='/arrow-game-modern' className='btn btn-game mt-4 '>
                         <i className='fas fa-play me-2' /> Play Now{" "}
@@ -418,7 +418,7 @@ export default function Home() {
                     <i className='fas fa-star me-2' />
                     <span>Platform Features</span>
                   </div>
-                  <h2 className='section-title'>Experience Next-Gen Gaming</h2>
+                  <h2 className='section-title max-md:text-[24px] '>Experience Next-Gen Gaming</h2>
                   <p className='section-description'> Discover powerful features that make PixelPayot the ultimate GameFi destination </p>
                 </div>
                 <div className='flex gap-8 max-md:flex-col'>
@@ -427,7 +427,7 @@ export default function Home() {
                       <div className='feature-icon mx-auto'>
                         <FaBolt size={32} />
                       </div>
-                      <h3 className='text-white'>Lightning Fast</h3>
+                      <h3 className='max-md:!text-xl text-white'>Lightning Fast</h3>
                       <p className='opacity-70'> Experience instant transactions with our optimized blockchain integration </p>
                       <div className='feature-stats'>
                         <span className='stat'>0.1s</span>
@@ -441,7 +441,7 @@ export default function Home() {
                       <div className='feature-icon mx-auto'>
                         <FaShieldAlt size={32} />
                       </div>
-                      <h3 className='text-white'>Secure &amp; Safe</h3>
+                      <h3 className='max-md:!text-xl text-white'>Secure &amp; Safe</h3>
                       <p className='opacity-70'>Bank-grade security with multi-signature wallet protection</p>
                       <div className='feature-stats'>
                         <span className='stat'>99.9%</span>
@@ -455,7 +455,7 @@ export default function Home() {
                       <div className='feature-icon mx-auto'>
                         <FaUsers size={32} />
                       </div>
-                      <h3 className='text-white'>Community Driven</h3>
+                      <h3 className='max-md:!text-xl text-white'>Community Driven</h3>
                       <p className='opacity-70'>Join a thriving community of gamers and earn together</p>
                       <div className='feature-stats'>
                         <span className='stat'>24/7</span>
@@ -513,7 +513,7 @@ export default function Home() {
                     <i className='fas fa-chart-line me-2' />
                     <span>NFT Investment</span>
                   </div>
-                  <h2 className='section-title'>Invest in Premium NFTs</h2>
+                  <h2 className='section-title max-md:text-[24px] '>Invest in Premium NFTs</h2>
                   <p className='section-description'> Discover high-value NFTs with potential for significant returns </p>
                 </div>
                 <div className='w-full flex items-center justify-center'>
@@ -523,14 +523,6 @@ export default function Home() {
             </section>
             {/**/}
             <Footer />
-            <hr />
-            <div id='footer-bottom'>
-              <div className='container'>
-                <div className='row text-center'>
-                  <p>© 2025 Copyright PixelPayot. All rights reserved</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

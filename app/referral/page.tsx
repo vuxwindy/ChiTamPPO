@@ -160,10 +160,10 @@ export default function ReferralPage() {
 
       {/* Wallet Notice */}
       {!isWalletConnected && (
-        <section className='wallet-notice-section py-16 flex justify-center'>
+        <section className='wallet-notice-section py-16 flex justify-center max-md:!px-4'>
           <div className='bg-white/10 p-8 rounded-xl text-center'>
             <div className='text-3xl mb-4'>👛</div>
-            <h3 className='text-2xl font-bold'>Connect Your Wallet</h3>
+            <h3 className='max-md:!text-xl text-2xl font-bold'>Connect Your Wallet</h3>
             <p className='text-gray-400 mt-2'>Please connect your wallet to view your referral data and start earning rewards.</p>
             <div className='mt-4'>
               <ReownWalletButton />
@@ -182,12 +182,12 @@ export default function ReferralPage() {
           <section className='referral-stats py-12 grid grid-cols-2 md:grid-cols-4 gap-6 px-8'>
             <div className='stat-card bg-white/10 p-6 rounded-lg text-center'>
               <div className='text-3xl'>👥</div>
-              <h3 className='text-2xl'>{referralStats.totalReferrals}</h3>
+              <h3 className='max-md:!text-xl text-2xl'>{referralStats.totalReferrals}</h3>
               <p>Total Referrals</p>
             </div>
             <div className='stat-card bg-white/10 p-6 rounded-lg text-center'>
               <div className='text-3xl'>💰</div>
-              <h3 className='text-2xl'>{referralStats.totalEarnings}</h3>
+              <h3 className='max-md:!text-xl text-2xl'>{referralStats.totalEarnings}</h3>
               <p>Total Earnings ($PPO)</p>
             </div>
           </section>
