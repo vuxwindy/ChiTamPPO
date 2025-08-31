@@ -13,7 +13,7 @@ const chains = [mainnet, sepolia] as const;
 
 const metadata = {
   name: "Nextjs Wagmi Quickstart",
-  projectId: "c523f0eeb34f4188cfa3f54a6d675d55" || process.env.NEXT_PUBLIC_PROJECT_ID || "",
+  projectId: "c523f0eeb34f4188cfa3f54a6d675d55",
 };
 const config = getDefaultConfig({
   appName: metadata.name,

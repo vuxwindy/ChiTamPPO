@@ -24,125 +24,134 @@ export default function Footer() {
 
   return (
     <>
-      <footer id='footer' className='padding-large pattern-blur relative overflow-hidden'>
-        {/* Pattern Overlay */}
-        <div className='pattern-overlay pattern-blur-footer right-side-pattern absolute inset-0 opacity-10 z-10'>
-          <img src='https://pixelpayot.com/assets/images/footer-pattern.png' alt='footer-pattern' className='object-cover' />
+      <footer id='footer' className='padding-large pattern-blur'>
+        <div className='pattern-overlay pattern-blur-footer right-side-pattern'>
+          <img src='https://pixelpayot.com/assets/footer-pattern-BU5Dn35q.png' />
         </div>
-
-        <div className='container relative z-20'>
-          <div className='row d-flex flex-wrap gap-2 justify-between'>
-            {/* Logo + Description */}
-            <div className='col-lg-4 col-md-6 mb-6'>
+        <div className='container'>
+          <div className='row d-flex flex-wrap justify-content-between'>
+            <div className='col-lg-4 col-md-6'>
               <div className='footer-item md:item-001'>
-                <img
-                  src='https://pixelpayot.com/assets//header-icon-DThv0V1b.png'
-                  alt='logo'
-                  width={120}
-                  height={40}
-                  className='mb-4 object-contain'
-                />
-                <p className='text-gray-400'>PixelPayot is a platform that allows you to earn money by playing games.</p>
-                {/* Social Media */}
-                <div className='social-media mt-4'>
-                  <ul className='flex gap-4 list-none'>
-                    {[
-                      { name: "facebook", icon: <FaFacebook /> },
-                      { name: "twitter", icon: <FaTwitter /> },
-                      { name: "instagram", icon: <FaInstagram /> },
-                      { name: "youtube", icon: <FaYoutube /> },
-                      { name: "linkedin", icon: <FaLinkedinIn /> },
-                    ].map((platform) => (
-                      <li
-                        key={platform.name}
-                        className='w-10 h-10 flex items-center justify-center rounded-full bg-[rgba(204,0,255,0.2)] cursor-pointer transition hover:bg-[rgba(204,0,255,0.4)] hover:-translate-y-1 '
-                      >
-                        <a className='flex justify-center items-center w-full h-full' onClick={() => openSocialLink(platform.name)}>
-                          {platform.icon}
-                        </a>
-                      </li>
-                    ))}
+                <img src='https://pixelpayot.com/assets/header-icon-DThv0V1b.png' alt='logo' />
+                <p> PixelPayot is a platform that allows you to earn money by playing games. </p>
+                <div className='social-media'>
+                  <ul className='d-flex list-unstyled'>
+                    <li className='bg-blue-trans border-rounded-circle'>
+                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                        <FaFacebook />
+                      </Link>
+                    </li>
+                    <li className='bg-blue-trans border-rounded-circle'>
+                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                        <FaTwitter />
+                      </Link>
+                    </li>
+                    <li className='bg-blue-trans border-rounded-circle'>
+                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                        <FaInstagram />
+                      </Link>
+                    </li>
+                    <li className='bg-blue-trans border-rounded-circle'>
+                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                        <FaYoutube />
+                      </Link>
+                    </li>
+                    <li className='bg-blue-trans border-rounded-circle'>
+                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                        <FaLinkedinIn />
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
             </div>
-
-            {/* Marketplace */}
-            <div className='col-lg-2 col-md-6 mb-6'>
-              <div className='footer-item'>
-                <h4 className='text-white font-bold mb-4 text-lg'>Marketplace</h4>
-                <ul className='list-none space-y-2'>
+            <div className='col-lg-2 col-md-6'>
+              <div className='footer-item item-002 content-light'>
+                <h4>Marketplace</h4>
+                <ul className='footer-menu list-unstyled'>
                   <li>
-                    <Link href='/marketplace'>NFTs</Link>
+                    <Link href='/marketplace' className=''>
+                      NFTs
+                    </Link>
                   </li>
                   <li>
-                    <Link href='/collection'>Art</Link>
+                    <Link href='/collection' className=''>
+                      Art
+                    </Link>
                   </li>
                   <li>
-                    <Link href='/blindbox'>Collectibles</Link>
+                    <Link href='/blindbox' className=''>
+                      Collectibles
+                    </Link>
                   </li>
                   <li>
-                    <a href='#'>Virtual world</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className='col-lg-2 col-md-6 mb-6'>
-              <div className='footer-item'>
-                <h4 className='text-white font-bold mb-4 text-lg'>Info</h4>
-                <ul className='list-none space-y-2'>
-                  <li>
-                    <Link href='/dashboard'>Activity</Link>
-                  </li>
-                  <li>
-                    <Link href='/profile'>Stats</Link>
-                  </li>
-                  <li>
-                    <a href='#leaderboard'>Rankings</a>
+                    <Link href='#'>Virtual world</Link>
                   </li>
                 </ul>
               </div>
             </div>
-
-            {/* Company */}
-            <div className='col-lg-2 col-md-6 mb-6'>
-              <div className='footer-item'>
-                <h4 className='text-white font-bold mb-4 text-lg'>Company</h4>
-                <ul className='list-none space-y-2'>
+            <div className='col-lg-2 col-md-6'>
+              <div className='footer-item item-003 content-light'>
+                <h4>Info</h4>
+                <ul className='footer-menu list-unstyled'>
                   <li>
-                    <Link href='/whitepaper'>About</Link>
+                    <Link href='/dashboard' className=''>
+                      Activity
+                    </Link>
                   </li>
                   <li>
-                    <a href='#support'>Support</a>
+                    <Link href='/profile' className=''>
+                      Stats
+                    </Link>
                   </li>
                   <li>
-                    <a href='#features'>Features</a>
-                  </li>
-                  <li>
-                    <Link href='/creators'>Top Creators</Link>
+                    <Link href='#leaderboard'>Rankings</Link>
                   </li>
                 </ul>
               </div>
             </div>
-
-            {/* Resources */}
-            <div className='col-lg-2 col-md-6 mb-6'>
-              <div className='footer-item'>
-                <h4 className='text-white font-bold mb-4 text-lg'>Resources</h4>
-                <ul className='list-none space-y-2'>
+            <div className='col-lg-2 col-md-6'>
+              <div className='footer-item item-004 content-light'>
+                <h4>Company</h4>
+                <ul className='footer-menu list-unstyled'>
                   <li>
-                    <Link href='/whitepaper'>Info</Link>
+                    <Link href='/whitepaper' className=''>
+                      About
+                    </Link>
                   </li>
                   <li>
-                    <Link href='/referral'>Affiliates</Link>
+                    <Link href='#support'>Support</Link>
                   </li>
                   <li>
-                    <a href='#association'>Associated</a>
+                    <Link href='#features'>Features</Link>
                   </li>
                   <li>
-                    <a href='#blog'>Blog</a>
+                    <Link href='/creators' className=''>
+                      Top Creators
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className='col-lg-2 col-md-6'>
+              <div className='footer-item item-005 content-light'>
+                <h4>Resources</h4>
+                <ul className='footer-menu list-unstyled'>
+                  <li>
+                    <Link href='/whitepaper' className=''>
+                      Info
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='/referral' className=''>
+                      Affiliates
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='#association'>Associated</Link>
+                  </li>
+                  <li>
+                    <Link href='#blog'>Blog</Link>
                   </li>
                 </ul>
               </div>
