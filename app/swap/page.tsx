@@ -71,7 +71,7 @@ export default function SwapPage() {
       <div id='app'>
         <div id='app'>
           <div className='swap-page'>
-            {/* <Header /> */}
+            <Header />
 
             <section className='swap-hero padding-large'>
               <div className='container'>
