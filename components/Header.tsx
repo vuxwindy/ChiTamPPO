@@ -1,30 +1,36 @@
-"use client";
+'use client'
 
-import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import { IoPeople } from "react-icons/io5";
-import { FaChartPie, FaFilePdf, FaGamepad, FaUserPlus } from "react-icons/fa";
-import { IoIosMore, IoMdSwap } from "react-icons/io";
+import { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+import { IoPeople } from 'react-icons/io5'
+import { FaChartPie, FaFilePdf, FaGamepad, FaUserPlus } from 'react-icons/fa'
+import { IoIosMore, IoMdSwap } from 'react-icons/io'
+import { ConnectButton, WalletButton } from '@rainbow-me/rainbowkit'
 // import WalletStatus from "./WalletStatus"
 
 export default function Header() {
-  const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const router = useRouter()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
 
   // Fake user (replace with Firebase/Auth hook)
   const currentUser = {
-    photoURL: "https://pixelpayot.com/assets/images/default-avatar.png",
-  };
+    photoURL: 'https://pixelpayot.com/assets/images/default-avatar.png'
+  }
 
   const menuItems = [
-    { id: "referral", name: "Referral", url: "/referral", icon: <IoPeople /> },
-    { id: "game", name: "Game", url: "/game", icon: <FaGamepad /> },
-    { id: "investment", name: "Investment", url: "/investment", icon: <FaChartPie /> },
-    { id: "swap", name: "Swap", url: "/swap", icon: <IoMdSwap /> },
+    { id: 'referral', name: 'Referral', url: '/referral', icon: <IoPeople /> },
+    { id: 'game', name: 'Game', url: '/game', icon: <FaGamepad /> },
+    {
+      id: 'investment',
+      name: 'Investment',
+      url: '/investment',
+      icon: <FaChartPie />
+    },
+    { id: 'swap', name: 'Swap', url: '/swap', icon: <IoMdSwap /> },
     // {
     //   id: "profile",
     //   name: "Profile",
@@ -39,77 +45,91 @@ export default function Header() {
     //   ],
     // },
     {
-      id: "more",
-      name: "More",
-      url: "#",
+      id: 'more',
+      name: 'More',
+      url: '#',
       icon: <IoIosMore />,
       submenu: [
         // { id: "blindbox", name: "Blindbox", url: "/blindbox", icon: "fas fa-box-open" },
         // { id: "swap", name: "Swap", url: "/swap", icon: "fas fa-exchange-alt" },
         // { id: "creators", name: "Creators", url: "/creators", icon: "fas fa-palette" },
-        { id: "whitepaper", name: "Whitepaper", url: "/", icon: <FaFilePdf /> },
-      ],
-    },
-  ];
+        { id: 'whitepaper', name: 'Whitepaper', url: '/', icon: <FaFilePdf /> }
+      ]
+    }
+  ]
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-    document.body.style.overflow = isMobileMenuOpen ? "" : "hidden";
-  };
+    setIsMobileMenuOpen((prev) => !prev)
+    document.body.style.overflow = isMobileMenuOpen ? '' : 'hidden'
+  }
 
   const handleDropdownClick = (id: string) => {
-    setActiveDropdown((prev) => (prev === id ? null : id));
-  };
+    setActiveDropdown((prev) => (prev === id ? null : id))
+  }
 
   const handleMenuClick = (url: string) => {
-    setIsMobileMenuOpen(false);
-    document.body.style.overflow = "";
-    setActiveDropdown(null);
-    setIsUserMenuOpen(false);
-    if (url && url !== "#") {
-      router.push(url);
+    setIsMobileMenuOpen(false)
+    document.body.style.overflow = ''
+    setActiveDropdown(null)
+    setIsUserMenuOpen(false)
+    if (url && url !== '#') {
+      router.push(url)
     }
-  };
+  }
 
   const handleLogout = useCallback(() => {
-    if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
-      router.push("/");
-      setIsUserMenuOpen(false);
+    if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+      router.push('/')
+      setIsUserMenuOpen(false)
     }
-  }, [router]);
+  }, [router])
 
   // Click outside user menu
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      const menu = document.querySelector(".user-menu");
+      const menu = document.querySelector('.user-menu')
       if (menu && !menu.contains(e.target as Node)) {
-        setIsUserMenuOpen(false);
+        setIsUserMenuOpen(false)
       }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [])
 
   return (
     <header className='fixed top-0 left-0 right-0 h-[70px] bg-black/95 backdrop-blur-xl border-b border-white/10 z-50 flex items-center'>
       <nav className='w-full h-full'>
         <div className='max-w-[1400px] mx-auto px-5 h-full flex items-center justify-between'>
           {/* Logo */}
-          <div className='flex items-center cursor-pointer' onClick={() => handleMenuClick("/")}>
-            <img src='https://pixelpayot.com/assets//header-icon-DThv0V1b.png' alt='PixelPayot' className='!h-[35px]' />
-            <span className='ml-2 text-xl font-bold bg-gradient-to-r from-fuchsia-600 to-pink-400 bg-clip-text text-transparent'>PixelPayot</span>
+          <div
+            className='flex items-center cursor-pointer'
+            onClick={() => handleMenuClick('/')}
+          >
+            <img
+              src='https://pixelpayot.com/assets//header-icon-DThv0V1b.png'
+              alt='PixelPayot'
+              className='!h-[35px]'
+            />
+            <span className='ml-2 text-xl font-bold bg-gradient-to-r from-fuchsia-600 to-pink-400 bg-clip-text text-transparent'>
+              PixelPayot
+            </span>
           </div>
 
           {/* Desktop Menu */}
           <ul className='hidden md:flex gap-2 mb-0'>
             {menuItems.map((item) => (
-              <li key={item.id} className='relative my-auto'>
+              <li
+                key={item.id}
+                className='relative my-auto'
+              >
                 {item.submenu ? (
                   <div className='group relative'>
                     <button
                       onClick={() => handleDropdownClick(item.id)}
                       className={`flex flex-row  justify-center items-center !my-0 gap-2 px-3 py-2 !rounded-md hover:bg-pink-500/10 transition ${
-                        activeDropdown === item.id ? "text-pink-500" : "text-white"
+                        activeDropdown === item.id
+                          ? 'text-pink-500'
+                          : 'text-white'
                       }`}
                     >
                       <span>{item.icon}</span>
@@ -149,9 +169,10 @@ export default function Header() {
             <div className='nav-actions'>
               <div className='wallet-section'></div>
               <div className='signup-section max-md:!hidden'>
-                <Link href='/signup' className='btn-signup'>
+                {/* <Link href='/signup' className='btn-signup'>
                   <FaUserPlus className='me-2' /> Sign Up{" "}
-                </Link>
+                </Link> */}
+                <ConnectButton />
               </div>
             </div>
             {/* <WalletStatus /> */}
@@ -197,7 +218,11 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div data-v-2e0e4a19='' className={`mobile-menu-toggle ${isMobileMenuOpen ? "active" : ""}`} onClick={toggleMobileMenu}>
+          <div
+            data-v-2e0e4a19=''
+            className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+            onClick={toggleMobileMenu}
+          >
             <span data-v-2e0e4a19=''></span>
             <span data-v-2e0e4a19=''></span>
             <span data-v-2e0e4a19=''></span>
@@ -206,7 +231,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
 
-        <div className={`mobile-menu ${isMobileMenuOpen ? "show" : ""}`}>
+        <div className={`mobile-menu ${isMobileMenuOpen ? 'show' : ''}`}>
           <div className='flex flex-col p-5 h-[calc(100vh-70px)] overflow-y-auto pb-[80px]'>
             <ul className='flex flex-col gap-2'>
               {menuItems.map((item) => (
@@ -256,5 +281,5 @@ export default function Header() {
         </div>
       </nav>
     </header>
-  );
+  )
 }
