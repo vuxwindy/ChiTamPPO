@@ -8,6 +8,7 @@ import { IoPeople } from "react-icons/io5";
 import { FaChartPie, FaFilePdf, FaGamepad, FaUserPlus } from "react-icons/fa";
 import { IoIosMore, IoMdSwap } from "react-icons/io";
 import CustomConnectButton from "./ConnectButtonCustom";
+import { ConnectButton, WalletButton } from "@rainbow-me/rainbowkit";
 // import WalletStatus from "./WalletStatus"
 import headerIcon from "@/app/access/image/header-icon.png";
 
@@ -25,7 +26,12 @@ export default function Header() {
   const menuItems = [
     { id: "referral", name: "Referral", url: "/referral", icon: <IoPeople /> },
     { id: "game", name: "Game", url: "/game", icon: <FaGamepad /> },
-    { id: "investment", name: "Investment", url: "/investment", icon: <FaChartPie /> },
+    {
+      id: "investment",
+      name: "Investment",
+      url: "/investment",
+      icon: <FaChartPie />,
+    },
     { id: "swap", name: "Swap", url: "/swap", icon: <IoMdSwap /> },
     // {
     //   id: "profile",
@@ -49,7 +55,7 @@ export default function Header() {
         // { id: "blindbox", name: "Blindbox", url: "/blindbox", icon: "fas fa-box-open" },
         // { id: "swap", name: "Swap", url: "/swap", icon: "fas fa-exchange-alt" },
         // { id: "creators", name: "Creators", url: "/creators", icon: "fas fa-palette" },
-        { id: "whitepaper", name: "Whitepaper", url: "/whitepaper", icon: <FaFilePdf /> },
+        { id: "whitepaper", name: "Whitepaper", url: "/", icon: <FaFilePdf /> },
       ],
     },
   ];
@@ -153,9 +159,10 @@ export default function Header() {
               </div>
 
               <div className='signup-section max-md:!hidden'>
-                <Link href='/signup' className='btn-signup'>
-                  <FaUserPlus className='me-2' /> Sign Up
-                </Link>
+                {/* <Link href='/signup' className='btn-signup'>
+                  <FaUserPlus className='me-2' /> Sign Up{" "}
+                </Link> */}
+                <ConnectButton />
               </div>
             </div>
             {/* <WalletStatus /> */}

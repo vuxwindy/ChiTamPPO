@@ -1,7 +1,8 @@
 import { getDefaultConfig, WalletList } from "@rainbow-me/rainbowkit";
 import { http } from "wagmi";
-import { metaMaskWallet, okxWallet } from "@rainbow-me/rainbowkit/wallets";
 import { arbitrum, base, bsc, bscTestnet, mainnet, optimism, polygon, sepolia } from "wagmi/chains";
+import { metaMaskWallet, okxWallet } from "@rainbow-me/rainbowkit/wallets";
+
 const wallets: WalletList = [
   {
     groupName: "Wallets",
