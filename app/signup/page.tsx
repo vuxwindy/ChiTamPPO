@@ -133,24 +133,28 @@ export default function SignupPage() {
       <section className='auth-hero py-20'>
         <div className='container mx-auto flex justify-center'>
           <div className='w-full max-w-lg'>
-            <div className='auth-container bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20'>
+            <div className='auth-container bg-white/10 backdrop-blur-2xl rounded-2xl p-8 border border-white/20 shadow-xl'>
               {/* Tabs */}
-              <div className='auth-tabs flex mb-6 bg-white/10 rounded-xl p-1'>
+              <div className='auth-tabs flex mb-6 bg-white/5 rounded-xl p-1'>
                 <button
                   onClick={() => setActiveTab("signup")}
-                  className={`tab-btn flex-1 px-4 py-3 rounded-lg font-semibold mb-0 flex items-center justify-center gap-2 transition ${
-                    activeTab === "signup" ? "bg-white/20 text-pink-400" : "text-white"
+                  className={`tab-btn flex-1 px-4 py-3 mb-0 !rounded-l-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${
+                    activeTab === "signup"
+                      ? "bg-gradient-to-r from-pink-500/80 to-purple-500/80 text-white shadow-md"
+                      : "text-gray-200 hover:text-pink-400"
                   }`}
                 >
-                  <FaUserPlus /> Sign Up
+                  <FaUserPlus className='max-md:hidden' /> Sign Up
                 </button>
                 <button
                   onClick={() => setActiveTab("signin")}
-                  className={`tab-btn flex-1 px-4 py-3 rounded-lg font-semibold mb-0 flex items-center justify-center gap-2 transition ${
-                    activeTab === "signin" ? "bg-white/20 text-pink-400" : "text-white"
+                  className={`tab-btn flex-1 px-4 py-3 !rounded-r-lg mb-0 font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${
+                    activeTab === "signin"
+                      ? "bg-gradient-to-r from-pink-500/80 to-purple-500/80 text-white shadow-md"
+                      : "text-gray-200 hover:text-pink-400"
                   }`}
                 >
-                  <FaSignInAlt /> Sign In
+                  <FaSignInAlt className='max-md:hidden' /> Sign In
                 </button>
               </div>
 
@@ -158,7 +162,10 @@ export default function SignupPage() {
               {activeTab === "signup" && (
                 <form onSubmit={handleSignUp} className='auth-form text-white space-y-4'>
                   <h2 className='text-2xl font-bold text-center'>Create Your Account</h2>
-                  <p className='text-center opacity-80 mb-4'>Join PixelPayot and start earning $PPO tokens!</p>
+                  <p className='text-center text-sm opacity-80 mb-4'>
+                    Join <span className='text-pink-400 font-semibold'>PixelPayot</span> and start earning{" "}
+                    <span className='text-yellow-300'>$PPO</span> tokens!
+                  </p>
 
                   <div>
                     <label className='block mb-1 font-semibold'>Display Name</label>
@@ -167,7 +174,7 @@ export default function SignupPage() {
                       required
                       value={signupForm.displayName}
                       onChange={(e) => setSignupForm({ ...signupForm, displayName: e.target.value })}
-                      className='form-control w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white'
+                      className='form-control w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-500/40'
                       placeholder='Enter your display name'
                     />
                   </div>
@@ -179,7 +186,7 @@ export default function SignupPage() {
                       required
                       value={signupForm.email}
                       onChange={(e) => setSignupForm({ ...signupForm, email: e.target.value })}
-                      className='form-control w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white'
+                      className='form-control w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-500/40'
                       placeholder='Enter your email'
                     />
                   </div>
@@ -192,7 +199,7 @@ export default function SignupPage() {
                       required
                       value={signupForm.password}
                       onChange={(e) => setSignupForm({ ...signupForm, password: e.target.value })}
-                      className='form-control w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white'
+                      className='form-control w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-500/40'
                       placeholder='Create a password (min 6 characters)'
                     />
                   </div>
@@ -203,32 +210,35 @@ export default function SignupPage() {
                       type='text'
                       value={signupForm.referralCode}
                       onChange={(e) => setSignupForm({ ...signupForm, referralCode: e.target.value })}
-                      className='form-control w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white'
+                      className='form-control w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-500/40'
                       placeholder='Enter referral code'
                     />
                   </div>
 
-                  <label className='flex items-center gap-2 text-sm'>
+                  <label className='!flex items-center text-sm text-gray-300 gap-1.5 mb-2'>
                     <input
                       type='checkbox'
                       required
                       checked={signupForm.agreeTerms}
                       onChange={(e) => setSignupForm({ ...signupForm, agreeTerms: e.target.checked })}
+                      className='accent-pink-500 mb-0'
                     />
-                    I agree to the{" "}
-                    <a href='#' onClick={showTerms} className='text-pink-400 underline'>
-                      Terms of Service
-                    </a>{" "}
-                    and{" "}
-                    <a href='#' onClick={showPrivacy} className='text-pink-400 underline'>
-                      Privacy Policy
-                    </a>
+                    <p className='!text-sm mb-0'>
+                      I agree to the{" "}
+                      <a href='#' onClick={showTerms} className='text-pink-400 underline hover:text-pink-300'>
+                        Terms of Service
+                      </a>{" "}
+                      and{" "}
+                      <a href='#' onClick={showPrivacy} className='text-pink-400 underline hover:text-pink-300'>
+                        Privacy Policy
+                      </a>
+                    </p>
                   </label>
 
                   <button
                     type='submit'
                     disabled={isLoading}
-                    className='btn-linear w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 font-semibold'
+                    className='btn-linear w-full py-3 !rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 font-semibold shadow-lg hover:shadow-pink-500/40 transition-all duration-300 hover:from-purple-500 hover:to-pink-500'
                   >
                     {isLoading ? <i className='fas fa-spinner fa-spin mr-2'></i> : <i className='fas fa-user-plus mr-2'></i>}
                     {isLoading ? "Creating Account..." : "Create Account"}
@@ -240,7 +250,7 @@ export default function SignupPage() {
               {activeTab === "signin" && (
                 <form onSubmit={handleSignIn} className='auth-form text-white space-y-4'>
                   <h2 className='text-2xl font-bold text-center'>Welcome Back!</h2>
-                  <p className='text-center opacity-80 mb-4'>Sign in to your PixelPayot account</p>
+                  <p className='text-center text-sm opacity-80 mb-4'>Sign in to your PixelPayot account</p>
 
                   <div>
                     <label className='block mb-1 font-semibold'>Email Address</label>
@@ -249,7 +259,7 @@ export default function SignupPage() {
                       required
                       value={signinForm.email}
                       onChange={(e) => setSigninForm({ ...signinForm, email: e.target.value })}
-                      className='form-control w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white'
+                      className='form-control w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-500/40'
                       placeholder='Enter your email'
                     />
                   </div>
@@ -261,31 +271,32 @@ export default function SignupPage() {
                       required
                       value={signinForm.password}
                       onChange={(e) => setSigninForm({ ...signinForm, password: e.target.value })}
-                      className='form-control w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white'
+                      className='form-control w-full p-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-500/40'
                       placeholder='Enter your password'
                     />
                   </div>
 
-                  <label className='flex items-center gap-2 text-sm'>
+                  <label className='!flex items-center gap-2 text-sm text-gray-300 mb-2'>
                     <input
                       type='checkbox'
                       checked={signinForm.rememberMe}
                       onChange={(e) => setSigninForm({ ...signinForm, rememberMe: e.target.checked })}
+                      className='accent-pink-500 mb-0'
                     />
-                    Remember me
+                    <p className='!text-sm mb-0'>Remember me</p>
                   </label>
 
                   <button
                     type='submit'
                     disabled={isLoading}
-                    className='btn-linear w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 font-semibold'
+                    className='btn-linear w-full py-3 !rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 font-semibold shadow-lg hover:shadow-pink-500/40 transition-all duration-300 hover:from-purple-500 hover:to-pink-500'
                   >
                     {isLoading ? <i className='fas fa-spinner fa-spin mr-2'></i> : <i className='fas fa-sign-in-alt mr-2'></i>}
                     {isLoading ? "Signing In..." : "Sign In"}
                   </button>
 
                   <div className='form-footer text-center mt-3'>
-                    <a href='#' onClick={showForgotPassword} className='text-pink-400 underline'>
+                    <a href='#' onClick={showForgotPassword} className='text-pink-400 underline hover:text-pink-300'>
                       Forgot Password?
                     </a>
                   </div>

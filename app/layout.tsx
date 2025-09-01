@@ -3,8 +3,8 @@ import "./globals.css";
 import Provider from "./Provider";
 
 export const metadata: Metadata = {
-  title: "Next.js Wagmi Quickstart",
-  description: "Quickstart for Next.js, Wagmi and RainbowKit",
+  title: "Pixel Payot",
+  description: "Pixel Payot",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
         <Provider>{children}</Provider>
       </body>

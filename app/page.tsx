@@ -1,3 +1,5 @@
+"use client";
+
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaCrosshairs, FaShieldAlt, FaBolt } from "react-icons/fa";
 import {
   FaCalendarCheck,
@@ -19,6 +21,19 @@ import { FaBitcoinSign } from "react-icons/fa6";
 import planetArrow from "@/app/access/image/planet-arrow-BTo6e6jt.png";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import Binance from "@/app/access/image/Binance.png";
+import Coinbase from "@/app/access/image/Coinbase.png";
+import KuCoin from "@/app/access/image/KuCoin.png";
+import blockfiLogo from "@/app/access/image/Binance.png";
+import okxLogo from "@/app/access/image/okx-logo.png";
+import coingeckoLogo from "@/app/access/image/coingecko-logo.png";
+import injectiveInjCoinLogo from "@/app/access/image/injective-inj-coin-logo.png";
+import pancakeswapLogo from "@/app/access/image/image-removebg-preview.png";
+import sushiswapLogo from "@/app/access/image/sushiswap-logo.png";
+import uniswapLogo from "@/app/access/image/uniswap-logo.png";
+import imageRemovebgPreview from "@/app/access/image/image-removebg-preview.png";
+import { toast } from "react-toastify";
+
 export default function Home() {
   return (
     <>
@@ -152,11 +167,25 @@ export default function Home() {
                         </div>
                       </div>
                       <div className='hero-actions'>
-                        <Link href='/arrow-game' className='btn btn-hero-primary !rounded-md'>
-                          <i className='fas fa-crosshairs me-2' /> Play Archery{" "}
+                        <Link
+                          href='/arrow-game'
+                          onClick={(e) => {
+                            e.preventDefault();
+                            toast.info("Coming soon");
+                          }}
+                          className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
+                        >
+                          <FaCrosshairs className='me-2' /> Play Archery{" "}
                         </Link>
-                        <Link href='/arrow-game-modern' className='btn btn-hero-primary !rounded-md'>
-                          <i className='fas fa-gamepad me-2' /> Modern Archery{" "}
+                        <Link
+                          href='/arrow-game-modern'
+                          onClick={(e) => {
+                            e.preventDefault();
+                            toast.info("Coming soon");
+                          }}
+                          className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
+                        >
+                          <FaGamepad className='me-2' /> Modern Archery{" "}
                         </Link>
                       </div>
                     </div>
@@ -376,34 +405,75 @@ export default function Home() {
                   <p className='section-description'> Play exciting games and earn PPO tokens while having fun </p>
                 </div>
                 <div className='games-grid'>
-                  <div className='game-card flex-col'>
-                    <div className='game-content flex-col text-center p-4'>
-                      <FaCrosshairs size={40} className='mb-4' />
-                      <h3 className='max-md:!text-xl'>PPO Archery</h3>
-                      <p> Test your aim and precision in this classic archery game. Hit targets to earn PPO tokens! </p>
-                      <div className='game-features max-md:!leading-[1]'>
-                        <span className='feature max-md:!text-base '>🎯 Precision Aiming</span>
-                        <span className='feature max-md:!text-base '>💰 Earn PPO Tokens</span>
-                        <span className='feature max-md:!text-base '>🏆 Leaderboards</span>
+                  <div className='game-card flex-col flex-1 items-center justify-center text-center bg-gradient-to-b from-blue-600 to-purple-600 rounded-2xl p-6 relative'>
+                    <div className='game-content flex-col items-center justify-center text-center p-4'>
+                      {/* Icon */}
+                      <FaCrosshairs size={48} className='mb-4 text-white' />
+
+                      {/* Tiêu đề */}
+                      <h3 className='text-3xl font-bold text-white mb-2'>PPO Archery</h3>
+
+                      {/* Mô tả */}
+                      <p className='text-gray-200 mb-6 max-w-md'>
+                        Test your aim and precision in this classic archery game. Hit targets to earn PPO tokens!
+                      </p>
+
+                      {/* Features */}
+                      <div className='flex flex-col gap-3 items-start text-left mx-auto w-fit'>
+                        <span className='flex items-center gap-2 text-lg text-white'>
+                          🎯 <span>Precision Aiming</span>
+                        </span>
+                        <span className='flex items-center gap-2 text-lg text-white'>
+                          💰 <span>Earn PPO Tokens</span>
+                        </span>
+                        <span className='flex items-center gap-2 text-lg text-white'>
+                          🏆 <span>Leaderboards</span>
+                        </span>
                       </div>
-                      <Link href='/arrow-game' className='btn btn-game mt-4 '>
-                        <i className='fas fa-play me-2' /> Play Now{" "}
+
+                      {/* Nút Play */}
+                      <Link
+                        href='/arrow-game'
+                        className='mt-8 inline-block px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-bold text-lg shadow-lg hover:from-yellow-400 hover:to-yellow-300 hover:text-black transition'
+                      >
+                        <i className='fas fa-play mr-2' /> Play Now
                       </Link>
                     </div>
                     <div className='game-glow' />
                   </div>
-                  <div className='game-card flex-col'>
-                    <div className='game-content flex-col text-center p-4'>
-                      <FaGamepad size={40} className='mb-4' />
-                      <h3 className='max-md:!text-xl'>Modern Archery</h3>
-                      <p> Experience the next generation of archery with enhanced graphics and gameplay mechanics. </p>
-                      <div className='game-features max-md:!leading-[1]'>
-                        <span className='feature max-md:!text-base '>🎨 Modern Graphics</span>
-                        <span className='feature max-md:!text-base '>⚡ Enhanced Gameplay</span>
-                        <span className='feature max-md:!text-base '>🎮 Mobile Optimized</span>
+
+                  <div className='game-card flex-col flex-1 items-center justify-center text-center bg-gradient-to-b from-blue-600 to-purple-600 rounded-2xl p-6 relative'>
+                    <div className='game-content flex-col items-center justify-center text-center  p-4'>
+                      {/* Icon */}
+                      <FaGamepad size={48} className='mb-4 text-white' />
+
+                      {/* Tiêu đề */}
+                      <h3 className='text-3xl font-bold text-white mb-2'>Modern Archery</h3>
+
+                      {/* Mô tả */}
+                      <p className='text-gray-200 mb-6 max-w-md'>
+                        Experience the next generation of archery with enhanced graphics and gameplay mechanics.
+                      </p>
+
+                      {/* Features */}
+                      <div className='flex flex-col gap-3 items-start text-left mx-auto w-fit'>
+                        <span className='flex items-center gap-2 text-lg text-white'>
+                          🎨 <span>Modern Graphics</span>
+                        </span>
+                        <span className='flex items-center gap-2 text-lg text-white'>
+                          ⚡ <span>Enhanced Gameplay</span>
+                        </span>
+                        <span className='flex items-center gap-2 text-lg text-white'>
+                          🎮 <span>Mobile Optimized</span>
+                        </span>
                       </div>
-                      <Link href='/arrow-game-modern' className='btn btn-game mt-4 '>
-                        <i className='fas fa-play me-2' /> Play Now{" "}
+
+                      {/* Nút Play */}
+                      <Link
+                        href='/arrow-game-modern'
+                        className='mt-8 inline-block px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-bold text-lg shadow-lg hover:from-yellow-400 hover:to-yellow-300 hover:text-black transition'
+                      >
+                        <i className='fas fa-play mr-2' /> Play Now
                       </Link>
                     </div>
                     <div className='game-glow' />
@@ -422,44 +492,74 @@ export default function Home() {
                   <p className='section-description'> Discover powerful features that make PixelPayot the ultimate GameFi destination </p>
                 </div>
                 <div className='flex gap-8 max-md:flex-col'>
-                  <div className='feature-card game-card flex flex-row items-center !animate-none flex-1'>
-                    <div className='feature-content text-center flex flex-col items-center'>
-                      <div className='feature-icon mx-auto'>
-                        <FaBolt size={32} />
+                  <div className='feature-card !animate-none game-card flex flex-1 flex-col items-center justify-center text-center bg-gradient-to-b from-purple-900 to-indigo-950 rounded-2xl p-6 shadow-xl hover:shadow-purple-500/40 transition relative overflow-hidden'>
+                    <div className='feature-content flex flex-col items-center'>
+                      {/* Icon */}
+                      <div className='feature-icon w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-md mb-4'>
+                        <FaBolt size={28} />
                       </div>
-                      <h3 className='max-md:!text-xl text-white'>Lightning Fast</h3>
-                      <p className='opacity-70'> Experience instant transactions with our optimized blockchain integration </p>
-                      <div className='feature-stats'>
-                        <span className='stat'>0.1s</span>
-                        <span className='stat-label'>Transaction Time</span>
+
+                      {/* Title */}
+                      <h3 className='text-2xl font-bold text-white mb-2'>Lightning Fast</h3>
+
+                      {/* Description */}
+                      <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>
+                        Experience instant transactions with our optimized blockchain integration
+                      </p>
+
+                      {/* Stats */}
+                      <div className='feature-stats flex flex-col items-center'>
+                        <span className='text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent'>0.1s</span>
+                        <span className='stat-label text-sm text-gray-400 mt-1'>Transaction Time</span>
+                      </div>
+                    </div>
+
+                    <div className='feature-glow' />
+                  </div>
+
+                  {/* Secure & Safe */}
+                  <div className='feature-card !animate-none game-card flex flex-col items-center justify-center text-center bg-gradient-to-b from-purple-900 to-indigo-950 rounded-2xl p-6 shadow-xl hover:shadow-purple-500/40 transition relative overflow-hidden flex-1'>
+                    <div className='feature-content flex flex-col items-center'>
+                      {/* Icon */}
+                      <div className='feature-icon w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-r from-green-400 to-emerald-500 text-white shadow-md mb-4'>
+                        <FaShieldAlt size={28} />
+                      </div>
+
+                      {/* Title */}
+                      <h3 className='text-2xl font-bold text-white mb-2'>Secure &amp; Safe</h3>
+
+                      {/* Description */}
+                      <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>Bank-grade security with multi-signature wallet protection</p>
+
+                      {/* Stats */}
+                      <div className='feature-stats flex flex-col items-center'>
+                        <span className='text-3xl font-extrabold bg-gradient-to-r from-green-300 to-lime-400 bg-clip-text text-transparent'>
+                          99.9%
+                        </span>
+                        <span className='stat-label text-sm text-gray-400 mt-1'>Uptime</span>
                       </div>
                     </div>
                     <div className='feature-glow' />
                   </div>
-                  <div className='feature-card game-card flex flex-row items-center !animate-none flex-1'>
-                    <div className='feature-content text-center flex flex-col items-center'>
-                      <div className='feature-icon mx-auto'>
-                        <FaShieldAlt size={32} />
+
+                  {/* Community Driven */}
+                  <div className='feature-card !animate-none game-card flex flex-col items-center justify-center text-center bg-gradient-to-b from-purple-900 to-indigo-950 rounded-2xl p-6 shadow-xl hover:shadow-purple-500/40 transition relative overflow-hidden flex-1'>
+                    <div className='feature-content flex flex-col items-center'>
+                      {/* Icon */}
+                      <div className='feature-icon w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-r from-pink-400 to-rose-500 text-white shadow-md mb-4'>
+                        <FaUsers size={28} />
                       </div>
-                      <h3 className='max-md:!text-xl text-white'>Secure &amp; Safe</h3>
-                      <p className='opacity-70'>Bank-grade security with multi-signature wallet protection</p>
-                      <div className='feature-stats'>
-                        <span className='stat'>99.9%</span>
-                        <span className='stat-label'>Uptime</span>
-                      </div>
-                    </div>
-                    <div className='feature-glow' />
-                  </div>
-                  <div className='feature-card game-card flex flex-row items-center !animate-none flex-1'>
-                    <div className='feature-content text-center flex flex-col items-center'>
-                      <div className='feature-icon mx-auto'>
-                        <FaUsers size={32} />
-                      </div>
-                      <h3 className='max-md:!text-xl text-white'>Community Driven</h3>
-                      <p className='opacity-70'>Join a thriving community of gamers and earn together</p>
-                      <div className='feature-stats'>
-                        <span className='stat'>24/7</span>
-                        <span className='stat-label'>Support</span>
+
+                      {/* Title */}
+                      <h3 className='text-2xl font-bold text-white mb-2'>Community Driven</h3>
+
+                      {/* Description */}
+                      <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>Join a thriving community of gamers and earn together</p>
+
+                      {/* Stats */}
+                      <div className='feature-stats flex flex-col items-center'>
+                        <span className='text-3xl font-extrabold bg-gradient-to-r from-pink-300 to-red-400 bg-clip-text text-transparent'>24/7</span>
+                        <span className='stat-label text-sm text-gray-400 mt-1'>Support</span>
                       </div>
                     </div>
                     <div className='feature-glow' />
@@ -474,34 +574,34 @@ export default function Home() {
               <div className='container'>
                 <div className='grid grid-cols-5 gap-4'>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/Binance.png' alt='Binance' className='img-fluid w-[120px]' />
+                    <Image src={Binance} alt='Binance' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/Coinbase.png' alt='Coinbase' className='img-fluid w-[120px]' />
+                    <Image src={Coinbase} alt='Coinbase' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/KuCoin.png' alt='KuCoin' className='img-fluid w-[120px]' />
+                    <Image src={KuCoin} alt='KuCoin' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/blockfi-logo.png' alt='BlockFi' className='img-fluid w-[120px]' />
+                    <Image src={blockfiLogo} alt='BlockFi' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/okx-logo.png' alt='OKX' className='img-fluid w-[120px]' />
+                    <Image src={okxLogo} alt='OKX' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/coingecko-logo.png' alt='Coin Gecko' className='img-fluid w-[120px]' />
+                    <Image src={coingeckoLogo} alt='Coin Gecko' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/injective-inj-coin-logo.png' alt='Injective' className='img-fluid w-[120px]' />
+                    <Image src={injectiveInjCoinLogo} alt='Injective' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/pancakeswap-logo.png' alt='PancakeSwap' className='img-fluid w-[120px]' />
+                    <Image src={pancakeswapLogo} alt='PancakeSwap' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/sushiswap-logo.png' alt='SushiSwap' className='img-fluid w-[120px]' />
+                    <Image src={sushiswapLogo} alt='SushiSwap' className='img-fluid w-[120px]' />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <img src='https://pixelpayot.com/platform/uniswap-logo.png' alt='Uniswap' className='img-fluid w-[120px]' />
+                    <Image src={uniswapLogo} alt='Uniswap' className='img-fluid w-[120px]' />
                   </div>
                 </div>
               </div>
@@ -517,7 +617,7 @@ export default function Home() {
                   <p className='section-description'> Discover high-value NFTs with potential for significant returns </p>
                 </div>
                 <div className='w-full flex items-center justify-center'>
-                  <img src='https://pixelpayot.com/image-removebg-preview.png' alt='comming soon' />
+                  <Image src={imageRemovebgPreview} alt='comming soon' />
                 </div>
               </div>
             </section>

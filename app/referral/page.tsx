@@ -1,12 +1,13 @@
 // app/referral/page.tsx  (Next.js 13 App Router)
 "use client";
 import "@/app/style/referral.css";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ReownWalletButton from "@/components/ReownWalletButton";
 import Image from "next/image";
+import CustomConnectButton from "@/components/ConnectButtonCustom";
 
 type Referral = {
   id: number;
@@ -166,7 +167,7 @@ export default function ReferralPage() {
             <h3 className='max-md:!text-xl text-2xl font-bold'>Connect Your Wallet</h3>
             <p className='text-gray-400 mt-2'>Please connect your wallet to view your referral data and start earning rewards.</p>
             <div className='mt-4'>
-              <ReownWalletButton />
+              <CustomConnectButton />
             </div>
             <button className='mt-4 px-4 py-2 bg-purple-600 rounded' onClick={() => setIsWalletConnected(true)}>
               Simulate Wallet Connect

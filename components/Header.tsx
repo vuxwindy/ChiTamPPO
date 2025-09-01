@@ -7,7 +7,9 @@ import Image from "next/image";
 import { IoPeople } from "react-icons/io5";
 import { FaChartPie, FaFilePdf, FaGamepad, FaUserPlus } from "react-icons/fa";
 import { IoIosMore, IoMdSwap } from "react-icons/io";
+import CustomConnectButton from "./ConnectButtonCustom";
 // import WalletStatus from "./WalletStatus"
+import headerIcon from "@/app/access/image/header-icon.png";
 
 export default function Header() {
   const router = useRouter();
@@ -96,7 +98,7 @@ export default function Header() {
         <div className='max-w-[1400px] mx-auto px-5 h-full flex items-center justify-between'>
           {/* Logo */}
           <div className='flex items-center cursor-pointer' onClick={() => handleMenuClick("/")}>
-            <img src='https://pixelpayot.com/assets//header-icon-DThv0V1b.png' alt='PixelPayot' className='!h-[35px]' />
+            <Image src={headerIcon} alt='PixelPayot' className='!h-[35px] !object-contain w-auto' />
             <span className='ml-2 text-xl font-bold bg-gradient-to-r from-fuchsia-600 to-pink-400 bg-clip-text text-transparent'>PixelPayot</span>
           </div>
 
@@ -144,10 +146,12 @@ export default function Header() {
               </li>
             ))}
           </ul>
-
           <div className='flex items-center gap-4'>
             <div className='nav-actions'>
-              <div className='wallet-section'></div>
+              <div className='max-lg:hidden'>
+                <CustomConnectButton customClassButton={"btn-signup !mb-0"} />
+              </div>
+
               <div className='signup-section max-md:!hidden'>
                 <Link href='/signup' className='btn-signup'>
                   <FaUserPlus className='me-2' /> Sign Up{" "}
@@ -251,7 +255,16 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-            <div className='mt-6'>{/* <WalletStatus /> */}</div>
+            <div data-v-2e0e4a19='' className='mobile-actions'>
+              <div data-v-2e0e4a19='' className='mobile-signup-section'>
+                <CustomConnectButton customClassButton={"mobile-btn-signup !py-4"} />
+              </div>
+              <div data-v-2e0e4a19='' className='mobile-signup-section'>
+                <a data-v-2e0e4a19='' href='/signup' className='mobile-btn-signup'>
+                  <FaUserPlus /> Sign Up{" "}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

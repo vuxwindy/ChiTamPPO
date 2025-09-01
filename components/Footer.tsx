@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
 import { FaFacebook, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
+import headerIcon from "@/app/access/image/header-icon.png";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -32,7 +33,7 @@ export default function Footer() {
           <div className='row d-flex flex-wrap justify-content-between'>
             <div className='col-lg-4 col-md-6'>
               <div className='footer-item md:item-001'>
-                <img src='https://pixelpayot.com/assets/header-icon-DThv0V1b.png' alt='logo' />
+                <Image src={headerIcon} alt='logo' className='!object-contain' />
                 <p> PixelPayot is a platform that allows you to earn money by playing games. </p>
                 <div className='social-media'>
                   <ul className='d-flex list-unstyled'>

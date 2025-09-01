@@ -5,6 +5,10 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
+import { toast } from "react-toastify";
+import Unnamed from "@/app/access/image/Unnamed.webp";
+import snake from "@/app/access/image/snake-preview.png";
+import plinko_logo from "@/app/access/image/plinko-casino-game.jpg";
 
 export default function GamePage() {
   const addToWallet = useCallback(() => {
@@ -99,7 +103,14 @@ export default function GamePage() {
                   <div className='text-center'>
                     <h3 className='max-md:!text-xl text-black text-2xl mb-2'>Arrow Game Classic</h3>
                     <p className='text-black mb-4'>Classic archery challenge with NFT card integration</p>
-                    <Link href='/arrow-game' className='bg-blue-600 text-white px-5 py-2 rounded-lg'>
+                    <Link
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming soon");
+                      }}
+                      href='/arrow-game'
+                      className='bg-blue-600 text-white px-5 py-2 rounded-lg'
+                    >
                       ▶ Play Now
                     </Link>
                   </div>
@@ -139,7 +150,14 @@ export default function GamePage() {
                   <div className='text-center'>
                     <h3 className='max-md:!text-xl text-black text-2xl mb-2'>Arrow Game Modern</h3>
                     <p className='text-black mb-4'>Enhanced archery experience with modern UI and effects</p>
-                    <Link href='/arrow-game-modern' className='bg-green-600 text-white px-5 py-2 rounded-lg'>
+                    <Link
+                      href='/arrow-game-modern'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming soon");
+                      }}
+                      className='bg-green-600 text-white px-5 py-2 rounded-lg'
+                    >
                       ▶ Play Now
                     </Link>
                   </div>
@@ -173,14 +191,14 @@ export default function GamePage() {
           <h2 className='text-white text-3xl mt-16 mb-8 flex items-center gap-2'>⏳ Coming Soon</h2>
           <div className='grid md:grid-cols-3 gap-6'>
             {[
-              { image: "https://pixelpayot.com/assets/plinko-preview-D9vcuR0x.png", name: "Plinko" },
-              { image: "https://pixelpayot.com/assets/snake-preview-z_fiG8wn.png", name: "Snake" },
-              { image: "https://pixelpayot.com/assets/fishing-preview-BYnEXf3I.png", name: "Fishing Coin" },
+              { image: plinko_logo, name: "Plinko" },
+              { image: snake, name: "Snake" },
+              { image: Unnamed, name: "Fishing Coin" },
             ].map((game, i) => (
               <div key={i} className=' bg-dark border border-secondary rounded overflow-hidden h-100 opacity-50'>
                 <div className='relative'>
-                  <img src={game.image} alt={game.name} width={600} height={200} className='w-full h-[200px] object-cover' />
-                  <div className='absolute inset-0 bg-black/50 flex items-center justify-center'>
+                  <Image src={game.image} alt={game.name} width={600} height={200} className='w-full !h-[400px] object-cover' />
+                  <div className='absolute inset-0 hover:!opacity-100 opacity-0 bg-white/70 flex items-center justify-center transition'>
                     <div className='text-center'>
                       <h3 className='max-md:!text-xl text-white text-xl'>Coming Soon</h3>
                       <p className='text-white/70'>New games are being developed</p>
