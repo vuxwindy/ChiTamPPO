@@ -20392,3 +20392,15 @@ i,.icon,[class*=icon-] {
 .market-panel {
   animation-delay: 0.2s;
 }
+
+/* Ẩn mũi tên trong input type number - Chrome, Safari, Edge */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Ẩn mũi tên trong Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

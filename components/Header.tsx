@@ -49,7 +49,7 @@ export default function Header() {
         // { id: "blindbox", name: "Blindbox", url: "/blindbox", icon: "fas fa-box-open" },
         // { id: "swap", name: "Swap", url: "/swap", icon: "fas fa-exchange-alt" },
         // { id: "creators", name: "Creators", url: "/creators", icon: "fas fa-palette" },
-        { id: "whitepaper", name: "Whitepaper", url: "/", icon: <FaFilePdf /> },
+        { id: "whitepaper", name: "Whitepaper", url: "/whitepaper", icon: <FaFilePdf /> },
       ],
     },
   ];
@@ -154,7 +154,7 @@ export default function Header() {
 
               <div className='signup-section max-md:!hidden'>
                 <Link href='/signup' className='btn-signup'>
-                  <FaUserPlus className='me-2' /> Sign Up{" "}
+                  <FaUserPlus className='me-2' /> Sign Up
                 </Link>
               </div>
             </div>
@@ -261,7 +261,7 @@ export default function Header() {
               </div>
               <div data-v-2e0e4a19='' className='mobile-signup-section'>
                 <a data-v-2e0e4a19='' href='/signup' className='mobile-btn-signup'>
-                  <FaUserPlus /> Sign Up{" "}
+                  <FaUserPlus /> Sign Up
                 </a>
               </div>
             </div>

@@ -75,9 +75,8 @@ export default function Home() {
                         <span className='highlight-text'>Experience</span>
                       </h1>
                       <p className='hero-description'>
-                        {" "}
                         Dive into the ultimate play-to-earn gaming ecosystem where every shot counts, every victory rewards you, and every moment
-                        brings you closer to legendary status.{" "}
+                        brings you closer to legendary status.
                       </p>
                       <div className='hero-stats'>
                         <div className='stat-card'>
@@ -175,7 +174,7 @@ export default function Home() {
                           }}
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
-                          <FaCrosshairs className='me-2' /> Play Archery{" "}
+                          <FaCrosshairs className='me-2' /> Play Archery
                         </Link>
                         <Link
                           href='/arrow-game-modern'
@@ -185,7 +184,7 @@ export default function Home() {
                           }}
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
-                          <FaGamepad className='me-2' /> Modern Archery{" "}
+                          <FaGamepad className='me-2' /> Modern Archery
                         </Link>
                       </div>
                     </div>
@@ -256,7 +255,7 @@ export default function Home() {
                             </div>
                             <div className='task-content'>
                               <h5>Daily Check-in</h5>
-                              <p className='task-reward'>+0.25 PPO</p>
+                              {/* <p className='task-reward'>+0.25 PPO</p> */}
                             </div>
                             <button className='btn btn-task'>
                               <FaCalendarCheck />
@@ -269,7 +268,7 @@ export default function Home() {
                             </div>
                             <div className='task-content'>
                               <h5>Join Telegram Group</h5>
-                              <p className='task-reward'>+0.25 PPO</p>
+                              {/* <p className='task-reward'>+0.25 PPO</p> */}
                             </div>
                             <button className='btn btn-task'>
                               <FaUsers />
@@ -282,7 +281,7 @@ export default function Home() {
                             </div>
                             <div className='task-content'>
                               <h5>Follow on X</h5>
-                              <p className='task-reward'>+0.25 PPO</p>
+                              {/* <p className='task-reward'>+0.25 PPO</p> */}
                             </div>
                             <button className='btn btn-task'>
                               <FaUserPlus />
@@ -295,7 +294,7 @@ export default function Home() {
                             </div>
                             <div className='task-content'>
                               <h5>Share &amp; Earn</h5>
-                              <p className='task-reward'>+0.25 PPO</p>
+                              {/* <p className='task-reward'>+0.25 PPO</p> */}
                               <small className='task-note'>Share about PixelPayot</small>
                             </div>
                             <button className='btn btn-task'>
@@ -434,6 +433,10 @@ export default function Home() {
                       {/* Nút Play */}
                       <Link
                         href='/arrow-game'
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toast.info("Coming Soon");
+                        }}
                         className='mt-8 inline-block px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-bold text-lg shadow-lg hover:from-yellow-400 hover:to-yellow-300 hover:text-black transition'
                       >
                         <i className='fas fa-play mr-2' /> Play Now
@@ -471,6 +474,10 @@ export default function Home() {
                       {/* Nút Play */}
                       <Link
                         href='/arrow-game-modern'
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toast.info("Coming Soon");
+                        }}
                         className='mt-8 inline-block px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-bold text-lg shadow-lg hover:from-yellow-400 hover:to-yellow-300 hover:text-black transition'
                       >
                         <i className='fas fa-play mr-2' /> Play Now

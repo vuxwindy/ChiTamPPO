@@ -6,22 +6,23 @@ import Link from "next/link";
 import { useCallback } from "react";
 import { FaFacebook, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 import headerIcon from "@/app/access/image/header-icon.png";
+import { toast } from "react-toastify";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const openSocialLink = useCallback((platform: string) => {
-    const socialLinks: Record<string, string> = {
-      facebook: "https://facebook.com/coinpayot",
-      twitter: "https://twitter.com/coinpayot",
-      instagram: "https://instagram.com/coinpayot",
-      youtube: "https://youtube.com/coinpayot",
-      linkedin: "https://linkedin.com/company/coinpayot",
-    };
-    if (socialLinks[platform]) {
-      window.open(socialLinks[platform], "_blank");
-    }
-  }, []);
+  // const openSocialLink = useCallback((platform: string) => {
+  //   const socialLinks: Record<string, string> = {
+  //     facebook: "https://facebook.com/coinpayot",
+  //     twitter: "https://twitter.com/coinpayot",
+  //     instagram: "https://instagram.com/coinpayot",
+  //     youtube: "https://youtube.com/coinpayot",
+  //     linkedin: "https://linkedin.com/company/coinpayot",
+  //   };
+  //   if (socialLinks[platform]) {
+  //     window.open(socialLinks[platform], "_blank");
+  //   }
+  // }, []);
 
   return (
     <>
@@ -38,27 +39,27 @@ export default function Footer() {
                 <div className='social-media'>
                   <ul className='d-flex list-unstyled'>
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://facebook.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaFacebook />
                       </Link>
                     </li>
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://twitter.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaTwitter />
                       </Link>
                     </li>
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://instagram.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaInstagram />
                       </Link>
                     </li>
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://youtube.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaYoutube />
                       </Link>
                     </li>
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='#' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://linkedin.com/company/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaLinkedinIn />
                       </Link>
                     </li>
@@ -71,22 +72,51 @@ export default function Footer() {
                 <h4>Marketplace</h4>
                 <ul className='footer-menu list-unstyled'>
                   <li>
-                    <Link href='/marketplace' className=''>
+                    <Link
+                      href='/marketplace'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       NFTs
                     </Link>
                   </li>
                   <li>
-                    <Link href='/collection' className=''>
+                    <Link
+                      href='/collection'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       Art
                     </Link>
                   </li>
                   <li>
-                    <Link href='/blindbox' className=''>
+                    <Link
+                      href='/blindbox'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       Collectibles
                     </Link>
                   </li>
                   <li>
-                    <Link href='#'>Virtual world</Link>
+                    <Link
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      href='#'
+                    >
+                      Virtual world
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -96,17 +126,39 @@ export default function Footer() {
                 <h4>Info</h4>
                 <ul className='footer-menu list-unstyled'>
                   <li>
-                    <Link href='/dashboard' className=''>
+                    <Link
+                      href='/dashboard'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       Activity
                     </Link>
                   </li>
                   <li>
-                    <Link href='/profile' className=''>
+                    <Link
+                      href='/profile'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       Stats
                     </Link>
                   </li>
                   <li>
-                    <Link href='#leaderboard'>Rankings</Link>
+                    <Link
+                      href='#leaderboard'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                    >
+                      Rankings
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -116,18 +168,48 @@ export default function Footer() {
                 <h4>Company</h4>
                 <ul className='footer-menu list-unstyled'>
                   <li>
-                    <Link href='/whitepaper' className=''>
+                    <Link
+                      href='/whitepaper'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       About
                     </Link>
                   </li>
                   <li>
-                    <Link href='#support'>Support</Link>
+                    <Link
+                      href='#support'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                    >
+                      Support
+                    </Link>
                   </li>
                   <li>
-                    <Link href='#features'>Features</Link>
+                    <Link
+                      href='#features'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                    >
+                      Features
+                    </Link>
                   </li>
                   <li>
-                    <Link href='/creators' className=''>
+                    <Link
+                      href='/creators'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       Top Creators
                     </Link>
                   </li>
@@ -139,20 +221,50 @@ export default function Footer() {
                 <h4>Resources</h4>
                 <ul className='footer-menu list-unstyled'>
                   <li>
-                    <Link href='/whitepaper' className=''>
+                    <Link
+                      href='/whitepaper'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       Info
                     </Link>
                   </li>
                   <li>
-                    <Link href='/referral' className=''>
+                    <Link
+                      href='/referral'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                      className=''
+                    >
                       Affiliates
                     </Link>
                   </li>
                   <li>
-                    <Link href='#association'>Associated</Link>
+                    <Link
+                      href='#association'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                    >
+                      Associated
+                    </Link>
                   </li>
                   <li>
-                    <Link href='#blog'>Blog</Link>
+                    <Link
+                      href='#blog'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toast.info("Coming Soon");
+                      }}
+                    >
+                      Blog
+                    </Link>
                   </li>
                 </ul>
               </div>

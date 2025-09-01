@@ -103,16 +103,7 @@ export default function GamePage() {
                   <div className='text-center'>
                     <h3 className='max-md:!text-xl text-black text-2xl mb-2'>Arrow Game Classic</h3>
                     <p className='text-black mb-4'>Classic archery challenge with NFT card integration</p>
-                    <Link
-                      onClick={(e) => {
-                        e.preventDefault();
-                        toast.info("Coming soon");
-                      }}
-                      href='/arrow-game'
-                      className='bg-blue-600 text-white px-5 py-2 rounded-lg'
-                    >
-                      ▶ Play Now
-                    </Link>
+                    <button className='bg-blue-600 text-white px-5 py-2 !rounded-lg'>Comming Soon</button>
                   </div>
                 </div>
               </div>
@@ -150,16 +141,7 @@ export default function GamePage() {
                   <div className='text-center'>
                     <h3 className='max-md:!text-xl text-black text-2xl mb-2'>Arrow Game Modern</h3>
                     <p className='text-black mb-4'>Enhanced archery experience with modern UI and effects</p>
-                    <Link
-                      href='/arrow-game-modern'
-                      onClick={(e) => {
-                        e.preventDefault();
-                        toast.info("Coming soon");
-                      }}
-                      className='bg-green-600 text-white px-5 py-2 rounded-lg'
-                    >
-                      ▶ Play Now
-                    </Link>
+                    <button className='bg-green-600 text-white px-5 py-2 !rounded-lg'>Comming Soon</button>
                   </div>
                 </div>
               </div>

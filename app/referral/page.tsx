@@ -2,7 +2,7 @@
 "use client";
 import "@/app/style/referral.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
+import { FaCopy, FaTwitter, FaTelegram, FaFacebook, FaWhatsapp } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -41,21 +41,21 @@ export default function ReferralPage() {
     {
       id: 1,
       name: "CryptoKing",
-      avatar: "/images/clients-item1.jpg",
+      avatar: "",
       referrals: 25,
       totalEarnings: 125,
     },
     {
       id: 2,
       name: "NFTQueen",
-      avatar: "/images/clients-item2.jpg",
+      avatar: "",
       referrals: 18,
       totalEarnings: 90,
     },
     {
       id: 3,
       name: "BlockchainPro",
-      avatar: "/images/clients-item3.jpg",
+      avatar: "",
       referrals: 15,
       totalEarnings: 75,
     },
@@ -144,13 +144,12 @@ export default function ReferralPage() {
                   Referral Program
                 </h1>
                 <p className='referral-subtitle' data-v-422bf7a9=''>
-                  {" "}
-                  Invite friends and earn rewards together!{" "}
+                  Invite friends and earn rewards together!
                 </p>
                 <div className='referral-banner' data-v-422bf7a9=''>
                   <div className='banner-content' data-v-422bf7a9=''>
-                    <h2 data-v-422bf7a9=''>Earn 5 $PPO for each friend who joins!</h2>
-                    <p data-v-422bf7a9=''> Plus, your friends get 2 $PPO bonus when they sign up with your code </p>
+                    <h2 data-v-422bf7a9=''>Referral bonuses are no longer available.</h2>
+                    <p data-v-422bf7a9=''>New promotions will be announced soon</p>
                   </div>
                 </div>
               </div>
@@ -166,7 +165,7 @@ export default function ReferralPage() {
             <div className='text-3xl mb-4'>👛</div>
             <h3 className='max-md:!text-xl text-2xl font-bold'>Connect Your Wallet</h3>
             <p className='text-gray-400 mt-2'>Please connect your wallet to view your referral data and start earning rewards.</p>
-            <div className='mt-4'>
+            <div className='mt-4 flex justify-center'>
               <CustomConnectButton />
             </div>
             <button className='mt-4 px-4 py-2 bg-purple-600 rounded' onClick={() => setIsWalletConnected(true)}>
@@ -180,13 +179,13 @@ export default function ReferralPage() {
       {isWalletConnected && (
         <>
           {/* Stats */}
-          <section className='referral-stats py-12 grid grid-cols-2 md:grid-cols-4 gap-6 px-8'>
-            <div className='stat-card bg-white/10 p-6 rounded-lg text-center'>
+          <section className='referral-stats py-12 flex gap-6 max-md:!px-3 !px-8'>
+            <div className='stat-card bg-white/10 p-6 flex-1 rounded-lg text-center'>
               <div className='text-3xl'>👥</div>
               <h3 className='max-md:!text-xl text-2xl'>{referralStats.totalReferrals}</h3>
               <p>Total Referrals</p>
             </div>
-            <div className='stat-card bg-white/10 p-6 rounded-lg text-center'>
+            <div className='stat-card bg-white/10 p-6 flex-1 rounded-lg text-center'>
               <div className='text-3xl'>💰</div>
               <h3 className='max-md:!text-xl text-2xl'>{referralStats.totalEarnings}</h3>
               <p>Total Earnings ($PPO)</p>
@@ -194,27 +193,31 @@ export default function ReferralPage() {
           </section>
 
           {/* Referral Code */}
-          <section className='referral-code-section py-12 bg-purple-950 text-center'>
-            <h2 className='text-3xl font-bold'>Your Referral Code</h2>
-            <div className='mt-4 flex justify-center space-x-2'>
-              <input value={userReferralCode} readOnly className='px-3 py-2 text-black rounded' />
-              <button onClick={copyReferralCode} className='px-4 py-2 bg-purple-600 rounded'>
-                Copy
-              </button>
-            </div>
-            <div className='mt-6'>
-              <h4>Your Referral Link</h4>
-              <div className='mt-2 flex justify-center space-x-2'>
-                <input value={generateReferralLink(userReferralCode)} readOnly className='px-3 py-2 text-black rounded w-96' />
-                <button onClick={copyReferralLink} className='px-4 py-2 bg-purple-500 rounded'>
-                  Copy Link
+
+          <div className='referral-code-card max-w-xl mx-auto mb-4 max-md:mx-3 max-md:!p-3'>
+            <h2 className='section-title text-center !mb-4'>Invite Your Friends</h2>
+            <p className='text-center text-[#b0b0b0] mb-2'>Share your referral code or link and earn rewards!</p>
+            <div className='code-display'>
+              <label className='block text-white font-medium mb-2'>Referral Code</label>
+
+              <div className='code-input'>
+                <input type='text' className='form-control text-white' readOnly defaultValue='' />
+                <button className='btn btn-primary  !flex items-center gap-1' onClick={copyReferralCode}>
+                  <FaCopy /> Copy Code
+                </button>
+              </div>
+              <label className='block text-white font-medium mb-2'>Referral Link</label>
+              <div className='code-input'>
+                <input type='text' className='form-control text-white' readOnly defaultValue='' />
+                <button className='btn btn-primary  !flex items-center gap-1' onClick={copyReferralLink}>
+                  <FaCopy /> Copy Link
                 </button>
               </div>
             </div>
-          </section>
+          </div>
 
           {/* Referral List */}
-          <section className='referral-list py-12 px-8'>
+          {/* <section className='referral-list py-12 px-8'>
             <h2 className='text-2xl font-bold text-center mb-6'>Your Referrals</h2>
             {referrals.length === 0 ? (
               <div className='text-center text-gray-400'>No referrals yet. Share your code!</div>
@@ -235,7 +238,7 @@ export default function ReferralPage() {
                 ))}
               </div>
             )}
-          </section>
+          </section> */}
 
           {/* Leaderboard */}
           <section className='referral-leaderboard py-12 bg-purple-900/30'>
@@ -245,7 +248,14 @@ export default function ReferralPage() {
                 <div key={leader.id} className='flex items-center justify-between bg-white/5 p-4 rounded'>
                   <span className='font-bold'>#{index + 1}</span>
                   <div className='flex items-center space-x-3'>
-                    <Image src={leader.avatar} alt={leader.name} width={40} height={40} className='rounded-full' />
+                    <img
+                      src={leader.avatar || "https://www.gravatar.com/avatar/?d=mp"}
+                      alt={leader.name}
+                      width={40}
+                      height={40}
+                      className='rounded-full'
+                    />
+
                     <div>
                       <h5>{leader.name}</h5>
                       <small>{leader.referrals} referrals</small>
