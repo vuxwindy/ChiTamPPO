@@ -163,7 +163,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
       <section className='investment-overview padding-large'>
         <div className='container mx-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <div className='w-full max-md:w-1/2 mb-4'>
+            <div className='max-md:w-full w-1/2 mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
                   <FaWallet />
@@ -177,7 +177,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
               </div>
             </div>
 
-            <div className='w-full max-md:w-1/2 mb-4'>
+            <div className='max-md:w-full w-1/2 mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
                   <i className='fas fa-chart-line'></i>
@@ -266,7 +266,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
         <div className='container mx-auto relative'>
           <div className=' p-6 text-white'>
             <h1 className='text-2xl font-bold mb-6 text-center text-white'>
-              PPO NFT Mint Demo
+              Investment Pack NFT
             </h1>
 
             <div className='investment-header mt-4 !p-8 rounded-2xl shadow-md max-w-md mx-auto'>
