@@ -75,8 +75,6 @@ export default function Home() {
     }).format(parseFloat(balance))
   }
 
-  console.log('user', user)
-
   useEffect(() => {
     if (!address || !chainId) return
     onGetUser(address, chainId).then((res) => {
@@ -94,22 +92,21 @@ export default function Home() {
 
   const day = 24 * 60 * 60
 
-  const [isDaily, isJoinTeleGroup, isFollowX, isShare] = useMemo(() => {
-    if (!task) return [false, false, false, false]
-    const now = Math.floor(Date.now() / 1000)
-    const isDaily = now / day - task.daily / day > 0
-    const isJoinTeleGroup = now / day - task.joinTeleGroup / day > 0
-    const isFollowX = now / day - task.followX / day > 0
-    const isShare = now / day - task.share / day > 0
-    return [isDaily, isJoinTeleGroup, isFollowX, isShare]
-  }, [task])
+  const [isDaily, isJoinTeleGroup, isFollowX, isShare, progressTask] =
+    useMemo(() => {
+      if (!task) return [false, false, false, false, '0/4']
+      const now = Math.floor(Date.now() / 1000)
+      const isDaily = Math.round(now / day - task.daily / day) > 0
+      const isJoinTeleGroup =
+        Math.round(now / day - task.joinTeleGroup / day) > 0
+      const isFollowX = Math.round(now / day - task.followX / day) > 0
+      const isShare = Math.round(now / day - task.share / day) > 0
+      const completed = [isDaily, isJoinTeleGroup, isFollowX, isShare].filter(
+        (v) => v === false
+      ).length
 
-  const progressTask = useMemo(() => {
-    const completed = [isDaily, isJoinTeleGroup, isFollowX, isShare].filter(
-      (v) => v === false
-    ).length
-    return `${completed}/4`
-  }, [isDaily, isJoinTeleGroup, isFollowX, isShare])
+      return [isDaily, isJoinTeleGroup, isFollowX, isShare, `${completed}/4`]
+    }, [task])
 
   const handleTask = (taskKey: TaskKey) => {
     if (!address || !chainId) return
