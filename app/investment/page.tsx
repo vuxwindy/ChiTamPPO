@@ -1,10 +1,5 @@
 'use client'
-import {
-  Description,
-  Dialog,
-  DialogPanel,
-  DialogTitle
-} from '@headlessui/react'
+
 import React, { useState, useMemo, useEffect, use } from 'react'
 import '@/app/style/inves.css'
 import Header from '@/components/Header'
@@ -23,8 +18,6 @@ import { NativeAddress } from '@/config/contracts/addresses'
 import { useRouter } from 'next/router'
 import { ethers } from 'ethers'
 import { on } from 'events'
-import { useTask } from '@/hooks/useTask'
-import { Task } from '@/hooks/type'
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default function InvestmentPage(props: { searchParams: SearchParams }) {

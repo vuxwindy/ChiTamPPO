@@ -7,10 +7,10 @@ import Image from 'next/image'
 import { IoPeople } from 'react-icons/io5'
 import { FaChartPie, FaFilePdf, FaGamepad, FaUserPlus } from 'react-icons/fa'
 import { IoIosMore, IoMdSwap } from 'react-icons/io'
-import CustomConnectButton from './ConnectButtonCustom'
 import { ConnectButton, WalletButton } from '@rainbow-me/rainbowkit'
 // import WalletStatus from "./WalletStatus"
 import headerIcon from '@/app/access/image/header-icon.png'
+import CustomConnectButton from './ConnectButtonCustom'
 
 export default function Header() {
   const router = useRouter()
