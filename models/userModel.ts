@@ -10,4 +10,4 @@ const userSchema = new Schema({
   lastClaimedAt: { type: Date, default: Date.now }
 })
 
-export const User = mongoose.model('User', userSchema)
+export default mongoose.models.User || mongoose.model('User', userSchema)

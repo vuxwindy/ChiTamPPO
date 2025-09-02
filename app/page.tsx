@@ -50,17 +50,23 @@ import imageRemovebgPreview from '@/app/access/image/image-removebg-preview.png'
 import { toast } from 'react-toastify'
 import { useAccount, useBalance } from 'wagmi'
 import { useEffect, useMemo, useState } from 'react'
-import { Task, TaskKey, User } from '@/hooks/type'
+import { Task, TaskKey, User, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
 import { on } from 'events'
 
 export default function Home() {
   const [user, setUser] = useState<User>()
+  const [userTask, setUserTask] = useState<UserTask>()
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
   const { onGetUser } = useInvestment()
-  const { onGetTask, onCompleteTask } = useTask()
+  const {
+    onGetAllTasks,
+    onCompleteTask,
+    onGetUser: onGetUserTask,
+    onClaimReward
+  } = useTask()
   const { data: balance } = useBalance({
     address,
     token: '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A'
@@ -81,8 +87,34 @@ export default function Home() {
       setUser(res)
     })
 
-    setTask(onGetTask(address, chainId))
-  }, [address])
+    onGetAllTasks(address, chainId).then((res) => {
+      const isDaily = res.find((t) => t.task === TaskKey.Daily)
+      const isJoinTeleGroup = res.find((t) => t.task === TaskKey.JoinTeleGroup)
+      const isFollowX = res.find((t) => t.task === TaskKey.FollowX)
+      const isShare = res.find((t) => t.task === TaskKey.Share)
+
+      setTask({
+        address: address ?? '',
+        chainId: chainId ?? 0,
+        daily: isDaily
+          ? Math.round(new Date(isDaily.createdAt).getTime() / 1000)
+          : 0,
+        joinTeleGroup: isJoinTeleGroup
+          ? Math.round(new Date(isJoinTeleGroup.createdAt).getTime() / 1000)
+          : 0,
+        followX: isFollowX
+          ? Math.round(new Date(isFollowX.createdAt).getTime() / 1000)
+          : 0,
+        share: isShare
+          ? Math.round(new Date(isShare.createdAt).getTime() / 1000)
+          : 0
+      })
+    })
+
+    onGetUserTask(address, chainId).then((res) => {
+      setUserTask(res)
+    })
+  }, [address, chainId])
 
   const level = useMemo(() => {
     if (!user) return 0
@@ -112,6 +144,12 @@ export default function Home() {
     if (!address || !chainId) return
     onCompleteTask(address, chainId, taskKey)
   }
+
+  const handleClaimReward = async () => {
+    if (!address || !chainId) return
+    await onClaimReward(address, chainId)
+  }
+
   return (
     <>
       <div id='app'>
@@ -481,37 +519,42 @@ export default function Home() {
                             </div>
                             <div className='rewards-content'>
                               <h4>Available Rewards</h4>
-                              <span className='rewards-amount'>0 PPO</span>
+                              <span className='rewards-amount'>
+                                {userTask ? userTask.reward : 0} PPO
+                              </span>
                               <small className='rewards-info'>
                                 ⏳ Need 200 more PPO
                               </small>
                             </div>
-                            <button className='btn btn-claim-rewards !flex gap-1 text-white items-center'>
+                            <button
+                              className='btn btn-claim-rewards !flex gap-1 text-white items-center'
+                              onClick={handleClaimReward}
+                            >
                               <FaDownload /> Claim
                             </button>
                           </div>
 
                           <div className='rewards-details'>
-                            <div className='reward-stat'>
+                            {/* <div className='reward-stat'>
                               <span className='stat-label'>Total Earned:</span>
                               <span className='stat-value max-md:!text-base'>
-                                0 PPO
+                                {userTask ? userTask.totalEarned : 0} PPO
                               </span>
-                            </div>
+                            </div> */}
                             <div className='reward-stat'>
                               <span className='stat-label'>
                                 Already Claimed:
                               </span>
                               <span className='stat-value max-md:!text-base'>
-                                0 PPO
+                                {userTask ? userTask.totalEarned : 0} PPO
                               </span>
                             </div>
-                            <div className='reward-stat'>
+                            {/* <div className='reward-stat'>
                               <span className='stat-label'>Pending:</span>
                               <span className='stat-value max-md:!text-base'>
                                 0 PPO
                               </span>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>

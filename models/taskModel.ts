@@ -8,4 +8,4 @@ const taskSchema = new Schema({
   createdAt: { type: Date, default: Date.now }
 })
 
-export const Task = mongoose.model('Task', taskSchema)
+export default mongoose.models.Task || mongoose.model('Task', taskSchema)

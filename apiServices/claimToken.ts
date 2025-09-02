@@ -1,7 +1,7 @@
 import { getMasterWallet, getProvider } from '@/config/provider'
 import { ethers } from 'ethers'
 import abi from '../config/contracts/abi/PPOToken.json'
-import { User } from '@/models/userModel'
+import userModel from '@/models/userModel'
 
 export const claimToken = async (address: string, chainId: number) => {
   const masterWallet = getMasterWallet()
@@ -11,11 +11,29 @@ export const claimToken = async (address: string, chainId: number) => {
     masterWallet // Use masterWallet as signer
   )
 
-  const users = await User.findOne({ address, chainId })
+  const users = await userModel.findOne({ address, chainId })
   if (!users) throw new Error('User not found')
+
+  if (!users.reward || users.reward < 200)
+    throw new Error('Insufficient reward')
+
+  await userModel.findOneAndUpdate(
+    {
+      address,
+      chainId
+    },
+    {
+      $set: { reward: 0, lastClaimedAt: new Date() },
+      $inc: { totalEarned: users.reward }
+    }
+  )
+
+  const gasPrice = (await getProvider().getFeeData()).gasPrice
+
   const tx = await contract.transfer(
     address,
-    ethers.parseUnits(users.reward ? users.reward.toString() : '0', 18)
+    ethers.parseUnits(users.reward.toString(), 18),
+    { gasPrice: gasPrice }
   )
   return tx
 }

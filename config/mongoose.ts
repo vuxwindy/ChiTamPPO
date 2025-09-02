@@ -1,11 +1,15 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || 'mongodb://localhost:27017/your_database_name'
+// Make sure the username, password, and database name are correct and the user has access.
+// Example: If your user is 'admin' with password 'mongo' and has access to 'ppo', this should work.
+// Otherwise, update the credentials accordingly.
+const MONGODB_URI = process.env.MONGODB_URI || ''
 
 export const connectDB = async () => {
   try {
-    await mongoose.connect(MONGODB_URI)
+    if (!MONGODB_URI) throw new Error('MONGODB_URI is not defined')
+    console.log('Connecting to MongoDB...')
+    await mongoose.connect(MONGODB_URI, { authSource: 'admin' })
     console.log('MongoDB connected')
   } catch (error) {
     console.error('MongoDB connection error:', error)

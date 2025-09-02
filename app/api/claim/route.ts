@@ -1,9 +1,12 @@
 import { claimToken } from '@/apiServices/claimToken'
+import { connectDB } from '@/config/mongoose'
 import { getMasterWallet } from '@/config/provider'
 import { ethers, isAddress } from 'ethers'
 import { NextResponse } from 'next/dist/server/web/spec-extension/response'
 
 export async function POST(request: Request) {
+  await connectDB()
+
   const { address, chainId } = await request.json()
 
   try {
@@ -16,6 +19,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(tx, { status: 201 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json({ error: error.message }, { status: 400 })
   }
 }

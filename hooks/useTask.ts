@@ -1,65 +1,34 @@
 import { on } from 'events'
 import { Task, TaskKey } from './type'
+import {
+  claimReward,
+  getTodayTask,
+  getUser,
+  postTask
+} from '@/services/taskService'
 
 export const useTask = () => {
   const storeKey = 'PPOTasks'
 
-  const onCompleteTask = (
+  const onCompleteTask = async (
     address: string,
     chainId: number,
     taskKey: TaskKey
   ) => {
-    const allTasks = onGetAllTasks()
-    const task = onGetTask(address, chainId)
-    task[taskKey] = Math.floor(Date.now() / 1000)
-    const tasks = allTasks.map((t) =>
-      t.address === address && t.chainId === chainId ? task : t
-    )
-    localStorage.setItem(storeKey, JSON.stringify(tasks))
+    await postTask(address, chainId, taskKey)
   }
 
-  const onGetAllTasks = () => {
-    const tasks = localStorage.getItem(storeKey)
-    if (!tasks) {
-      return []
-    }
-    return JSON.parse(tasks) as Task[]
+  const onGetAllTasks = async (address: string, chainId: number) => {
+    return await getTodayTask(address, chainId)
   }
 
-  const onGetTask = (address: string, chainId: number) => {
-    const tasks = localStorage.getItem(storeKey)
-    if (!tasks) {
-      const temp = {
-        address,
-        chainId,
-        [TaskKey.Daily]: 0,
-        [TaskKey.JoinTeleGroup]: 0,
-        [TaskKey.FollowX]: 0,
-        [TaskKey.Share]: 0
-      } as Task
-
-      localStorage.setItem(storeKey, JSON.stringify([temp]))
-      return temp
-    }
-    const parsed = JSON.parse(tasks) as Task[]
-    const existing = parsed.find(
-      (item) => item.address === address && item.chainId === chainId
-    )
-    if (!existing) {
-      const temp = {
-        address,
-        chainId,
-        [TaskKey.Daily]: 0,
-        [TaskKey.JoinTeleGroup]: 0,
-        [TaskKey.FollowX]: 0,
-        [TaskKey.Share]: 0
-      } as Task
-
-      localStorage.setItem(storeKey, JSON.stringify([...parsed, temp]))
-      return temp
-    }
-    return existing
+  const onGetUser = async (address: string, chainId: number) => {
+    return await getUser(address, chainId)
   }
 
-  return { onCompleteTask, onGetTask, onGetAllTasks }
+  const onClaimReward = async (address: string, chainId: number) => {
+    return await claimReward(address, chainId)
+  }
+
+  return { onCompleteTask, onGetAllTasks, onGetUser, onClaimReward }
 }
