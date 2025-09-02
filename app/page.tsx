@@ -50,17 +50,23 @@ import imageRemovebgPreview from '@/app/access/image/image-removebg-preview.png'
 import { toast } from 'react-toastify'
 import { useAccount, useBalance } from 'wagmi'
 import { useEffect, useMemo, useState } from 'react'
-import { Task, TaskKey, User } from '@/hooks/type'
+import { Task, TaskKey, User, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
 import { on } from 'events'
 
 export default function Home() {
   const [user, setUser] = useState<User>()
+  const [userTask, setUserTask] = useState<UserTask>()
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
   const { onGetUser } = useInvestment()
-  const { onGetTask, onCompleteTask } = useTask()
+  const {
+    onGetAllTasks,
+    onCompleteTask,
+    onGetUser: onGetUserTask,
+    onClaimReward
+  } = useTask()
   const { data: balance } = useBalance({
     address,
     token: '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A'
@@ -75,16 +81,40 @@ export default function Home() {
     }).format(parseFloat(balance))
   }
 
-  console.log('user', user)
-
   useEffect(() => {
     if (!address || !chainId) return
     onGetUser(address, chainId).then((res) => {
       setUser(res)
     })
 
-    setTask(onGetTask(address, chainId))
-  }, [address])
+    onGetAllTasks(address, chainId).then((res) => {
+      const isDaily = res.find((t) => t.task === TaskKey.Daily)
+      const isJoinTeleGroup = res.find((t) => t.task === TaskKey.JoinTeleGroup)
+      const isFollowX = res.find((t) => t.task === TaskKey.FollowX)
+      const isShare = res.find((t) => t.task === TaskKey.Share)
+
+      setTask({
+        address: address ?? '',
+        chainId: chainId ?? 0,
+        daily: isDaily
+          ? Math.round(new Date(isDaily.createdAt).getTime() / 1000)
+          : 0,
+        joinTeleGroup: isJoinTeleGroup
+          ? Math.round(new Date(isJoinTeleGroup.createdAt).getTime() / 1000)
+          : 0,
+        followX: isFollowX
+          ? Math.round(new Date(isFollowX.createdAt).getTime() / 1000)
+          : 0,
+        share: isShare
+          ? Math.round(new Date(isShare.createdAt).getTime() / 1000)
+          : 0
+      })
+    })
+
+    onGetUserTask(address, chainId).then((res) => {
+      setUserTask(res)
+    })
+  }, [address, chainId])
 
   const level = useMemo(() => {
     if (!user) return 0
@@ -94,27 +124,32 @@ export default function Home() {
 
   const day = 24 * 60 * 60
 
-  const [isDaily, isJoinTeleGroup, isFollowX, isShare] = useMemo(() => {
-    if (!task) return [false, false, false, false]
-    const now = Math.floor(Date.now() / 1000)
-    const isDaily = now / day - task.daily / day > 0
-    const isJoinTeleGroup = now / day - task.joinTeleGroup / day > 0
-    const isFollowX = now / day - task.followX / day > 0
-    const isShare = now / day - task.share / day > 0
-    return [isDaily, isJoinTeleGroup, isFollowX, isShare]
-  }, [task])
+  const [isDaily, isJoinTeleGroup, isFollowX, isShare, progressTask] =
+    useMemo(() => {
+      if (!task) return [false, false, false, false, '0/4']
+      const now = Math.floor(Date.now() / 1000)
+      const isDaily = Math.round(now / day - task.daily / day) > 0
+      const isJoinTeleGroup =
+        Math.round(now / day - task.joinTeleGroup / day) > 0
+      const isFollowX = Math.round(now / day - task.followX / day) > 0
+      const isShare = Math.round(now / day - task.share / day) > 0
+      const completed = [isDaily, isJoinTeleGroup, isFollowX, isShare].filter(
+        (v) => v === false
+      ).length
 
-  const progressTask = useMemo(() => {
-    const completed = [isDaily, isJoinTeleGroup, isFollowX, isShare].filter(
-      (v) => v === false
-    ).length
-    return `${completed}/4`
-  }, [isDaily, isJoinTeleGroup, isFollowX, isShare])
+      return [isDaily, isJoinTeleGroup, isFollowX, isShare, `${completed}/4`]
+    }, [task])
 
   const handleTask = (taskKey: TaskKey) => {
     if (!address || !chainId) return
     onCompleteTask(address, chainId, taskKey)
   }
+
+  const handleClaimReward = async () => {
+    if (!address || !chainId) return
+    await onClaimReward(address, chainId)
+  }
+
   return (
     <>
       <div id='app'>
@@ -484,37 +519,42 @@ export default function Home() {
                             </div>
                             <div className='rewards-content'>
                               <h4>Available Rewards</h4>
-                              <span className='rewards-amount'>0 PPO</span>
+                              <span className='rewards-amount'>
+                                {userTask ? userTask.reward : 0} PPO
+                              </span>
                               <small className='rewards-info'>
                                 ⏳ Need 200 more PPO
                               </small>
                             </div>
-                            <button className='btn btn-claim-rewards !flex gap-1 text-white items-center'>
+                            <button
+                              className='btn btn-claim-rewards !flex gap-1 text-white items-center'
+                              onClick={handleClaimReward}
+                            >
                               <FaDownload /> Claim
                             </button>
                           </div>
 
                           <div className='rewards-details'>
-                            <div className='reward-stat'>
+                            {/* <div className='reward-stat'>
                               <span className='stat-label'>Total Earned:</span>
                               <span className='stat-value max-md:!text-base'>
-                                0 PPO
+                                {userTask ? userTask.totalEarned : 0} PPO
                               </span>
-                            </div>
+                            </div> */}
                             <div className='reward-stat'>
                               <span className='stat-label'>
                                 Already Claimed:
                               </span>
                               <span className='stat-value max-md:!text-base'>
-                                0 PPO
+                                {userTask ? userTask.totalEarned : 0} PPO
                               </span>
                             </div>
-                            <div className='reward-stat'>
+                            {/* <div className='reward-stat'>
                               <span className='stat-label'>Pending:</span>
                               <span className='stat-value max-md:!text-base'>
                                 0 PPO
                               </span>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>
