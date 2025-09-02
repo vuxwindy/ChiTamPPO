@@ -1,5 +1,5 @@
 'use client'
-
+import Marquee from 'react-fast-marquee';
 import {
   FaFacebookF,
   FaInstagram,
@@ -39,11 +39,11 @@ import Footer from '@/components/Footer'
 import Binance from '@/app/access/image/Binance.png'
 import Coinbase from '@/app/access/image/Coinbase.png'
 import KuCoin from '@/app/access/image/KuCoin.png'
-import blockfiLogo from '@/app/access/image/Binance.png'
+// import blockfiLogo from '@/app/access/image/Binance.png'
 import okxLogo from '@/app/access/image/okx-logo.png'
 import coingeckoLogo from '@/app/access/image/coingecko-logo.png'
 import injectiveInjCoinLogo from '@/app/access/image/injective-inj-coin-logo.png'
-import pancakeswapLogo from '@/app/access/image/image-removebg-preview.png'
+// import pancakeswapLogo from '@/app/access/image/image-removebg-preview.png'
 import sushiswapLogo from '@/app/access/image/sushiswap-logo.png'
 import uniswapLogo from '@/app/access/image/uniswap-logo.png'
 import imageRemovebgPreview from '@/app/access/image/image-removebg-preview.png'
@@ -820,8 +820,81 @@ export default function Home() {
                   alt=''
                 />
               </div>
-              <div className='container'>
-                <div className='grid grid-cols-5 gap-4'>
+              <div className='container !mt-16 '>
+                        <Marquee direction="right" speed={100} delay={5}>
+          <div className='flex items-center justify-center'>
+                    <Image
+                      src={Binance}
+                      alt='Binance'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+                  
+                  <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={KuCoin}
+                      alt='KuCoin'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+                  <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={Coinbase}
+                      alt='Coinbase'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+                  {/* <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={blockfiLogo}
+                      alt='BlockFi'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div> */}
+                  <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={okxLogo}
+                      alt='OKX'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+                  <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={coingeckoLogo}
+                      alt='Coin Gecko'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+                  <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={injectiveInjCoinLogo}
+                      alt='Injective'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+                  {/* <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={pancakeswapLogo}
+                      alt='PancakeSwap'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div> */}
+                  <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={sushiswapLogo}
+                      alt='SushiSwap'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+                  <div className='flex items-center justify-center !mx-4'>
+                    <Image
+                      src={uniswapLogo}
+                      alt='Uniswap'
+                      className='img-fluid object-contain w-auto !h-[120px]'
+                    />
+                  </div>
+          </Marquee>
+                {/* <div className='grid grid-cols-5 gap-4'>
                   <div className='flex items-center justify-center'>
                     <Image
                       src={Binance}
@@ -892,7 +965,7 @@ export default function Home() {
                       className='img-fluid w-[120px]'
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
             </section>
             <section className='nft-investment-section'>

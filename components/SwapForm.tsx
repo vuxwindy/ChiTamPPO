@@ -86,14 +86,14 @@ export const SwapForm = () => {
     <div className='flex flex-col gap-2'>
 
 
-      <div className='h-fit p-2 border border-gray-300 rounded-md flex justify-between'>
+      <div className='h-fit p-2 border border-gray-300 rounded-md flex justify-between relative'>
         <input
           placeholder='0'
           className='m-0 w-[300px]'
           value={amountIn}
           onChange={handleAmountIn}
         />
-         <span className="ml-2 px-3 py-1 bg-yellow-400 text-black font-bold rounded-lg text-sm">
+         <span className=" px-3 py-1 bg-yellow-400 text-black font-bold rounded-lg text-sm absolute right-2">
               {fromToken.symbol}
             </span>
       </div>
@@ -109,14 +109,14 @@ export const SwapForm = () => {
 
       </div>
 
-      <div className='h-fit p-2 border border-gray-300 rounded-md flex justify-between'>
+      <div className='h-fit p-2 border border-gray-300 rounded-md flex justify-between relative'>
         <input
           placeholder='0'
           className='m-0 w-[300px]'
           value={amountOut}
           disabled
         />
-         <span className="ml-2 px-3 py-1 bg-yellow-400 text-black font-bold rounded-lg text-sm">
+         <span className="px-3 py-1 bg-yellow-400 text-black font-bold rounded-lg text-sm  absolute right-2">
               {toToken.symbol}
             </span>
       </div>

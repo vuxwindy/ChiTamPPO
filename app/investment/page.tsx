@@ -5,7 +5,7 @@ import '@/app/style/inves.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import InvestNFTCard from './InvestNFTCard'
-import { FaWallet } from 'react-icons/fa'
+import { FaChartLine, FaWallet } from 'react-icons/fa'
 import logo from '@/app/access/image/logo-123.png'
 import bac from '@/app/access/image/image-bac.png'
 import dong from '@/app/access/image/image-dong.png'
@@ -169,10 +169,10 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
                   <FaWallet />
                 </div>
                 <div className='stat-content'>
-                  <h3 className='max-md:!text-xl stat-value'>
+                  {/* <h3 className='max-md:!text-xl stat-value'>
                     {investmentStats.totalNfts}
-                  </h3>
-                  <p className='stat-label'>Total NFTs</p>
+                  </h3> */}
+                  <p className='stat-label !text-xl'>Total NFTs</p>
                 </div>
               </div>
             </div>
@@ -180,13 +180,13 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
             <div className='max-md:w-full w-1/2 mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
-                  <i className='fas fa-chart-line'></i>
+                  <FaChartLine />
                 </div>
                 <div className='stat-content'>
-                  <h3 className='max-md:!text-xl stat-value'>
+                  {/* <h3 className='max-md:!text-xl stat-value'>
                     {investmentStats.totalMyNfts}
-                  </h3>
-                  <p className='stat-label'>Total My NFTs</p>
+                  </h3> */}
+                  <p className='stat-label !text-xl'>Total My NFTs</p>
                 </div>
               </div>
             </div>

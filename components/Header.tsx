@@ -292,7 +292,7 @@ export default function Header() {
                   customClassButton={'mobile-btn-signup !py-4'}
                 />
               </div>
-              <div
+              {/* <div
                 data-v-2e0e4a19=''
                 className='mobile-signup-section'
               >
@@ -303,7 +303,7 @@ export default function Header() {
                 >
                   <FaUserPlus /> Sign Up
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
