@@ -272,9 +272,9 @@ export default function WhitepaperPage() {
                 </h2>
                 <div className='content-body' data-v-f64e8edb=''>
                   <p data-v-f64e8edb=''>
-                    To create the world's leading gaming ecosystem where players can truly own their digital assets and earn real value from their
-                    gaming activities. We envision a future where gaming is not just entertainment, but a viable career path for millions of people
-                    worldwide.
+                    To create the world&apos;s leading gaming ecosystem where players can truly own their digital assets and earn real value from
+                    their gaming activities. We envision a future where gaming is not just entertainment, but a viable career path for millions of
+                    people worldwide.
                   </p>
                   <div className='vision-stats' data-v-f64e8edb=''>
                     <div className='stat' data-v-f64e8edb=''>

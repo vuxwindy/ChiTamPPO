@@ -17,14 +17,6 @@ export const SwapForm = () => {
 
   const pool = supportedPools[0].pool
 
-  useEffect(() => {
-    if (!chainId || !amountIn || !fromToken || !toToken) return
-    const timeout = setTimeout(() => {
-      estimateSwap(amountIn, chainId, fromToken, toToken)
-    }, 1000)
-    return () => clearTimeout(timeout)
-  }, [amountIn, fromToken, toToken, chainId])
-
   const estimateSwap = async (
     amountIn: string,
     chainId: number,
@@ -41,6 +33,15 @@ export const SwapForm = () => {
     if (!amountOutBN) return
     setAmountOut(ethers.formatUnits(amountOutBN, toToken.decimals))
   }
+  
+  useEffect(() => {
+    if (!chainId || !amountIn || !fromToken || !toToken) return
+    const timeout = setTimeout(() => {
+      estimateSwap(amountIn, chainId, fromToken, toToken)
+    }, 1000)
+    return () => clearTimeout(timeout)
+  }, [amountIn, fromToken, toToken, chainId, estimateSwap])
+
 
   const handleSwap = async () => {
     if (!address || !chainId) return

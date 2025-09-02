@@ -28,7 +28,7 @@ export default function Footer() {
     <>
       <footer id='footer' className='padding-large pattern-blur'>
         <div className='pattern-overlay pattern-blur-footer right-side-pattern'>
-          <img src='https://pixelpayot.com/assets/footer-pattern-BU5Dn35q.png' />
+          <img src='https://pixelpayot.com/assets/footer-pattern-BU5Dn35q.png' alt="" />
         </div>
         <div className='container'>
           <div className='row d-flex flex-wrap justify-content-between'>
