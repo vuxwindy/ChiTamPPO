@@ -176,7 +176,7 @@ export default function Header() {
                 {/* <Link href='/signup' className='btn-signup'>
                   <FaUserPlus className='me-2' /> Sign Up{" "}
                 </Link> */}
-                {/* <ConnectButton /> */}
+                <ConnectButton />
               </div>
             </div>
             {/* <WalletStatus /> */}
