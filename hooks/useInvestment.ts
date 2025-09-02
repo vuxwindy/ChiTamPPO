@@ -7,6 +7,7 @@ import {
 } from '@wagmi/core'
 import NFTPackageAbi from '../config/contracts/abi/NftPackages.json'
 import { NativeAddress } from '@/config/contracts/addresses'
+import { User } from './type'
 
 export interface Order {
   id: bigint
@@ -30,14 +31,6 @@ export const useInvestment = () => {
     referer: string,
     chainId: number
   ) => {
-    console.log('params', {
-      token,
-      address,
-      packageId,
-      amount,
-      referer
-    })
-
     const result = await writeContract(wagmiConfig, {
       address: NFTPackages[chainId] as `0x${string}`,
       abi: NFTPackageAbi.abi,
@@ -73,5 +66,15 @@ export const useInvestment = () => {
     })) as Order[]
     return result
   }
-  return { onInvest, onClaim, onGetOrder }
+
+  const onGetUser = async (address: string, chainId: number) => {
+    const result = (await readContract(wagmiConfig, {
+      address: NFTPackages[chainId] as `0x${string}`,
+      abi: NFTPackageAbi.abi,
+      functionName: 'getUser',
+      args: [address]
+    })) as User
+    return result
+  }
+  return { onInvest, onClaim, onGetOrder, onGetUser }
 }

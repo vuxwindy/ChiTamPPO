@@ -23,6 +23,8 @@ import { NativeAddress } from '@/config/contracts/addresses'
 import { useRouter } from 'next/router'
 import { ethers } from 'ethers'
 import { on } from 'events'
+import { useTask } from '@/hooks/useTask'
+import { Task } from '@/hooks/type'
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default function InvestmentPage(props: { searchParams: SearchParams }) {
@@ -30,12 +32,15 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
   const [bnbAmount, setBnbAmount] = useState<number>()
   const [mintedNFTs, setMintedNFTs] = useState<Order[]>([])
   const [ppoRewards, setPpoRewards] = useState<Record<any, any>>({})
+
   const { address, chainId } = useAccount()
   const { onInvest, onClaim, onGetOrder } = useInvestment()
 
   const searchParams = use(props.searchParams)
 
   const ref = searchParams.ref as string
+
+  console.log('ref', ref)
 
   const investmentStats = useMemo(
     () => ({
@@ -123,7 +128,6 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
 
   const calculateInterest = (order: Order) => {
     const now = BigInt(Math.floor(Date.now() / 1000))
-    console.log('order', now, order, order.interestPerDay)
     const interest =
       ((now - order.lastUpdatedAt) / BigInt(86400)) * order.interestPerDay
     return ethers.formatUnits(interest, 18)

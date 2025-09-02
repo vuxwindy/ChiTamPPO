@@ -1,6 +1,14 @@
-"use client";
+'use client'
 
-import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaCrosshairs, FaShieldAlt, FaBolt } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedinIn,
+  FaCrosshairs,
+  FaShieldAlt,
+  FaBolt
+} from 'react-icons/fa'
 import {
   FaCalendarCheck,
   FaTelegramPlane,
@@ -11,30 +19,102 @@ import {
   FaGift,
   FaDownload,
   FaWallet,
-  FaUserFriends,
-} from "react-icons/fa";
-import Link from "next/link";
-import Header from "@/components/Header";
-import { BiRocket } from "react-icons/bi";
-import { FaChartLine, FaEthereum, FaGamepad, FaRocket, FaTrophy, FaUsers } from "react-icons/fa";
-import { FaBitcoinSign } from "react-icons/fa6";
-import planetArrow from "@/app/access/image/planet-arrow-BTo6e6jt.png";
-import Image from "next/image";
-import Footer from "@/components/Footer";
-import Binance from "@/app/access/image/Binance.png";
-import Coinbase from "@/app/access/image/Coinbase.png";
-import KuCoin from "@/app/access/image/KuCoin.png";
-import blockfiLogo from "@/app/access/image/Binance.png";
-import okxLogo from "@/app/access/image/okx-logo.png";
-import coingeckoLogo from "@/app/access/image/coingecko-logo.png";
-import injectiveInjCoinLogo from "@/app/access/image/injective-inj-coin-logo.png";
-import pancakeswapLogo from "@/app/access/image/image-removebg-preview.png";
-import sushiswapLogo from "@/app/access/image/sushiswap-logo.png";
-import uniswapLogo from "@/app/access/image/uniswap-logo.png";
-import imageRemovebgPreview from "@/app/access/image/image-removebg-preview.png";
-import { toast } from "react-toastify";
+  FaUserFriends
+} from 'react-icons/fa'
+import Link from 'next/link'
+import Header from '@/components/Header'
+import { BiRocket } from 'react-icons/bi'
+import {
+  FaChartLine,
+  FaEthereum,
+  FaGamepad,
+  FaRocket,
+  FaTrophy,
+  FaUsers
+} from 'react-icons/fa'
+import { FaBitcoinSign } from 'react-icons/fa6'
+import planetArrow from '@/app/access/image/planet-arrow-BTo6e6jt.png'
+import Image from 'next/image'
+import Footer from '@/components/Footer'
+import Binance from '@/app/access/image/Binance.png'
+import Coinbase from '@/app/access/image/Coinbase.png'
+import KuCoin from '@/app/access/image/KuCoin.png'
+import blockfiLogo from '@/app/access/image/Binance.png'
+import okxLogo from '@/app/access/image/okx-logo.png'
+import coingeckoLogo from '@/app/access/image/coingecko-logo.png'
+import injectiveInjCoinLogo from '@/app/access/image/injective-inj-coin-logo.png'
+import pancakeswapLogo from '@/app/access/image/image-removebg-preview.png'
+import sushiswapLogo from '@/app/access/image/sushiswap-logo.png'
+import uniswapLogo from '@/app/access/image/uniswap-logo.png'
+import imageRemovebgPreview from '@/app/access/image/image-removebg-preview.png'
+import { toast } from 'react-toastify'
+import { useAccount, useBalance } from 'wagmi'
+import { useEffect, useMemo, useState } from 'react'
+import { Task, TaskKey, User } from '@/hooks/type'
+import { useInvestment } from '@/hooks/useInvestment'
+import { useTask } from '@/hooks/useTask'
+import { on } from 'events'
 
 export default function Home() {
+  const [user, setUser] = useState<User>()
+  const [task, setTask] = useState<Task>()
+  const { address, chainId } = useAccount()
+  const { onGetUser } = useInvestment()
+  const { onGetTask, onCompleteTask } = useTask()
+  const { data: balance } = useBalance({
+    address,
+    token: '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A'
+  })
+
+  const formatBalance = (balance?: string) => {
+    if (!balance) return '0.00'
+    return new Intl.NumberFormat('en-US', {
+      notation: 'compact',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(parseFloat(balance))
+  }
+
+  console.log('user', user)
+
+  useEffect(() => {
+    if (!address || !chainId) return
+    onGetUser(address, chainId).then((res) => {
+      setUser(res)
+    })
+
+    setTask(onGetTask(address, chainId))
+  }, [address])
+
+  const level = useMemo(() => {
+    if (!user) return 0
+    const ref = Number(user.totalRef)
+    return `Level ${ref >= 45 ? 3 : ref >= 35 ? 2 : ref >= 15 ? 1 : 0}`
+  }, [user])
+
+  const day = 24 * 60 * 60
+
+  const [isDaily, isJoinTeleGroup, isFollowX, isShare] = useMemo(() => {
+    if (!task) return [false, false, false, false]
+    const now = Math.floor(Date.now() / 1000)
+    const isDaily = now / day - task.daily / day > 0
+    const isJoinTeleGroup = now / day - task.joinTeleGroup / day > 0
+    const isFollowX = now / day - task.followX / day > 0
+    const isShare = now / day - task.share / day > 0
+    return [isDaily, isJoinTeleGroup, isFollowX, isShare]
+  }, [task])
+
+  const progressTask = useMemo(() => {
+    const completed = [isDaily, isJoinTeleGroup, isFollowX, isShare].filter(
+      (v) => v === false
+    ).length
+    return `${completed}/4`
+  }, [isDaily, isJoinTeleGroup, isFollowX, isShare])
+
+  const handleTask = (taskKey: TaskKey) => {
+    if (!address || !chainId) return
+    onCompleteTask(address, chainId, taskKey)
+  }
   return (
     <>
       <div id='app'>
@@ -75,15 +155,29 @@ export default function Home() {
                         <span className='highlight-text'>Experience</span>
                       </h1>
                       <p className='hero-description'>
-                        Dive into the ultimate play-to-earn gaming ecosystem where every shot counts, every victory rewards you, and every moment
-                        brings you closer to legendary status.
+                        Dive into the ultimate play-to-earn gaming ecosystem
+                        where every shot counts, every victory rewards you, and
+                        every moment brings you closer to legendary status.
                       </p>
                       <div className='hero-stats'>
                         <div className='stat-card'>
                           <div className='stat-icon'>
-                            <svg width='32px' height='32px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                              <g id='SVGRepo_bgCarrier' strokeWidth={0} />
-                              <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round' />
+                            <svg
+                              width='32px'
+                              height='32px'
+                              viewBox='0 0 24 24'
+                              fill='none'
+                              xmlns='http://www.w3.org/2000/svg'
+                            >
+                              <g
+                                id='SVGRepo_bgCarrier'
+                                strokeWidth={0}
+                              />
+                              <g
+                                id='SVGRepo_tracerCarrier'
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                              />
                               <g id='SVGRepo_iconCarrier'>
                                 <path
                                   d='M20 18L17 18M17 18L14 18M17 18V15M17 18V21M11 21H4C4 17.134 7.13401 14 11 14C11.695 14 12.3663 14.1013 13 14.2899M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z'
@@ -102,11 +196,27 @@ export default function Home() {
                         </div>
                         <div className='stat-card'>
                           <div className='stat-icon'>
-                            <svg width='32px' height='32px' viewBox='-2 0 20 20' xmlns='http://www.w3.org/2000/svg' fill='#000000'>
-                              <g id='SVGRepo_bgCarrier' strokeWidth={0} />
-                              <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round' />
+                            <svg
+                              width='32px'
+                              height='32px'
+                              viewBox='-2 0 20 20'
+                              xmlns='http://www.w3.org/2000/svg'
+                              fill='#000000'
+                            >
+                              <g
+                                id='SVGRepo_bgCarrier'
+                                strokeWidth={0}
+                              />
+                              <g
+                                id='SVGRepo_tracerCarrier'
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                              />
                               <g id='SVGRepo_iconCarrier'>
-                                <g id='reward-4' transform='translate(-4 -2)'>
+                                <g
+                                  id='reward-4'
+                                  transform='translate(-4 -2)'
+                                >
                                   <path
                                     id='secondary'
                                     fill='#fb00ff'
@@ -142,11 +252,29 @@ export default function Home() {
                         </div>
                         <div className='stat-card'>
                           <div className='stat-icon'>
-                            <svg width='32px' height='32px' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                              <g id='SVGRepo_bgCarrier' strokeWidth={0} />
-                              <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round' />
+                            <svg
+                              width='32px'
+                              height='32px'
+                              viewBox='0 0 48 48'
+                              fill='none'
+                              xmlns='http://www.w3.org/2000/svg'
+                            >
+                              <g
+                                id='SVGRepo_bgCarrier'
+                                strokeWidth={0}
+                              />
+                              <g
+                                id='SVGRepo_tracerCarrier'
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                              />
                               <g id='SVGRepo_iconCarrier'>
-                                <rect width={48} height={48} fill='white' fillOpacity='0.01' />
+                                <rect
+                                  width={48}
+                                  height={48}
+                                  fill='white'
+                                  fillOpacity='0.01'
+                                />
                                 <path
                                   d='M24 4L29.2533 7.83204L35.7557 7.81966L37.7533 14.0077L43.0211 17.8197L41 24L43.0211 30.1803L37.7533 33.9923L35.7557 40.1803L29.2533 40.168L24 44L18.7467 40.168L12.2443 40.1803L10.2467 33.9923L4.97887 30.1803L7 24L4.97887 17.8197L10.2467 14.0077L12.2443 7.81966L18.7467 7.83204L24 4Z'
                                   fill='#fb00ff'
@@ -155,7 +283,13 @@ export default function Home() {
                                   strokeLinecap='round'
                                   strokeLinejoin='round'
                                 />
-                                <path d='M17 24L22 29L32 19' stroke='white' strokeWidth={4} strokeLinecap='round' strokeLinejoin='round' />
+                                <path
+                                  d='M17 24L22 29L32 19'
+                                  stroke='white'
+                                  strokeWidth={4}
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                />
                               </g>
                             </svg>
                           </div>
@@ -169,8 +303,8 @@ export default function Home() {
                         <Link
                           href='/arrow-game'
                           onClick={(e) => {
-                            e.preventDefault();
-                            toast.info("Coming soon");
+                            e.preventDefault()
+                            toast.info('Coming soon')
                           }}
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
@@ -179,8 +313,8 @@ export default function Home() {
                         <Link
                           href='/arrow-game-modern'
                           onClick={(e) => {
-                            e.preventDefault();
-                            toast.info("Coming soon");
+                            e.preventDefault()
+                            toast.info('Coming soon')
                           }}
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
@@ -192,7 +326,11 @@ export default function Home() {
                   <div className='col-lg-6 col-md-12'>
                     <div className='hero-visual'>
                       <div className='hero-image-container'>
-                        <Image src={planetArrow} alt='PixelPayot Gaming' className='hero-image' />
+                        <Image
+                          src={planetArrow}
+                          alt='PixelPayot Gaming'
+                          className='hero-image'
+                        />
                         {/* <div className='floating-cards'>
                           <div className='game-card card-1'>
                             <FaTrophy />
@@ -213,24 +351,46 @@ export default function Home() {
                 </div>
               </div>
             </section>
-            <section id='daily-tasks' className='daily-tasks-section'>
+            <section
+              id='daily-tasks'
+              className='daily-tasks-section'
+            >
               <div className='container'>
                 <div className='section-header text-center mb-5'>
                   <div className='section-badge'>
                     <i className='fas fa-tasks me-2' />
                     <span>Daily Missions</span>
                   </div>
-                  <h2 className='section-title max-md:text-[24px] '>Complete Tasks &amp; Earn Rewards</h2>
-                  <p className='section-description'> Join thousands of players earning $PPO tokens daily through engaging missions </p>
+                  <h2 className='section-title max-md:text-[24px] '>
+                    Complete Tasks &amp; Earn Rewards
+                  </h2>
+                  <p className='section-description'>
+                    {' '}
+                    Join thousands of players earning $PPO tokens daily through
+                    engaging missions{' '}
+                  </p>
                 </div>
                 <div className='row g-4'>
                   <div className='col-lg-6 col-md-12'>
                     <div className='tasks-card'>
                       <div className='card-header max-md:gap-2'>
                         <div className='header-icon'>
-                          <svg width='32px' height='32px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                            <g id='SVGRepo_bgCarrier' strokeWidth={0} />
-                            <g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round' />
+                          <svg
+                            width='32px'
+                            height='32px'
+                            viewBox='0 0 24 24'
+                            fill='none'
+                            xmlns='http://www.w3.org/2000/svg'
+                          >
+                            <g
+                              id='SVGRepo_bgCarrier'
+                              strokeWidth={0}
+                            />
+                            <g
+                              id='SVGRepo_tracerCarrier'
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                            />
                             <g id='SVGRepo_iconCarrier'>
                               <path
                                 d='M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.19C2 19.83 4.17 22 7.81 22H16.19C19.83 22 22 19.83 22 16.19V7.81C22 4.17 19.83 2 16.19 2ZM9.97 14.9L7.72 17.15C7.57 17.3 7.38 17.37 7.19 17.37C7 17.37 6.8 17.3 6.66 17.15L5.91 16.4C5.61 16.11 5.61 15.63 5.91 15.34C6.2 15.05 6.67 15.05 6.97 15.34L7.19 15.56L8.91 13.84C9.2 13.55 9.67 13.55 9.97 13.84C10.26 14.13 10.26 14.61 9.97 14.9ZM9.97 7.9L7.72 10.15C7.57 10.3 7.38 10.37 7.19 10.37C7 10.37 6.8 10.3 6.66 10.15L5.91 9.4C5.61 9.11 5.61 8.63 5.91 8.34C6.2 8.05 6.67 8.05 6.97 8.34L7.19 8.56L8.91 6.84C9.2 6.55 9.67 6.55 9.97 6.84C10.26 7.13 10.26 7.61 9.97 7.9ZM17.56 16.62H12.31C11.9 16.62 11.56 16.28 11.56 15.87C11.56 15.46 11.9 15.12 12.31 15.12H17.56C17.98 15.12 18.31 15.46 18.31 15.87C18.31 16.28 17.98 16.62 17.56 16.62ZM17.56 9.62H12.31C11.9 9.62 11.56 9.28 11.56 8.87C11.56 8.46 11.9 8.12 12.31 8.12H17.56C17.98 8.12 18.31 8.46 18.31 8.87C18.31 9.28 17.98 9.62 17.56 9.62Z'
@@ -244,7 +404,7 @@ export default function Home() {
                           <p>Complete tasks to earn $PPO tokens</p>
                         </div>
                         <div className='progress-indicator'>
-                          <span className='progress-text'>1/6</span>
+                          <span className='progress-text'>{progressTask}</span>
                         </div>
                       </div>
                       <div className='card-body'>
@@ -257,7 +417,10 @@ export default function Home() {
                               <h5>Daily Check-in</h5>
                               {/* <p className='task-reward'>+0.25 PPO</p> */}
                             </div>
-                            <button className='btn btn-task'>
+                            <button
+                              className='btn btn-task'
+                              onClick={() => handleTask(TaskKey.Daily)}
+                            >
                               <FaCalendarCheck />
                             </button>
                           </div>
@@ -270,7 +433,10 @@ export default function Home() {
                               <h5>Join Telegram Group</h5>
                               {/* <p className='task-reward'>+0.25 PPO</p> */}
                             </div>
-                            <button className='btn btn-task'>
+                            <button
+                              className='btn btn-task'
+                              onClick={() => handleTask(TaskKey.JoinTeleGroup)}
+                            >
                               <FaUsers />
                             </button>
                           </div>
@@ -283,7 +449,10 @@ export default function Home() {
                               <h5>Follow on X</h5>
                               {/* <p className='task-reward'>+0.25 PPO</p> */}
                             </div>
-                            <button className='btn btn-task'>
+                            <button
+                              className='btn btn-task'
+                              onClick={() => handleTask(TaskKey.FollowX)}
+                            >
                               <FaUserPlus />
                             </button>
                           </div>
@@ -295,9 +464,14 @@ export default function Home() {
                             <div className='task-content'>
                               <h5>Share &amp; Earn</h5>
                               {/* <p className='task-reward'>+0.25 PPO</p> */}
-                              <small className='task-note'>Share about PixelPayot</small>
+                              <small className='task-note'>
+                                Share about PixelPayot
+                              </small>
                             </div>
-                            <button className='btn btn-task'>
+                            <button
+                              className='btn btn-task'
+                              onClick={() => handleTask(TaskKey.Share)}
+                            >
                               <FaShare />
                             </button>
                           </div>
@@ -311,7 +485,9 @@ export default function Home() {
                             <div className='rewards-content'>
                               <h4>Available Rewards</h4>
                               <span className='rewards-amount'>0 PPO</span>
-                              <small className='rewards-info'>⏳ Need 200 more PPO</small>
+                              <small className='rewards-info'>
+                                ⏳ Need 200 more PPO
+                              </small>
                             </div>
                             <button className='btn btn-claim-rewards !flex gap-1 text-white items-center'>
                               <FaDownload /> Claim
@@ -321,15 +497,23 @@ export default function Home() {
                           <div className='rewards-details'>
                             <div className='reward-stat'>
                               <span className='stat-label'>Total Earned:</span>
-                              <span className='stat-value max-md:!text-base'>0 PPO</span>
+                              <span className='stat-value max-md:!text-base'>
+                                0 PPO
+                              </span>
                             </div>
                             <div className='reward-stat'>
-                              <span className='stat-label'>Already Claimed:</span>
-                              <span className='stat-value max-md:!text-base'>0 PPO</span>
+                              <span className='stat-label'>
+                                Already Claimed:
+                              </span>
+                              <span className='stat-value max-md:!text-base'>
+                                0 PPO
+                              </span>
                             </div>
                             <div className='reward-stat'>
                               <span className='stat-label'>Pending:</span>
-                              <span className='stat-value max-md:!text-base'>0 PPO</span>
+                              <span className='stat-value max-md:!text-base'>
+                                0 PPO
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -347,7 +531,7 @@ export default function Home() {
                           <p>Track your progress and earnings</p>
                         </div>
                         <div className='level-badge'>
-                          <span className='level-text'>Level 0</span>
+                          <span className='level-text'>{level}</span>
                         </div>
                       </div>
 
@@ -358,7 +542,9 @@ export default function Home() {
                               <FaWallet />
                             </div>
                             <div className='stat-content'>
-                              <span className='stat-value max-md:!text-base'>0.00</span>
+                              <span className='stat-value max-md:!text-base'>
+                                {formatBalance(balance?.formatted)}
+                              </span>
                               <span className='stat-label'>PPO Balance</span>
                             </div>
                           </div>
@@ -368,7 +554,9 @@ export default function Home() {
                               <FaUsers />
                             </div>
                             <div className='stat-content'>
-                              <span className='stat-value max-md:!text-base'>0</span>
+                              <span className='stat-value max-md:!text-base'>
+                                {user ? user.totalRef.toString() : 0}
+                              </span>
                               <span className='stat-label'>Referrals</span>
                             </div>
                           </div>
@@ -381,11 +569,16 @@ export default function Home() {
                             </div>
                             <div className='referral-content'>
                               <h4>Invite Friends</h4>
-                              <p>Connect your wallet to get your referral link and start earning PPO!</p>
+                              <p>
+                                Connect your wallet to get your referral link
+                                and start earning PPO!
+                              </p>
                             </div>
                           </div>
 
-                          <div className='referral-connect'>{/* <Linkppkit-button features='[object Object]' /> */}</div>
+                          <div className='referral-connect'>
+                            {/* <Linkppkit-button features='[object Object]' /> */}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -400,21 +593,33 @@ export default function Home() {
                     <i className='fas fa-gamepad me-2' />
                     <span>Play &amp; Earn Games</span>
                   </div>
-                  <h2 className='section-title max-md:text-[24px] '>Choose Your Adventure</h2>
-                  <p className='section-description'> Play exciting games and earn PPO tokens while having fun </p>
+                  <h2 className='section-title max-md:text-[24px] '>
+                    Choose Your Adventure
+                  </h2>
+                  <p className='section-description'>
+                    {' '}
+                    Play exciting games and earn PPO tokens while having
+                    fun{' '}
+                  </p>
                 </div>
                 <div className='games-grid'>
                   <div className='game-card flex-col flex-1 items-center justify-center text-center bg-gradient-to-b from-blue-600 to-purple-600 rounded-2xl p-6 relative'>
                     <div className='game-content flex-col items-center justify-center text-center p-4'>
                       {/* Icon */}
-                      <FaCrosshairs size={48} className='mb-4 text-white' />
+                      <FaCrosshairs
+                        size={48}
+                        className='mb-4 text-white'
+                      />
 
                       {/* Tiêu đề */}
-                      <h3 className='text-3xl font-bold text-white mb-2'>PPO Archery</h3>
+                      <h3 className='text-3xl font-bold text-white mb-2'>
+                        PPO Archery
+                      </h3>
 
                       {/* Mô tả */}
                       <p className='text-gray-200 mb-6 max-w-md'>
-                        Test your aim and precision in this classic archery game. Hit targets to earn PPO tokens!
+                        Test your aim and precision in this classic archery
+                        game. Hit targets to earn PPO tokens!
                       </p>
 
                       {/* Features */}
@@ -434,8 +639,8 @@ export default function Home() {
                       <Link
                         href='/arrow-game'
                         onClick={(e) => {
-                          e.preventDefault();
-                          toast.info("Coming Soon");
+                          e.preventDefault()
+                          toast.info('Coming Soon')
                         }}
                         className='mt-8 inline-block px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-bold text-lg shadow-lg hover:from-yellow-400 hover:to-yellow-300 hover:text-black transition'
                       >
@@ -448,14 +653,20 @@ export default function Home() {
                   <div className='game-card flex-col flex-1 items-center justify-center text-center bg-gradient-to-b from-blue-600 to-purple-600 rounded-2xl p-6 relative'>
                     <div className='game-content flex-col items-center justify-center text-center  p-4'>
                       {/* Icon */}
-                      <FaGamepad size={48} className='mb-4 text-white' />
+                      <FaGamepad
+                        size={48}
+                        className='mb-4 text-white'
+                      />
 
                       {/* Tiêu đề */}
-                      <h3 className='text-3xl font-bold text-white mb-2'>Modern Archery</h3>
+                      <h3 className='text-3xl font-bold text-white mb-2'>
+                        Modern Archery
+                      </h3>
 
                       {/* Mô tả */}
                       <p className='text-gray-200 mb-6 max-w-md'>
-                        Experience the next generation of archery with enhanced graphics and gameplay mechanics.
+                        Experience the next generation of archery with enhanced
+                        graphics and gameplay mechanics.
                       </p>
 
                       {/* Features */}
@@ -475,8 +686,8 @@ export default function Home() {
                       <Link
                         href='/arrow-game-modern'
                         onClick={(e) => {
-                          e.preventDefault();
-                          toast.info("Coming Soon");
+                          e.preventDefault()
+                          toast.info('Coming Soon')
                         }}
                         className='mt-8 inline-block px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-bold text-lg shadow-lg hover:from-yellow-400 hover:to-yellow-300 hover:text-black transition'
                       >
@@ -495,8 +706,14 @@ export default function Home() {
                     <i className='fas fa-star me-2' />
                     <span>Platform Features</span>
                   </div>
-                  <h2 className='section-title max-md:text-[24px] '>Experience Next-Gen Gaming</h2>
-                  <p className='section-description'> Discover powerful features that make PixelPayot the ultimate GameFi destination </p>
+                  <h2 className='section-title max-md:text-[24px] '>
+                    Experience Next-Gen Gaming
+                  </h2>
+                  <p className='section-description'>
+                    {' '}
+                    Discover powerful features that make PixelPayot the ultimate
+                    GameFi destination{' '}
+                  </p>
                 </div>
                 <div className='flex gap-8 max-md:flex-col'>
                   <div className='feature-card !animate-none game-card flex flex-1 flex-col items-center justify-center text-center bg-gradient-to-b from-purple-900 to-indigo-950 rounded-2xl p-6 shadow-xl hover:shadow-purple-500/40 transition relative overflow-hidden'>
@@ -507,17 +724,24 @@ export default function Home() {
                       </div>
 
                       {/* Title */}
-                      <h3 className='text-2xl font-bold text-white mb-2'>Lightning Fast</h3>
+                      <h3 className='text-2xl font-bold text-white mb-2'>
+                        Lightning Fast
+                      </h3>
 
                       {/* Description */}
                       <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>
-                        Experience instant transactions with our optimized blockchain integration
+                        Experience instant transactions with our optimized
+                        blockchain integration
                       </p>
 
                       {/* Stats */}
                       <div className='feature-stats flex flex-col items-center'>
-                        <span className='text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent'>0.1s</span>
-                        <span className='stat-label text-sm text-gray-400 mt-1'>Transaction Time</span>
+                        <span className='text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent'>
+                          0.1s
+                        </span>
+                        <span className='stat-label text-sm text-gray-400 mt-1'>
+                          Transaction Time
+                        </span>
                       </div>
                     </div>
 
@@ -533,17 +757,24 @@ export default function Home() {
                       </div>
 
                       {/* Title */}
-                      <h3 className='text-2xl font-bold text-white mb-2'>Secure &amp; Safe</h3>
+                      <h3 className='text-2xl font-bold text-white mb-2'>
+                        Secure &amp; Safe
+                      </h3>
 
                       {/* Description */}
-                      <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>Bank-grade security with multi-signature wallet protection</p>
+                      <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>
+                        Bank-grade security with multi-signature wallet
+                        protection
+                      </p>
 
                       {/* Stats */}
                       <div className='feature-stats flex flex-col items-center'>
                         <span className='text-3xl font-extrabold bg-gradient-to-r from-green-300 to-lime-400 bg-clip-text text-transparent'>
                           99.9%
                         </span>
-                        <span className='stat-label text-sm text-gray-400 mt-1'>Uptime</span>
+                        <span className='stat-label text-sm text-gray-400 mt-1'>
+                          Uptime
+                        </span>
                       </div>
                     </div>
                     <div className='feature-glow' />
@@ -558,15 +789,23 @@ export default function Home() {
                       </div>
 
                       {/* Title */}
-                      <h3 className='text-2xl font-bold text-white mb-2'>Community Driven</h3>
+                      <h3 className='text-2xl font-bold text-white mb-2'>
+                        Community Driven
+                      </h3>
 
                       {/* Description */}
-                      <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>Join a thriving community of gamers and earn together</p>
+                      <p className='text-gray-300 leading-relaxed mb-6 max-w-sm'>
+                        Join a thriving community of gamers and earn together
+                      </p>
 
                       {/* Stats */}
                       <div className='feature-stats flex flex-col items-center'>
-                        <span className='text-3xl font-extrabold bg-gradient-to-r from-pink-300 to-red-400 bg-clip-text text-transparent'>24/7</span>
-                        <span className='stat-label text-sm text-gray-400 mt-1'>Support</span>
+                        <span className='text-3xl font-extrabold bg-gradient-to-r from-pink-300 to-red-400 bg-clip-text text-transparent'>
+                          24/7
+                        </span>
+                        <span className='stat-label text-sm text-gray-400 mt-1'>
+                          Support
+                        </span>
                       </div>
                     </div>
                     <div className='feature-glow' />
@@ -574,41 +813,87 @@ export default function Home() {
                 </div>
               </div>
             </section>
-            <section id='association-with' className='padding-large pt-5 pattern-blur'>
+            <section
+              id='association-with'
+              className='padding-large pt-5 pattern-blur'
+            >
               <div className='pattern-overlay left-side-pattern'>
-                <img src='https://pixelpayot.com/assets/pattern-blur-left-BLI5Zzee.png' alt='' />
+                <img
+                  src='https://pixelpayot.com/assets/pattern-blur-left-BLI5Zzee.png'
+                  alt=''
+                />
               </div>
               <div className='container'>
                 <div className='grid grid-cols-5 gap-4'>
                   <div className='flex items-center justify-center'>
-                    <Image src={Binance} alt='Binance' className='img-fluid w-[120px]' />
+                    <Image
+                      src={Binance}
+                      alt='Binance'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={Coinbase} alt='Coinbase' className='img-fluid w-[120px]' />
+                    <Image
+                      src={Coinbase}
+                      alt='Coinbase'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={KuCoin} alt='KuCoin' className='img-fluid w-[120px]' />
+                    <Image
+                      src={KuCoin}
+                      alt='KuCoin'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={blockfiLogo} alt='BlockFi' className='img-fluid w-[120px]' />
+                    <Image
+                      src={blockfiLogo}
+                      alt='BlockFi'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={okxLogo} alt='OKX' className='img-fluid w-[120px]' />
+                    <Image
+                      src={okxLogo}
+                      alt='OKX'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={coingeckoLogo} alt='Coin Gecko' className='img-fluid w-[120px]' />
+                    <Image
+                      src={coingeckoLogo}
+                      alt='Coin Gecko'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={injectiveInjCoinLogo} alt='Injective' className='img-fluid w-[120px]' />
+                    <Image
+                      src={injectiveInjCoinLogo}
+                      alt='Injective'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={pancakeswapLogo} alt='PancakeSwap' className='img-fluid w-[120px]' />
+                    <Image
+                      src={pancakeswapLogo}
+                      alt='PancakeSwap'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={sushiswapLogo} alt='SushiSwap' className='img-fluid w-[120px]' />
+                    <Image
+                      src={sushiswapLogo}
+                      alt='SushiSwap'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <Image src={uniswapLogo} alt='Uniswap' className='img-fluid w-[120px]' />
+                    <Image
+                      src={uniswapLogo}
+                      alt='Uniswap'
+                      className='img-fluid w-[120px]'
+                    />
                   </div>
                 </div>
               </div>
@@ -620,11 +905,20 @@ export default function Home() {
                     <i className='fas fa-chart-line me-2' />
                     <span>NFT Investment</span>
                   </div>
-                  <h2 className='section-title max-md:text-[24px] '>Invest in Premium NFTs</h2>
-                  <p className='section-description'> Discover high-value NFTs with potential for significant returns </p>
+                  <h2 className='section-title max-md:text-[24px] '>
+                    Invest in Premium NFTs
+                  </h2>
+                  <p className='section-description'>
+                    {' '}
+                    Discover high-value NFTs with potential for significant
+                    returns{' '}
+                  </p>
                 </div>
                 <div className='w-full flex items-center justify-center'>
-                  <Image src={imageRemovebgPreview} alt='comming soon' />
+                  <Image
+                    src={imageRemovebgPreview}
+                    alt='comming soon'
+                  />
                 </div>
               </div>
             </section>
@@ -634,5 +928,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }
