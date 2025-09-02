@@ -96,7 +96,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     onGetOrder(address, chainId).then((orders) => {
       setMintedNFTs(orders)
     })
-  }, [address, chainId, onGetOrder])
+  }, [address, chainId])
 
   // Giả lập cộng PPO mỗi ngày (demo: mỗi 5 giây cộng 1 PPO)
   useEffect(() => {

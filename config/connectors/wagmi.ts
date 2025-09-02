@@ -13,7 +13,7 @@ const chains = [bsc, mainnet, sepolia, polygon, optimism, arbitrum, bscTestnet] 
 
 const metadata = {
   name: "Nextjs Wagmi Quickstart",
-  projectId: "c523f0eeb34f4188cfa3f54a6d675d55",
+  projectId: "cbb55df41b92b720f6a816ada5513dfa",
 };
 const config = getDefaultConfig({
   appName: metadata.name,
