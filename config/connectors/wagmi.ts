@@ -1,6 +1,6 @@
 import { getDefaultConfig, WalletList } from "@rainbow-me/rainbowkit";
 import { http } from "wagmi";
-import { bsc, mainnet, polygon, optimism, arbitrum, sepolia } from "wagmi/chains";
+import { bsc, bscTestnet, mainnet, polygon, optimism, arbitrum, sepolia } from "wagmi/chains";
 import { metaMaskWallet, okxWallet } from "@rainbow-me/rainbowkit/wallets";
 
 const wallets: WalletList = [
@@ -9,7 +9,7 @@ const wallets: WalletList = [
     wallets: [okxWallet, metaMaskWallet],
   },
 ];
-const chains = [bsc, mainnet, sepolia, polygon, optimism, arbitrum] as const;
+const chains = [bsc, mainnet, sepolia, polygon, optimism, arbitrum, bscTestnet] as const;
 
 const metadata = {
   name: "Nextjs Wagmi Quickstart",
@@ -19,7 +19,7 @@ const config = getDefaultConfig({
   appName: metadata.name,
   projectId: metadata.projectId,
   chains,
-  ssr: true,
+  ssr: false,
 });
 
 export const wagmiConfig = config;
