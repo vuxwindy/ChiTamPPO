@@ -931,26 +931,32 @@ export default function Home() {
                   delay={5}
                 >
                   <div className='flex items-center justify-center'>
+                     <a href="https://www.binance.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={Binance}
                       alt='Binance'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                      </a>
                   </div>
 
                   <div className='flex items-center justify-center !mx-4'>
+                     <a href="https://www.coinbase.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={KuCoin}
                       alt='KuCoin'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                       </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
+                     <a href="https://www.kucoin.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={Coinbase}
                       alt='Coinbase'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                       </a>
                   </div>
                   {/* <div className='flex items-center justify-center !mx-4'>
                     <Image
@@ -960,25 +966,31 @@ export default function Home() {
                     />
                   </div> */}
                   <div className='flex items-center justify-center !mx-4'>
+                     <a href="https://www.okx.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={okxLogo}
                       alt='OKX'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                     </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
+                     <a href="https://www.coingecko.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={coingeckoLogo}
                       alt='Coin Gecko'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                       </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
+                     <a href="https://www.coinmarketcap.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={injectiveInjCoinLogo}
                       alt='Injective'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                       </a>
                   </div>
                   {/* <div className='flex items-center justify-center !mx-4'>
                     <Image
@@ -988,18 +1000,22 @@ export default function Home() {
                     />
                   </div> */}
                   <div className='flex items-center justify-center !mx-4'>
+                     <a href="https://www.sushi.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={sushiswapLogo}
                       alt='SushiSwap'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                       </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
+                     <a href="https://www.uniswap.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={uniswapLogo}
                       alt='Uniswap'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
+                       </a>
                   </div>
                 </Marquee>
                 {/* <div className='grid grid-cols-5 gap-4'>

@@ -17,6 +17,7 @@ type Referral = {
   joinedDate: Date;
   status: string;
   reward: number;
+  address?: string
 };
 
 type Leader = {
@@ -194,7 +195,7 @@ export default function ReferralPage() {
 
           {/* Referral Code */}
 
-          <div className='referral-code-card max-w-xl mx-auto mb-4 max-md:mx-3 max-md:!p-3'>
+          {/* <div className='referral-code-card max-w-xl mx-auto mb-4 max-md:mx-3 max-md:!p-3'>
             <h2 className='section-title text-center !mb-4'>Invite Your Friends</h2>
             <p className='text-center text-[#b0b0b0] mb-2'>Share your referral code or link and earn rewards!</p>
             <div className='code-display'>
@@ -214,34 +215,35 @@ export default function ReferralPage() {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Referral List */}
-          {/* <section className='referral-list py-12 px-8'>
-            <h2 className='text-2xl font-bold text-center mb-6'>Your Referrals</h2>
+          <section className='referral-list py-12 !px-8'>
+            <h2 className='text-2xl !font-bold text-center !mb-6 !text-[#d429ff]'>Your Referrals</h2>
             {referrals.length === 0 ? (
               <div className='text-center text-gray-400'>No referrals yet. Share your code!</div>
             ) : (
               <div className='space-y-4'>
                 {referrals.map((r) => (
-                  <div key={r.id} className='flex justify-between bg-white/5 p-4 rounded'>
-                    <div className='flex items-center space-x-3'>
+                  <div key={r.id} className='flex justify-between bg-white/5 p-4 rounded-lg items-center'>
+                     <h5 className="text-white !mb-0">{r.address || "address user"}</h5>
+                    {/* <div className='flex items-center space-x-3'>
                       <Image src={r.avatar} alt={r.name} width={40} height={40} className='rounded-full' />
                       <div>
                         <h5>{r.name}</h5>
                         <small>{r.email}</small>
                       </div>
                     </div>
-                    <div>{r.status}</div>
+                    <div>{r.status}</div> */}
                     <div className='text-green-400'>+{r.reward} $PPO</div>
                   </div>
                 ))}
               </div>
             )}
-          </section> */}
+          </section>
 
           {/* Leaderboard */}
-          <section className='referral-leaderboard py-12 bg-purple-900/30'>
+          {/* <section className='referral-leaderboard py-12 bg-purple-900/30'>
             <h2 className='text-2xl font-bold text-center mb-6'>Top Referrers</h2>
             <div className='space-y-4'>
               {topReferrers.map((leader, index) => (
@@ -265,7 +267,7 @@ export default function ReferralPage() {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
         </>
       )}
 
