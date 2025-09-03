@@ -76,12 +76,12 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     if (!bnbAmount || isNaN(bnbAmount))
       return toast.warning('Nhập số BNB hợp lệ')
 
-    if (bnbAmount < 0.01) {
-      return toast.warning('BNB amount must be greater than 0.01')
+    if (bnbAmount < 1.15) {
+      return toast.warning('BNB amount must be greater than 1.15')
     }
     let nftType: keyof typeof nftImages = 'copper'
-    if (bnbAmount >= 0.05 && bnbAmount < 0.1) nftType = 'silver'
-    if (bnbAmount >= 0.1) nftType = 'gold'
+    if (bnbAmount >= 23 && bnbAmount < 115) nftType = 'silver'
+    if (bnbAmount >= 115) nftType = 'gold'
 
     const token = NativeAddress[chainId]
     const packageId = nftType === 'copper' ? 0 : nftType === 'silver' ? 1 : 2
@@ -457,4 +457,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
-Button.displayName = "Button"
+Button.displayName = 'Button'
