@@ -13,6 +13,7 @@ import {
   FaCube,
   FaTelegram,
   FaEthereum,
+  FaYoutube,
 } from "react-icons/fa";
 import { FaGamepad, FaStore } from "react-icons/fa";
 import { FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -212,7 +213,7 @@ export default function WhitepaperPage() {
               <div data-v-f64e8edb='' className='toc-grid'>
                 {tableOfContents.map((section) => (
                   <div key={section.id} className='toc-item' onClick={() => scrollToSection(section.id)}>
-                    <div className='toc-icon'>{section.icon}</div>
+                    <div className='toc-icon min-w-[60px]'>{section.icon}</div>
                     <div className='toc-content'>
                       <h4>{section.title}</h4>
                       <p>{section.description}</p>
@@ -272,9 +273,9 @@ export default function WhitepaperPage() {
                 </h2>
                 <div className='content-body' data-v-f64e8edb=''>
                   <p data-v-f64e8edb=''>
-                    To create the world's leading gaming ecosystem where players can truly own their digital assets and earn real value from their
-                    gaming activities. We envision a future where gaming is not just entertainment, but a viable career path for millions of people
-                    worldwide.
+                    To create the world&apos;s leading gaming ecosystem where players can truly own their digital assets and earn real value from
+                    their gaming activities. We envision a future where gaming is not just entertainment, but a viable career path for millions of
+                    people worldwide.
                   </p>
                   <div className='vision-stats' data-v-f64e8edb=''>
                     <div className='stat' data-v-f64e8edb=''>
@@ -559,21 +560,13 @@ export default function WhitepaperPage() {
                 </h2>
                 <div className='content-body' data-v-f64e8edb=''>
                   <div className='contact-grid' data-v-f64e8edb=''>
-                    <div className='contact-item' data-v-f64e8edb=''>
-                      <div className='contact-icon' data-v-f64e8edb=''>
-                        <FaGlobe data-v-f64e8edb='' />
-                      </div>
-                      <h4 data-v-f64e8edb=''>Website</h4>
-                      <a href='https://pixelpayot.com' target='_blank' data-v-f64e8edb=''>
-                        pixelpayot.com
-                      </a>
-                    </div>
+                    
                     <div className='contact-item' data-v-f64e8edb=''>
                       <div className='contact-icon' data-v-f64e8edb=''>
                         <FaTelegram data-v-f64e8edb='' />
                       </div>
                       <h4 data-v-f64e8edb=''>Telegram</h4>
-                      <a href='https://t.me/pixelpayot' target='_blank' data-v-f64e8edb=''>
+                      <a href='https://t.me/PixelpayotChannels' target='_blank' data-v-f64e8edb=''>
                         @pixelpayot
                       </a>
                     </div>
@@ -582,7 +575,7 @@ export default function WhitepaperPage() {
                         <FaTwitter data-v-f64e8edb='' />
                       </div>
                       <h4 data-v-f64e8edb=''>Twitter</h4>
-                      <a href='https://twitter.com/pixelpayot' target='_blank' data-v-f64e8edb=''>
+                      <a href='https://x.com/TetMinh46256' target='_blank' data-v-f64e8edb=''>
                         @pixelpayot
                       </a>
                     </div>
@@ -591,8 +584,18 @@ export default function WhitepaperPage() {
                         <FaEnvelope data-v-f64e8edb='' />
                       </div>
                       <h4 data-v-f64e8edb=''>Email</h4>
-                      <a href='mailto:info@pixelpayot.com' data-v-f64e8edb=''>
-                        info@pixelpayot.com
+                      <a href='mailto:contract@pixelpayot.com' data-v-f64e8edb=''>
+                        contract@pixelpayot.com
+                      </a>
+                    </div>
+
+                    <div className='contact-item' data-v-f64e8edb=''>
+                      <div className='contact-icon' data-v-f64e8edb=''>
+                        <FaYoutube data-v-f64e8edb='' />
+                      </div>
+                      <h4 data-v-f64e8edb=''>Youtube</h4>
+                      <a href='https://www.youtube.com/@minhtet-q2r9o' data-v-f64e8edb=''>
+                        @pixelpayot
                       </a>
                     </div>
                   </div>

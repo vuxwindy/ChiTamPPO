@@ -29,7 +29,7 @@ type Leader = {
 
 export default function ReferralPage() {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
-  const [userReferralCode, setUserReferralCode] = useState("");
+  const [userReferralCode, setUserReferralCode] = useState<any>();
   const [referralStats, setReferralStats] = useState({
     totalReferrals: 0,
     totalEarnings: 0,

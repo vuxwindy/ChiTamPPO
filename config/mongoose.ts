@@ -7,7 +7,10 @@ const MONGODB_URI = process.env.MONGODB_URI || ''
 
 export const connectDB = async () => {
   try {
-    if (!MONGODB_URI) throw new Error('MONGODB_URI is not defined')
+    if (!MONGODB_URI) {
+      console.log('MONGODB_URI is not defined');
+      return
+    }
     console.log('Connecting to MongoDB...')
     await mongoose.connect(MONGODB_URI, { authSource: 'admin' })
     console.log('MongoDB connected')

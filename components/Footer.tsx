@@ -4,9 +4,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback } from "react";
-import { FaFacebook, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaGoogle, FaInstagram, FaLinkedinIn, FaTelegramPlane, FaTwitter, FaYoutube } from "react-icons/fa";
 import headerIcon from "@/app/access/image/header-icon.png";
 import { toast } from "react-toastify";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,7 +29,7 @@ export default function Footer() {
     <>
       <footer id='footer' className='padding-large pattern-blur'>
         <div className='pattern-overlay pattern-blur-footer right-side-pattern'>
-          <img src='https://pixelpayot.com/assets/footer-pattern-BU5Dn35q.png' />
+          <img src='https://pixelpayot.com/assets/footer-pattern-BU5Dn35q.png' alt="" />
         </div>
         <div className='container'>
           <div className='row d-flex flex-wrap justify-content-between'>
@@ -39,28 +40,26 @@ export default function Footer() {
                 <div className='social-media'>
                   <ul className='d-flex list-unstyled'>
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='https://facebook.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
-                        <FaFacebook />
+                      <Link href='https://x.com/TetMinh46256' target='_blank' className='flex justify-center items-center w-full h-full'>
+                        <FaXTwitter />
                       </Link>
                     </li>
+                    
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='https://twitter.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
-                        <FaTwitter />
-                      </Link>
-                    </li>
-                    <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='https://instagram.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
-                        <FaInstagram />
-                      </Link>
-                    </li>
-                    <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='https://youtube.com/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://www.youtube.com/@minhtet-q2r9o' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaYoutube />
                       </Link>
                     </li>
+
+
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='https://linkedin.com/company/coinpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
-                        <FaLinkedinIn />
+                      <Link href='https://t.me/PixelpayotChannels' target='_blank' className='flex justify-center items-center w-full h-full'>
+                        <FaTelegramPlane />
+                      </Link>
+                    </li>
+                    <li className='bg-blue-trans border-rounded-circle'>
+                      <Link href='mailto:contract@pixelpayot.com' target='_blank' className='flex justify-center items-center w-full h-full'>
+                        <FaGoogle />
                       </Link>
                     </li>
                   </ul>

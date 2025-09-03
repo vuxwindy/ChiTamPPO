@@ -15,7 +15,7 @@ export default function Provider({ children }: ProviderProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <WagmiProvider config={wagmiConfig}>
-        <RainbowKitProvider theme={lightTheme()} modalSize='compact' initialChain={defaultNetwork}>
+        <RainbowKitProvider initialChain={defaultNetwork}>
           {children}
         </RainbowKitProvider>
       </WagmiProvider>
