@@ -35,5 +35,5 @@ export interface TaskResponse {
   address: string
   chainId: number
   task: string
-  createdAt: Date
+  createdAt: number
 }

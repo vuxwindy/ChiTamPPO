@@ -60,6 +60,7 @@ import { headers } from 'next/headers'
 
 export default function Home() {
   const [user, setUser] = useState<User>()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [userTask, setUserTask] = useState<UserTask>()
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
@@ -111,18 +112,10 @@ export default function Home() {
       setTask({
         address: address ?? '',
         chainId: chainId ?? 0,
-        daily: isDaily
-          ? Math.round(new Date(isDaily.createdAt).getTime() / 1000)
-          : 0,
-        joinTeleGroup: isJoinTeleGroup
-          ? Math.round(new Date(isJoinTeleGroup.createdAt).getTime() / 1000)
-          : 0,
-        followX: isFollowX
-          ? Math.round(new Date(isFollowX.createdAt).getTime() / 1000)
-          : 0,
-        share: isShare
-          ? Math.round(new Date(isShare.createdAt).getTime() / 1000)
-          : 0
+        daily: isDaily ? isDaily.createdAt : 0,
+        joinTeleGroup: isJoinTeleGroup ? isJoinTeleGroup.createdAt : 0,
+        followX: isFollowX ? isFollowX.createdAt : 0,
+        share: isShare ? isShare.createdAt : 0
       })
     })
 
@@ -143,11 +136,12 @@ export default function Home() {
     useMemo(() => {
       if (!task) return [false, false, false, false, '0/4']
       const now = Math.floor(Date.now() / 1000)
-      const isDaily = Math.round(now / day - task.daily / day) > 0
-      const isJoinTeleGroup =
-        Math.round(now / day - task.joinTeleGroup / day) > 0
-      const isFollowX = Math.round(now / day - task.followX / day) > 0
-      const isShare = Math.round(now / day - task.share / day) > 0
+      const today = Math.floor(now / day)
+      const isDaily = Math.floor(task.daily / day) !== today
+      const isJoinTeleGroup = Math.floor(task.joinTeleGroup / day) !== today
+      const isFollowX = Math.floor(task.followX / day) !== today
+      const isShare = Math.floor(task.share / day) !== today
+
       const completed = [isDaily, isJoinTeleGroup, isFollowX, isShare].filter(
         (v) => v === false
       ).length
@@ -155,14 +149,25 @@ export default function Home() {
       return [isDaily, isJoinTeleGroup, isFollowX, isShare, `${completed}/4`]
     }, [task])
 
-  const handleTask = (taskKey: TaskKey) => {
+  const handleTask = async (taskKey: TaskKey) => {
     if (!address || !chainId) return
-    onCompleteTask(address, chainId, taskKey)
+    setIsLoading(true)
+    await onCompleteTask(address, chainId, taskKey)
+    setTask((prev) => {
+      if (!prev) return prev
+      return {
+        ...prev,
+        [taskKey]: Math.round(Date.now() / 1000)
+      }
+    })
+    setIsLoading(false)
   }
 
   const handleClaimReward = async () => {
     if (!address || !chainId) return
+    setIsLoading(true)
     await onClaimReward(address, chainId)
+    setIsLoading(false)
   }
 
   const copyRef = async () => {
@@ -481,6 +486,7 @@ export default function Home() {
                             <button
                               className='btn btn-task'
                               onClick={() => handleTask(TaskKey.Daily)}
+                              disabled={!isDaily || isLoading}
                             >
                               <FaCalendarCheck />
                             </button>
@@ -497,6 +503,7 @@ export default function Home() {
                             <button
                               className='btn btn-task'
                               onClick={() => handleTask(TaskKey.JoinTeleGroup)}
+                              disabled={!isJoinTeleGroup || isLoading}
                             >
                               <FaUsers />
                             </button>
@@ -513,6 +520,7 @@ export default function Home() {
                             <button
                               className='btn btn-task'
                               onClick={() => handleTask(TaskKey.FollowX)}
+                              disabled={!isFollowX || isLoading}
                             >
                               <FaUserPlus />
                             </button>
@@ -532,6 +540,7 @@ export default function Home() {
                             <button
                               className='btn btn-task'
                               onClick={() => handleTask(TaskKey.Share)}
+                              disabled={!isShare || isLoading}
                             >
                               <FaShare />
                             </button>
