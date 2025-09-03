@@ -18,6 +18,8 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
 
+
+  console.log("MONGODB_URI", process.env.MONGODB_URI);
   // Fake user (replace with Firebase/Auth hook)
   const currentUser = {
     photoURL: 'https://pixelpayot.com/assets/images/default-avatar.png'
