@@ -33,19 +33,6 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
 
   const ref = searchParams.ref as string
 
-  console.log('ref', ref)
-
-  const investmentStats = useMemo(
-    () => ({
-      totalNfts: '-',
-      totalMyNfts: '-',
-      totalEarned: '125,000',
-      apy: '15.8',
-      totalStakers: '12,450'
-    }),
-    []
-  )
-
   const personalStats = useMemo(() => {
     if (!isWalletConnected) {
       return {

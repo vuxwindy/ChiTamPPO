@@ -17,6 +17,7 @@ type Referral = {
   joinedDate: Date;
   status: string;
   reward: number;
+  referrer?: any
   address?: string
 };
 
@@ -223,18 +224,15 @@ export default function ReferralPage() {
             {referrals.length === 0 ? (
               <div className='text-center text-gray-400'>No referrals yet. Share your code!</div>
             ) : (
+
+              
               <div className='space-y-4'>
                 {referrals.map((r) => (
                   <div key={r.id} className='flex justify-between bg-white/5 p-4 rounded-lg items-center'>
-                     <h5 className="text-white !mb-0">{r.address || "address user"}</h5>
-                    {/* <div className='flex items-center space-x-3'>
-                      <Image src={r.avatar} alt={r.name} width={40} height={40} className='rounded-full' />
-                      <div>
-                        <h5>{r.name}</h5>
-                        <small>{r.email}</small>
-                      </div>
-                    </div>
-                    <div>{r.status}</div> */}
+                     <h5 className="text-white !mb-0 md:hidden">{shortenAddress(r.address || "0xe8aD8EAdBF87d116a4358272e3cB3988081066a0")}</h5>
+                     <h5 className="text-white !mb-0 max-md:hidden">{r.referrer || "referrer"}</h5>
+                     <h5 className="text-white">{r.address || "0xe8aD8EAdBF87d116a4358272e3cB3988081066a0"}</h5>
+                    <p className="text-blue-400 font-semibold">{ 0}</p>
                     <div className='text-green-400'>+{r.reward} $PPO</div>
                   </div>
                 ))}
@@ -274,4 +272,10 @@ export default function ReferralPage() {
       <Footer />
     </div>
   );
+}
+
+
+function shortenAddress(address?: string) {
+  if (!address) return "";
+  return address.slice(0, 5) + "..." + address.slice(-3);
 }
