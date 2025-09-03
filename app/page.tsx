@@ -7,7 +7,8 @@ import {
   FaLinkedinIn,
   FaCrosshairs,
   FaShieldAlt,
-  FaBolt
+  FaBolt,
+  FaCopy
 } from 'react-icons/fa'
 import {
   FaCalendarCheck,
@@ -54,6 +55,7 @@ import { Task, TaskKey, User, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
 import { on } from 'events'
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [user, setUser] = useState<User>()
@@ -61,6 +63,7 @@ export default function Home() {
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
   const { onGetUser } = useInvestment()
+   const router = useRouter();
   const {
     onGetAllTasks,
     onCompleteTask,
@@ -71,6 +74,11 @@ export default function Home() {
     address,
     token: '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A'
   })
+
+    // Lấy query từ URL hiện tại
+    const query = new URLSearchParams(window?.location?.search);
+    const refValue = query.get('ref') || "";
+
 
   const formatBalance = (balance?: string) => {
     if (!balance) return '0.00'
@@ -149,6 +157,17 @@ export default function Home() {
     if (!address || !chainId) return
     await onClaimReward(address, chainId)
   }
+
+
+    const copyRef = async () => {
+    try {
+      await navigator.clipboard.writeText(refValue || "" );
+      toast.success("Ref copied!");
+    } catch {
+      toast.error("Failed to copy code");
+    }
+  };
+
 
   return (
     <>
@@ -617,7 +636,12 @@ export default function Home() {
                           </div>
 
                           <div className='referral-connect'>
-                            {/* <Linkppkit-button features='[object Object]' /> */}
+                            <div className='code-input'>
+                                <input type='text' className='form-control text-white !mb-0' readOnly defaultValue={refValue} />
+                                <button className='btn btn-primary  !flex items-center gap-1 !mb-0' onClick={copyRef}>
+                                  <FaCopy /> Copy Code
+                                </button>
+                            </div>
                           </div>
                         </div>
                       </div>

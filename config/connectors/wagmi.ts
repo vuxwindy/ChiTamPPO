@@ -20,9 +20,6 @@ const config = getDefaultConfig({
   projectId: metadata.projectId,
   chains,
   ssr: false,
-  appDescription: "Pixel Payot dApp",
-  appUrl: "https://pixelpayot.com",
-  appIcon: "https://www.pixelpayot.com/icon.png?38915f74c368317d"
 });
 
 export const wagmiConfig = config;

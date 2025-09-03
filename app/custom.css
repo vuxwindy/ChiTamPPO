@@ -20392,3 +20392,21 @@ i,.icon,[class*=icon-] {
 .market-panel {
   animation-delay: 0.2s;
 }
+
+.code-input .form-control {
+    flex: 1;
+    background: #ffffff0d;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    padding: 15px 20px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    outline: none;
+    transition: all .3s ease
+}
+
+.code-input .form-control:focus {
+    border-color: #cc00ff80;
+    box-shadow: 0 0 0 2px #cc00ff1a
+}
