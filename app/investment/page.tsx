@@ -76,8 +76,8 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     if (!bnbAmount || isNaN(bnbAmount))
       return toast.warning('Nhập số BNB hợp lệ')
 
-    if (bnbAmount < 0.01) {
-      return toast.warning('BNB amount must be greater than 0.01')
+    if (bnbAmount < 0.0001) {
+      return toast.warning('BNB amount must be greater than 0.0001')
     }
     let nftType: keyof typeof nftImages = 'copper'
     if (bnbAmount >= 0.05 && bnbAmount < 0.1) nftType = 'silver'
