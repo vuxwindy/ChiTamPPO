@@ -6,7 +6,7 @@ import userModel from '@/models/userModel'
 export const claimToken = async (address: string, chainId: number) => {
   const masterWallet = getMasterWallet()
   const contract = new ethers.Contract(
-    '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A',
+    '0x3Fc74aFFE64777e2AAC5202B9cF158F061EB473f', // PPOToken contract address
     abi,
     masterWallet // Use masterWallet as signer
   )
