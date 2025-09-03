@@ -6,8 +6,8 @@ const userSchema = new Schema({
   chainId: Number,
   reward: Number,
   totalEarned: Number,
-  createdAt: { type: Date, default: Date.now },
-  lastClaimedAt: { type: Date, default: Date.now }
+  createdAt: { type: Number },
+  lastClaimedAt: { type: Number }
 })
 
 export default mongoose.models.User || mongoose.model('User', userSchema)

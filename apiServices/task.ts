@@ -13,17 +13,20 @@ export const completeTask = async (
         address,
         chainId,
         reward: 0,
-        totalEarned: 0
+        totalEarned: 0,
+        createdAt: Math.floor(Date.now() / 1000),
+        lastClaimedAt: Math.floor(Date.now() / 1000)
       })
     }
     const startOfToday = new Date()
     startOfToday.setHours(0, 0, 0, 0)
+    const startOfTodayTimestamp = Math.floor(startOfToday.getTime() / 1000)
 
     const task = await taskModel.findOne({
       address,
       chainId,
       task: taskId,
-      createdAt: { $gte: startOfToday } // only today
+      createdAt: { $gte: startOfTodayTimestamp } // only today
     })
 
     if (task) throw new Error('Task already completed')
@@ -31,13 +34,14 @@ export const completeTask = async (
     const result = await taskModel.create({
       address,
       chainId,
-      task: taskId
+      task: taskId,
+      createdAt: Math.floor(Date.now() / 1000)
     })
 
     const tasks = await taskModel.find({
       address,
       chainId,
-      createdAt: { $gte: startOfToday } // only today
+      createdAt: { $gte: startOfTodayTimestamp } // only today
     })
 
     if (tasks.length >= 4) {
@@ -61,10 +65,11 @@ export const getTasks = async (address: string, chainId: number) => {
   try {
     const startOfToday = new Date()
     startOfToday.setHours(0, 0, 0, 0)
+    const startOfTodayTimestamp = Math.floor(startOfToday.getTime() / 1000)
     const tasks = await taskModel.find({
       address,
       chainId,
-      createdAt: { $gte: startOfToday } // only today
+      createdAt: { $gte: startOfTodayTimestamp } // only today
     })
     return tasks
   } catch (error: any) {

@@ -5,7 +5,7 @@ const taskSchema = new Schema({
   address: String,
   chainId: Number,
   task: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Number }
 })
 
 export default mongoose.models.Task || mongoose.model('Task', taskSchema)
