@@ -1,5 +1,5 @@
 'use client'
-import Marquee from 'react-fast-marquee';
+import Marquee from 'react-fast-marquee'
 import {
   FaFacebookF,
   FaInstagram,
@@ -55,7 +55,8 @@ import { Task, TaskKey, User, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
 import { on } from 'events'
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'
+import { headers } from 'next/headers'
 
 export default function Home() {
   const [user, setUser] = useState<User>()
@@ -63,7 +64,7 @@ export default function Home() {
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
   const { onGetUser } = useInvestment()
-   const router = useRouter();
+  const router = useRouter()
   const {
     onGetAllTasks,
     onCompleteTask,
@@ -75,10 +76,16 @@ export default function Home() {
     token: '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A'
   })
 
-    // Lấy query từ URL hiện tại
-    const query = new URLSearchParams(window?.location?.search);
-    const refValue = query.get('ref') || "";
+  // Lấy query từ URL hiện tại
+  const [myRefLink, setMyRefLink] = useState<string>()
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && address) {
+      setMyRefLink(`${window.location.origin}/investment?ref=${address}`)
+    } else {
+      setMyRefLink(undefined)
+    }
+  }, [address])
 
   const formatBalance = (balance?: string) => {
     if (!balance) return '0.00'
@@ -158,16 +165,16 @@ export default function Home() {
     await onClaimReward(address, chainId)
   }
 
-
-    const copyRef = async () => {
+  const copyRef = async () => {
     try {
-      await navigator.clipboard.writeText(refValue || "" );
-      toast.success("Ref copied!");
+      if (myRefLink) {
+        await navigator.clipboard.writeText(myRefLink)
+        toast.success('Ref copied!')
+      }
     } catch {
-      toast.error("Failed to copy code");
+      toast.error('Failed to copy code')
     }
-  };
-
+  }
 
   return (
     <>
@@ -637,10 +644,19 @@ export default function Home() {
 
                           <div className='referral-connect'>
                             <div className='code-input'>
-                                <input type='text' className='form-control text-white !mb-0' readOnly defaultValue={refValue} />
-                                <button className='btn btn-primary  !flex items-center gap-1 !mb-0' onClick={copyRef}>
-                                  <FaCopy /> Copy Code
-                                </button>
+                              <input
+                                type='text'
+                                className='form-control text-white !mb-0'
+                                readOnly
+                                value={myRefLink ?? 'Please connect wallet!'}
+                              />
+                              <button
+                                className='btn btn-primary  !flex items-center gap-1 !mb-0'
+                                onClick={copyRef}
+                                disabled={!myRefLink}
+                              >
+                                <FaCopy /> Copy Code
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -888,15 +904,19 @@ export default function Home() {
                 />
               </div>
               <div className='container !mt-16 '>
-                        <Marquee direction="right" speed={100} delay={5}>
-          <div className='flex items-center justify-center'>
+                <Marquee
+                  direction='right'
+                  speed={100}
+                  delay={5}
+                >
+                  <div className='flex items-center justify-center'>
                     <Image
                       src={Binance}
                       alt='Binance'
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
                   </div>
-                  
+
                   <div className='flex items-center justify-center !mx-4'>
                     <Image
                       src={KuCoin}
@@ -960,7 +980,7 @@ export default function Home() {
                       className='img-fluid object-contain w-auto !h-[120px]'
                     />
                   </div>
-          </Marquee>
+                </Marquee>
                 {/* <div className='grid grid-cols-5 gap-4'>
                   <div className='flex items-center justify-center'>
                     <Image
