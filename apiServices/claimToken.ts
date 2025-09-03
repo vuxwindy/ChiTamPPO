@@ -23,7 +23,7 @@ export const claimToken = async (address: string, chainId: number) => {
       chainId
     },
     {
-      $set: { reward: 0, lastClaimedAt: new Date() },
+      $set: { reward: 0, lastClaimedAt: Math.floor(Date.now() / 1000) },
       $inc: { totalEarned: users.reward }
     }
   )
