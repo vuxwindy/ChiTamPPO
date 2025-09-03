@@ -230,10 +230,7 @@ export default function ReferralPage() {
                 {referrals.map((r) => (
                   <div key={r.id} className='flex justify-between bg-white/5 p-4 rounded-lg items-center'>
                      <h5 className="text-white !mb-0 md:hidden">{shortenAddress(r.address || "0xe8aD8EAdBF87d116a4358272e3cB3988081066a0")}</h5>
-                     <h5 className="text-white !mb-0 max-md:hidden">{r.referrer || "referrer"}</h5>
                      <h5 className="text-white">{r.address || "0xe8aD8EAdBF87d116a4358272e3cB3988081066a0"}</h5>
-                    <p className="text-blue-400 font-semibold">{ 0}</p>
-                    <div className='text-green-400'>+{r.reward} $PPO</div>
                   </div>
                 ))}
               </div>
