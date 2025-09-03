@@ -22,7 +22,7 @@ export default function Home() {
     <div className='flex flex-col items-center justify-center min-h-screen p-4'>
       <div className='w-full max-w-md'>
         <div className='flex justify-center mb-6'>
-          <ConnectButton />
+          <ConnectButton showBalance={false} chainStatus='icon' />
         </div>
 
         <div className='mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md w-full'>

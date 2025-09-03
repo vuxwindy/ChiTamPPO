@@ -7,10 +7,10 @@ import Image from 'next/image'
 import { IoPeople } from 'react-icons/io5'
 import { FaChartPie, FaFilePdf, FaGamepad, FaUserPlus } from 'react-icons/fa'
 import { IoIosMore, IoMdSwap } from 'react-icons/io'
-import CustomConnectButton from './ConnectButtonCustom'
 import { ConnectButton, WalletButton } from '@rainbow-me/rainbowkit'
 // import WalletStatus from "./WalletStatus"
 import headerIcon from '@/app/access/image/header-icon.png'
+import CustomConnectButton from './ConnectButtonCustom'
 
 export default function Header() {
   const router = useRouter()
@@ -55,7 +55,7 @@ export default function Header() {
         // { id: "blindbox", name: "Blindbox", url: "/blindbox", icon: "fas fa-box-open" },
         // { id: "swap", name: "Swap", url: "/swap", icon: "fas fa-exchange-alt" },
         // { id: "creators", name: "Creators", url: "/creators", icon: "fas fa-palette" },
-        { id: 'whitepaper', name: 'Whitepaper', url: '/', icon: <FaFilePdf /> }
+        { id: 'whitepaper', name: 'Whitepaper', url: '/whitepaper', icon: <FaFilePdf /> }
       ]
     }
   ]
@@ -292,7 +292,7 @@ export default function Header() {
                   customClassButton={'mobile-btn-signup !py-4'}
                 />
               </div>
-              <div
+              {/* <div
                 data-v-2e0e4a19=''
                 className='mobile-signup-section'
               >
@@ -303,7 +303,7 @@ export default function Header() {
                 >
                   <FaUserPlus /> Sign Up
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

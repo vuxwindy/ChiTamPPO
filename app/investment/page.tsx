@@ -1,16 +1,11 @@
 'use client'
-import {
-  Description,
-  Dialog,
-  DialogPanel,
-  DialogTitle
-} from '@headlessui/react'
+
 import React, { useState, useMemo, useEffect, use } from 'react'
 import '@/app/style/inves.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import InvestNFTCard from './InvestNFTCard'
-import { FaWallet } from 'react-icons/fa'
+import { FaChartLine, FaWallet } from 'react-icons/fa'
 import logo from '@/app/access/image/logo-123.png'
 import bac from '@/app/access/image/image-bac.png'
 import dong from '@/app/access/image/image-dong.png'
@@ -23,8 +18,6 @@ import { NativeAddress } from '@/config/contracts/addresses'
 import { useRouter } from 'next/router'
 import { ethers } from 'ethers'
 import { on } from 'events'
-import { useTask } from '@/hooks/useTask'
-import { Task } from '@/hooks/type'
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default function InvestmentPage(props: { searchParams: SearchParams }) {
@@ -170,30 +163,30 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
       <section className='investment-overview padding-large'>
         <div className='container mx-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <div className='w-full max-md:w-1/2 mb-4'>
+            <div className='max-md:w-full w-1/2 mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
                   <FaWallet />
                 </div>
                 <div className='stat-content'>
-                  <h3 className='max-md:!text-xl stat-value'>
+                  {/* <h3 className='max-md:!text-xl stat-value'>
                     {investmentStats.totalNfts}
-                  </h3>
-                  <p className='stat-label'>Total NFTs</p>
+                  </h3> */}
+                  <p className='stat-label !text-xl'>Total NFTs</p>
                 </div>
               </div>
             </div>
 
-            <div className='w-full max-md:w-1/2 mb-4'>
+            <div className='max-md:w-full w-1/2 mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
-                  <i className='fas fa-chart-line'></i>
+                  <FaChartLine />
                 </div>
                 <div className='stat-content'>
-                  <h3 className='max-md:!text-xl stat-value'>
+                  {/* <h3 className='max-md:!text-xl stat-value'>
                     {investmentStats.totalMyNfts}
-                  </h3>
-                  <p className='stat-label'>Total My NFTs</p>
+                  </h3> */}
+                  <p className='stat-label !text-xl'>Total My NFTs</p>
                 </div>
               </div>
             </div>
@@ -273,7 +266,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
         <div className='container mx-auto relative'>
           <div className=' p-6 text-white'>
             <h1 className='text-2xl font-bold mb-6 text-center text-white'>
-              PPO NFT Mint Demo
+              Investment Pack NFT
             </h1>
 
             <div className='investment-header mt-4 !p-8 rounded-2xl shadow-md max-w-md mx-auto'>
@@ -464,3 +457,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
+Button.displayName = "Button"

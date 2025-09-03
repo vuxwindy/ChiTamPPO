@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import Unnamed from "@/app/access/image/Unnamed.webp";
 import snake from "@/app/access/image/snake-preview.png";
 import plinko_logo from "@/app/access/image/plinko-casino-game.jpg";
+import arrow_game_modern_preview from "@/app/access/image/arrow-game-modern-preview.png";
+import arrow_game_preview from "@/app/access/image/arrow-game-preview.png";
 
 export default function GamePage() {
   const addToWallet = useCallback(() => {
@@ -94,8 +96,8 @@ export default function GamePage() {
           <div className='grid md:grid-cols-2 gap-6'>
             <div className='game-card bg-dark  border border-blue-400 rounded-lg overflow-hidden hover:-translate-y-2 transition-all flex flex-col !animate-none !p-0'>
               <div className='relative game-image w-full'>
-                <img
-                  src='https://pixelpayot.com/assets/arrow-game-preview-CVpfk9G-.png'
+                <Image
+                  src={arrow_game_preview}
                   alt='Arrow Game Classic'
                   className='w-full !h-[250px] !object-cover'
                 />
@@ -132,8 +134,8 @@ export default function GamePage() {
 
             <div className='game-card  bg-dark  border border-green-400 rounded-lg overflow-hidden hover:-translate-y-2 transition-all flex flex-col !animate-none !p-0'>
               <div className='game-image relative w-full'>
-                <img
-                  src='https://pixelpayot.com/assets/arrow-game-modern-preview-B8a98Bj_.png'
+                <Image
+                  src={arrow_game_modern_preview}
                   alt='Arrow Game Modern'
                   className='w-full !h-[250px] !object-cover'
                 />
@@ -217,7 +219,7 @@ export default function GamePage() {
                 </ul>
               </div>
               <div>
-                <h5 className='text-green-400 mb-3'>🎴 NFT Card System</h5>
+                <h5 className='!text-green-400 mb-3'>🎴 NFT Card System</h5>
                 <ul className='space-y-2 text-white/70'>
                   <li className='max-md:text-base'>Use NFT cards to boost game performance</li>
                   <li className='max-md:text-base'>Rarity bonuses: Common (+5), Rare (+15), Epic (+30), Legendary (+50)</li>
