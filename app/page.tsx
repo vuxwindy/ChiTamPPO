@@ -70,7 +70,10 @@ export default function Home() {
     onGetAllTasks,
     onCompleteTask,
     onGetUser: onGetUserTask,
-    onClaimReward
+    onClaimReward,
+    linkTelegram,
+    linkX,
+    linkYoutube
   } = useTask()
   const { data: balance } = useBalance({
     address,
@@ -150,6 +153,15 @@ export default function Home() {
     }, [task])
 
   const handleTask = async (taskKey: TaskKey) => {
+    if (taskKey === TaskKey.JoinTeleGroup) {
+      window.open(linkTelegram, '_blank')
+    }
+    if (taskKey === TaskKey.FollowX) {
+      window.open(linkX, '_blank')
+    }
+    if (taskKey === TaskKey.Share) {
+      window.open(linkYoutube, '_blank')
+    }
     if (!address || !chainId) return
     setIsLoading(true)
     await onCompleteTask(address, chainId, taskKey)
