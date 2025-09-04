@@ -14,10 +14,11 @@ import Image from 'next/image'
 import { toast } from 'react-toastify'
 import { useAccount } from 'wagmi'
 import { Order, useInvestment } from '@/hooks/useInvestment'
-import { NativeAddress } from '@/config/contracts/addresses'
+import { NativeAddress, PPO_TOKEN } from '@/config/contracts/addresses'
 import { useRouter } from 'next/router'
 import { ethers } from 'ethers'
 import { on } from 'events'
+import { packages } from '@/config/investment'
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default function InvestmentPage(props: { searchParams: SearchParams }) {
@@ -60,18 +61,34 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     if (!address || !chainId) {
       return toast.warning('Please connect your wallet first')
     }
+
+    if (!PPO_TOKEN[chainId] || !packages[chainId]) {
+      return toast.warning('Chưa hỗ trợ chain này')
+    }
     if (!bnbAmount || isNaN(bnbAmount))
       return toast.warning('Nhập số BNB hợp lệ')
 
-    if (bnbAmount < 1.15) {
-      return toast.warning('BNB amount must be greater than 1.15')
+    if (bnbAmount < packages[chainId][0].min) {
+      return toast.warning(
+        `BNB amount must be greater than ${packages[chainId][0].min}`
+      )
     }
     let nftType: keyof typeof nftImages = 'copper'
-    if (bnbAmount >= 23 && bnbAmount < 115) nftType = 'silver'
-    if (bnbAmount >= 115) nftType = 'gold'
+    if (
+      bnbAmount >= packages[chainId][1].min &&
+      bnbAmount <= packages[chainId][1].max
+    ) {
+      nftType = 'silver'
+    }
+    if (bnbAmount >= packages[chainId][2].min) nftType = 'gold'
 
-    const token = NativeAddress[chainId]
-    const packageId = nftType === 'copper' ? 0 : nftType === 'silver' ? 1 : 2
+    const token = PPO_TOKEN[chainId]
+    const packageId =
+      nftType === 'copper'
+        ? packages[chainId][0].packageId
+        : nftType === 'silver'
+          ? packages[chainId][1].packageId
+          : packages[chainId][2].packageId
     const amountBN = ethers.parseUnits(bnbAmount.toString(), 18)
     const referrer = ref || ethers.ZeroAddress
 

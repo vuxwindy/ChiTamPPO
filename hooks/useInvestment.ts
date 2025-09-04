@@ -8,6 +8,7 @@ import {
 import NFTPackageAbi from '../config/contracts/abi/NftPackages.json'
 import { NativeAddress } from '@/config/contracts/addresses'
 import { User } from './type'
+import PPOTokenAbi from '@/config/contracts/abi/PPOToken.json'
 
 export interface Order {
   id: bigint
@@ -31,6 +32,28 @@ export const useInvestment = () => {
     referer: string,
     chainId: number
   ) => {
+    if (token !== NativeAddress[chainId]) {
+      const checkApproval = (await readContract(wagmiConfig, {
+        address: token as `0x${string}`,
+        abi: PPOTokenAbi,
+        functionName: 'allowance',
+        args: [address, NFTPackages[chainId] as `0x${string}`]
+      })) as bigint
+
+      if (checkApproval < amount) {
+        const approval = await writeContract(wagmiConfig, {
+          address: token as `0x${string}`,
+          abi: PPOTokenAbi,
+          functionName: 'approve',
+          args: [NFTPackages[chainId] as `0x${string}`, amount]
+        })
+
+        await waitForTransactionReceipt(wagmiConfig, {
+          hash: approval
+        })
+      }
+    }
+
     const result = await writeContract(wagmiConfig, {
       address: NFTPackages[chainId] as `0x${string}`,
       abi: NFTPackageAbi.abi,

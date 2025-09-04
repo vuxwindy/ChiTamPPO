@@ -27,3 +27,7 @@ export const NativeAddress: Record<number, `0x${string}`> = {
 export const wrapNativeToken: Record<number, string> = {
   [bscTestnet.id]: '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd'
 }
+
+export const PPO_TOKEN: Record<number, `0x${string}`> = {
+  [bsc.id]: '0x3Fc74aFFE64777e2AAC5202B9cF158F061EB473f'
+}
