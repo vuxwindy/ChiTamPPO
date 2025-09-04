@@ -624,7 +624,7 @@ export default function Home() {
                       </div>
 
                       <div className='card-body'>
-                        <div className='stats-grid'>
+                        <div className='stats-grid max-md:!flex max-md:!flex-col'>
                           <div className='stat-item'>
                             <div className='stat-icon wallet'>
                               <FaWallet />
