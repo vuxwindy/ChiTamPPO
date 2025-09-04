@@ -23,7 +23,7 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default function InvestmentPage(props: { searchParams: SearchParams }) {
   const [isWalletConnected, setIsWalletConnected] = useState(false)
-  const [bnbAmount, setBnbAmount] = useState<number>()
+  const [ppoAmount, setBnbAmount] = useState<number>()
   const [mintedNFTs, setMintedNFTs] = useState<Order[]>([])
   const [ppoRewards, setPpoRewards] = useState<Record<any, any>>({})
 
@@ -65,22 +65,22 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     if (!PPO_TOKEN[chainId] || !packages[chainId]) {
       return toast.warning('Chưa hỗ trợ chain này')
     }
-    if (!bnbAmount || isNaN(bnbAmount))
+    if (!ppoAmount || isNaN(ppoAmount))
       return toast.warning('Nhập số BNB hợp lệ')
 
-    if (bnbAmount < packages[chainId][0].min) {
+    if (ppoAmount < packages[chainId][0].min) {
       return toast.warning(
         `BNB amount must be greater than ${packages[chainId][0].min}`
       )
     }
     let nftType: keyof typeof nftImages = 'copper'
     if (
-      bnbAmount >= packages[chainId][1].min &&
-      bnbAmount <= packages[chainId][1].max
+      ppoAmount >= packages[chainId][1].min &&
+      ppoAmount <= packages[chainId][1].max
     ) {
       nftType = 'silver'
     }
-    if (bnbAmount >= packages[chainId][2].min) nftType = 'gold'
+    if (ppoAmount >= packages[chainId][2].min) nftType = 'gold'
 
     const token = PPO_TOKEN[chainId]
     const packageId =
@@ -89,7 +89,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
         : nftType === 'silver'
           ? packages[chainId][1].packageId
           : packages[chainId][2].packageId
-    const amountBN = ethers.parseUnits(bnbAmount.toString(), 18)
+    const amountBN = ethers.parseUnits(ppoAmount.toString(), 18)
     const referrer = ref || ethers.ZeroAddress
 
     await onInvest(token, address, packageId, amountBN, referrer, chainId)
@@ -167,7 +167,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
       <section className='investment-overview padding-large'>
         <div className='container mx-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <div className='max-md:w-full w-1/2 mb-4'>
+            <div className='w-full mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
                   <FaWallet />
@@ -181,7 +181,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
               </div>
             </div>
 
-            <div className='max-md:w-full w-1/2 mb-4'>
+            <div className='w-full mb-4'>
               <div className='stat-card'>
                 <div className='stat-icon'>
                   <FaChartLine />
@@ -279,9 +279,9 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
               </h2>
               <input
                 type='number'
-                value={bnbAmount}
+                value={ppoAmount}
                 onChange={(e) => setBnbAmount(e.target.value as any)}
-                placeholder='Nhập số BNB'
+                placeholder='Nhập số PPO'
                 className='w-full p-2 mb-4 rounded-lg bg-purple-800/50 border border-purple-400/40 text-white placeholder-gray-300 focus:ring-2 focus:ring-purple-400'
               />
               <Button
@@ -333,40 +333,6 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
               </div>
             )}
           </div>
-
-          {/* <div className='flex justify-end md:mb-[-80px]'>
-            <button
-              className='bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-2 !rounded-lg shadow-lg z-10'
-              onClick={() => setIsOpen(true)}
-            >
-              Invest
-            </button>
-          </div>
-          <Dialog open={isOpen} onClose={() => setIsOpen(false)} className='relative z-50'>
-            <div className='fixed inset-0 flex w-screen items-center justify-center p-4'>
-              <DialogPanel className='max-w-xl space-y-4 p-6 border w-full shadow-2xl rounded-2xl border-purple-500! bg-purple-800 mx-auto'>
-                <div className='flex justify-end'>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className='absolute top-4 right-4 bg-purple-600 hover:bg-purple-800 text-white rounded-lg! px-4 font-semibold transition focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-pointer'
-                  >
-                    X
-                  </button>
-                </div>
-                <FormMint />
-              </DialogPanel>
-            </div>
-          </Dialog> */}
-          {/* <div className='flex flex-wrap'>
-            <div className='w-full'>
-              <h2 className='section-title max-md:text-[24px]  text-center mb-5'>
-                My NFTs
-              </h2>
-              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]'>
-                <InvestNFTCard nft={{ tier: 1 }} onClaimed={() => {}} />
-              </div>
-            </div>
-          </div> */}
         </div>
       </section>
 
@@ -405,14 +371,14 @@ const FormMint = () => {
           data-v-06e0a41a=''
           className='!mb-[16px] text-purple-200 text-center !text-[16px]'
         >
-          Enter BNB amount to open the box and receive NFT &amp; PPO instantly
+          Enter PPO amount to open the box and receive NFT &amp; PPO instantly
         </p>
         <input
           data-v-06e0a41a=''
           type='number'
           value={value}
           onChange={(e) => setValue(e.target.value as any)}
-          placeholder='Enter BNB amount'
+          placeholder='Enter PPO amount'
           className='w-full px-4 py-2 sm:px-5 sm:py-3 rounded-2xl border-2 border-purple-400 bg-white text-purple-900 text-base sm:text-lg font-semibold shadow focus:border-purple-600 focus:shadow-lg transition duration-200 outline-none'
         />
         <button

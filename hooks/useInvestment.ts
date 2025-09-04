@@ -40,6 +40,8 @@ export const useInvestment = () => {
         args: [address, NFTPackages[chainId] as `0x${string}`]
       })) as bigint
 
+      console.log('checkApproval', checkApproval, amount)
+
       if (checkApproval < amount) {
         const approval = await writeContract(wagmiConfig, {
           address: token as `0x${string}`,
