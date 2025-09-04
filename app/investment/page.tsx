@@ -14,10 +14,11 @@ import Image from 'next/image'
 import { toast } from 'react-toastify'
 import { useAccount } from 'wagmi'
 import { Order, useInvestment } from '@/hooks/useInvestment'
-import { NativeAddress } from '@/config/contracts/addresses'
+import { NativeAddress, PPO_TOKEN } from '@/config/contracts/addresses'
 import { useRouter } from 'next/router'
 import { ethers } from 'ethers'
 import { on } from 'events'
+import { packages } from '@/config/investment'
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default function InvestmentPage(props: { searchParams: SearchParams }) {
@@ -60,18 +61,34 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     if (!address || !chainId) {
       return toast.warning('Please connect your wallet first')
     }
-    if (!ppoAmount || isNaN(ppoAmount) || !Number.isInteger(Number(ppoAmount)) || Number(ppoAmount) <= 0)
-      return toast.warning('Please enter a valid PPO number')
 
-    if (ppoAmount < 1000) {
-      return toast.warning('PPO amount must be greater than 1000')
+    if (!PPO_TOKEN[chainId] || !packages[chainId]) {
+      return toast.warning('Chưa hỗ trợ chain này')
+    }
+    if (!ppoAmount || isNaN(ppoAmount))
+      return toast.warning('Nhập số BNB hợp lệ')
+
+    if (ppoAmount < packages[chainId][0].min) {
+      return toast.warning(
+        `BNB amount must be greater than ${packages[chainId][0].min}`
+      )
     }
     let nftType: keyof typeof nftImages = 'copper'
-    if (ppoAmount >= 20001 && ppoAmount < 100000) nftType = 'silver'
-    if (ppoAmount >= 100001) nftType = 'gold'
+    if (
+      ppoAmount >= packages[chainId][1].min &&
+      ppoAmount <= packages[chainId][1].max
+    ) {
+      nftType = 'silver'
+    }
+    if (ppoAmount >= packages[chainId][2].min) nftType = 'gold'
 
-    const token = NativeAddress[chainId]
-    const packageId = nftType === 'copper' ? 0 : nftType === 'silver' ? 1 : 2
+    const token = PPO_TOKEN[chainId]
+    const packageId =
+      nftType === 'copper'
+        ? packages[chainId][0].packageId
+        : nftType === 'silver'
+          ? packages[chainId][1].packageId
+          : packages[chainId][2].packageId
     const amountBN = ethers.parseUnits(ppoAmount.toString(), 18)
     const referrer = ref || ethers.ZeroAddress
 
