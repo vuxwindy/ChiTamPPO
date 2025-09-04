@@ -26,7 +26,7 @@ export default function Header() {
   }
 
   const menuItems = [
-    { id: 'referral', name: 'Referral', url: '/referral', icon: <IoPeople /> },
+    // { id: 'referral', name: 'Referral', url: '/referral', icon: <IoPeople /> },
     { id: 'game', name: 'Game', url: '/game', icon: <FaGamepad /> },
     {
       id: 'investment',

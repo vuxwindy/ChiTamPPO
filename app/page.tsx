@@ -57,6 +57,7 @@ import { useTask } from '@/hooks/useTask'
 import { on } from 'events'
 import { useRouter } from 'next/navigation'
 import { headers } from 'next/headers'
+import { ReferralComponent } from '@/components/Referral'
 
 export default function Home() {
   const [user, setUser] = useState<User>()
@@ -1092,6 +1093,8 @@ export default function Home() {
                 </div> */}
               </div>
             </section>
+            <ReferralComponent />
+
             <section className='nft-investment-section'>
               <div className='container'>
                 <div className='section-header text-center mb-5'>
@@ -1116,7 +1119,6 @@ export default function Home() {
                 </div>
               </div>
             </section>
-            {/**/}
             <Footer />
           </div>
         </div>
