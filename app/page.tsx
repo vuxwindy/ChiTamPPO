@@ -626,7 +626,7 @@ export default function Home() {
                       <div className='card-body'>
                         <div className='stats-grid max-md:!flex max-md:!flex-col'>
                           <div className='stat-item'>
-                            <div className='stat-icon wallet'>
+                            <div className='stat-icon wallet !mb-0'>
                               <FaWallet />
                             </div>
                             <div className='stat-content'>
@@ -638,7 +638,7 @@ export default function Home() {
                           </div>
 
                           <div className='stat-item'>
-                            <div className='stat-icon referral'>
+                            <div className='stat-icon referral !mb-0'>
                               <FaUsers />
                             </div>
                             <div className='stat-content'>
