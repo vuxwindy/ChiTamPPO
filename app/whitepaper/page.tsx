@@ -575,7 +575,7 @@ export default function WhitepaperPage() {
                         <FaTwitter data-v-f64e8edb='' />
                       </div>
                       <h4 data-v-f64e8edb=''>Twitter</h4>
-                      <a href='https://x.com/TetMinh46256' target='_blank' data-v-f64e8edb=''>
+                      <a href='https://x.com/pixelpayot' target='_blank' data-v-f64e8edb=''>
                         @pixelpayot
                       </a>
                     </div>

@@ -40,7 +40,7 @@ export default function Footer() {
                 <div className='social-media'>
                   <ul className='d-flex list-unstyled'>
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='https://x.com/TetMinh46256' target='_blank' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://x.com/pixelpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaXTwitter />
                       </Link>
                     </li>
