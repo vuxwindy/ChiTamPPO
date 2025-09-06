@@ -1068,7 +1068,7 @@ hr{
 
 .typewriter{
     content: "|";
-    animation: blink-2c80529c 1s infinite;
+    /* animation: blink-2c80529c 1s infinite; */
     color: #667eea
 }
 

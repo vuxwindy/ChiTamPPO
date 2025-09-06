@@ -66,7 +66,7 @@ export default function Home() {
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
   const { onGetUser } = useInvestment()
-  const router = useRouter()
+  const [refreshTask, setRefreshTask] = useState<boolean>(false)
   const {
     onGetAllTasks,
     onCompleteTask,
@@ -126,7 +126,7 @@ export default function Home() {
     onGetUserTask(address, chainId).then((res) => {
       setUserTask(res)
     })
-  }, [address, chainId])
+  }, [address, chainId, refreshTask])
 
   const level = useMemo(() => {
     if (!user) return 0
@@ -145,7 +145,6 @@ export default function Home() {
       const isJoinTeleGroup = Math.floor(task.joinTeleGroup / day) !== today
       const isFollowX = Math.floor(task.followX / day) !== today
       const isShare = Math.floor(task.share / day) !== today
-
       const completed = [isDaily, isJoinTeleGroup, isFollowX, isShare].filter(
         (v) => v === false
       ).length
@@ -173,6 +172,7 @@ export default function Home() {
         [taskKey]: Math.round(Date.now() / 1000)
       }
     })
+    setRefreshTask((prev) => !prev)
     setIsLoading(false)
   }
 
