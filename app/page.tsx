@@ -152,8 +152,13 @@ export default function Home() {
       return [isDaily, isJoinTeleGroup, isFollowX, isShare, `${completed}/4`]
     }, [task])
 
+    console.log('isDaily', isDaily, isJoinTeleGroup, isFollowX, isShare, progressTask);
+    
   const handleTask = async (taskKey: TaskKey) => {
-    if (taskKey === TaskKey.JoinTeleGroup) {
+    console.log('taskKey', taskKey);
+    
+    try {
+      if (taskKey === TaskKey.JoinTeleGroup) {
       window.open(linkTelegram, '_blank')
     }
     if (taskKey === TaskKey.FollowX) {
@@ -174,6 +179,11 @@ export default function Home() {
     })
     setRefreshTask((prev) => !prev)
     setIsLoading(false)
+    } catch (error) {
+      console.log('error handleTask', error);
+      
+    }
+    
   }
 
   const handleClaimReward = async () => {

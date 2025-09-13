@@ -18,6 +18,8 @@ export const postTask = async (
     chainId,
     task
   })
+  console.log('postTask response', response.data);
+  
   return response.data
 }
 
