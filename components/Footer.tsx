@@ -46,7 +46,7 @@ export default function Footer() {
                     </li>
                     
                     <li className='bg-blue-trans border-rounded-circle'>
-                      <Link href='https://www.youtube.com/@minhtet-q2r9o' target='_blank' className='flex justify-center items-center w-full h-full'>
+                      <Link href='https://www.youtube.com/watch?v=4n3GelvSiG4' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaYoutube />
                       </Link>
                     </li>

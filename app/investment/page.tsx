@@ -63,10 +63,10 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     }
 
     if (!PPO_TOKEN[chainId] || !packages[chainId]) {
-      return toast.warning('Chưa hỗ trợ chain này')
+      return toast.warning('This chain is not supported yet')
     }
     if (!ppoAmount || isNaN(ppoAmount))
-      return toast.warning('Nhập số BNB hợp lệ')
+      return toast.warning('Please enter a valid BNB amount')
 
     if (ppoAmount < packages[chainId][0].min) {
       return toast.warning(
@@ -281,7 +281,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
                 type='number'
                 value={ppoAmount}
                 onChange={(e) => setBnbAmount(e.target.value as any)}
-                placeholder='Nhập số PPO'
+                placeholder='Enter PPO amount'
                 className='w-full p-2 mb-4 rounded-lg bg-purple-800/50 border border-purple-400/40 text-white placeholder-gray-300 focus:ring-2 focus:ring-purple-400'
               />
               <Button
@@ -314,7 +314,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
 
                         <div className='mt-4 bg-white/10 backdrop-blur-md !p-4 rounded-xl border border-white/20'>
                           <p className='text-sm text-gray-200'>
-                            PPO thưởng tích luỹ
+                            Accumulated PPO Rewards
                           </p>
                           <p className='text-2xl font-bold text-green-400 !mb-0'>
                             +{interest} PPO

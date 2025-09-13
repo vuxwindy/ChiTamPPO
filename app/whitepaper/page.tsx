@@ -594,7 +594,7 @@ export default function WhitepaperPage() {
                         <FaYoutube data-v-f64e8edb='' />
                       </div>
                       <h4 data-v-f64e8edb=''>Youtube</h4>
-                      <a href='https://www.youtube.com/@minhtet-q2r9o' data-v-f64e8edb=''>
+                      <a href='https://www.youtube.com/watch?v=4n3GelvSiG4' data-v-f64e8edb=''>
                         @pixelpayot
                       </a>
                     </div>
