@@ -74,7 +74,9 @@ export default function Home() {
     onClaimReward,
     linkTelegram,
     linkX,
-    linkYoutube
+    linkYoutube,
+    checkTaskX,
+    checkTaskTele
   } = useTask()
   const { data: balance } = useBalance({
     address,
@@ -152,38 +154,43 @@ export default function Home() {
       return [isDaily, isJoinTeleGroup, isFollowX, isShare, `${completed}/4`]
     }, [task])
 
-    console.log('isDaily', isDaily, isJoinTeleGroup, isFollowX, isShare, progressTask);
-    
+  console.log(
+    'isDaily',
+    isDaily,
+    isJoinTeleGroup,
+    isFollowX,
+    isShare,
+    progressTask
+  )
+
   const handleTask = async (taskKey: TaskKey) => {
-    console.log('taskKey', taskKey);
-    
+    console.log('taskKey', taskKey)
+
     try {
-      if (taskKey === TaskKey.JoinTeleGroup) {
-      window.open(linkTelegram, '_blank')
-    }
-    if (taskKey === TaskKey.FollowX) {
-      window.open(linkX, '_blank')
-    }
-    if (taskKey === TaskKey.Share) {
-      window.open(linkYoutube, '_blank')
-    }
-    if (!address || !chainId) return
-    setIsLoading(true)
-    await onCompleteTask(address, chainId, taskKey)
-    setTask((prev) => {
-      if (!prev) return prev
-      return {
-        ...prev,
-        [taskKey]: Math.round(Date.now() / 1000)
+      if (taskKey === TaskKey.JoinTeleGroup && !checkTaskTele()) {
+        window.open(linkTelegram, '_blank')
       }
-    })
-    setRefreshTask((prev) => !prev)
-    setIsLoading(false)
+      if (taskKey === TaskKey.FollowX && !checkTaskX()) {
+        window.open(linkX, '_blank')
+      }
+      if (taskKey === TaskKey.Share) {
+        window.open(linkYoutube, '_blank')
+      }
+      if (!address || !chainId) return
+      setIsLoading(true)
+      await onCompleteTask(address, chainId, taskKey)
+      setTask((prev) => {
+        if (!prev) return prev
+        return {
+          ...prev,
+          [taskKey]: Math.round(Date.now() / 1000)
+        }
+      })
+      setRefreshTask((prev) => !prev)
+      setIsLoading(false)
     } catch (error) {
-      console.log('error handleTask', error);
-      
+      console.log('error handleTask', error)
     }
-    
   }
 
   const handleClaimReward = async () => {
@@ -942,32 +949,44 @@ export default function Home() {
                   delay={5}
                 >
                   <div className='flex items-center justify-center'>
-                     <a href="https://www.binance.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={Binance}
-                      alt='Binance'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                      </a>
+                    <a
+                      href='https://www.binance.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={Binance}
+                        alt='Binance'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
 
                   <div className='flex items-center justify-center !mx-4'>
-                     <a href="https://www.coinbase.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={KuCoin}
-                      alt='KuCoin'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                       </a>
+                    <a
+                      href='https://www.coinbase.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={KuCoin}
+                        alt='KuCoin'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
-                     <a href="https://www.kucoin.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={Coinbase}
-                      alt='Coinbase'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                       </a>
+                    <a
+                      href='https://www.kucoin.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={Coinbase}
+                        alt='Coinbase'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
                   {/* <div className='flex items-center justify-center !mx-4'>
                     <Image
@@ -977,31 +996,43 @@ export default function Home() {
                     />
                   </div> */}
                   <div className='flex items-center justify-center !mx-4'>
-                     <a href="https://www.okx.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={okxLogo}
-                      alt='OKX'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                     </a>
+                    <a
+                      href='https://www.okx.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={okxLogo}
+                        alt='OKX'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
-                     <a href="https://www.coingecko.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={coingeckoLogo}
-                      alt='Coin Gecko'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                       </a>
+                    <a
+                      href='https://www.coingecko.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={coingeckoLogo}
+                        alt='Coin Gecko'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
-                     <a href="https://www.coinmarketcap.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={injectiveInjCoinLogo}
-                      alt='Injective'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                       </a>
+                    <a
+                      href='https://www.coinmarketcap.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={injectiveInjCoinLogo}
+                        alt='Injective'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
                   {/* <div className='flex items-center justify-center !mx-4'>
                     <Image
@@ -1011,22 +1042,30 @@ export default function Home() {
                     />
                   </div> */}
                   <div className='flex items-center justify-center !mx-4'>
-                     <a href="https://www.sushi.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={sushiswapLogo}
-                      alt='SushiSwap'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                       </a>
+                    <a
+                      href='https://www.sushi.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={sushiswapLogo}
+                        alt='SushiSwap'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
                   <div className='flex items-center justify-center !mx-4'>
-                     <a href="https://www.uniswap.com" target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={uniswapLogo}
-                      alt='Uniswap'
-                      className='img-fluid object-contain w-auto !h-[120px]'
-                    />
-                       </a>
+                    <a
+                      href='https://www.uniswap.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <Image
+                        src={uniswapLogo}
+                        alt='Uniswap'
+                        className='img-fluid object-contain w-auto !h-[120px]'
+                      />
+                    </a>
                   </div>
                 </Marquee>
                 {/* <div className='grid grid-cols-5 gap-4'>
