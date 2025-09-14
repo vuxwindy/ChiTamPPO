@@ -11,7 +11,7 @@ export const useTask = () => {
   const storeKey = 'PPOTasks'
 
   const linkTelegram = 'https://t.me/PixelpayotChannels'
-  const linkX = 'https://x.com/TetMinh46256'
+  const linkX = 'https://x.com/pixelpayot'
   const linkYoutube = 'https://www.youtube.com/watch?v=4n3GelvSiG4'
 
   const onCompleteTask = async (
