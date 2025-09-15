@@ -26,7 +26,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
   const [ppoAmount, setBnbAmount] = useState<number>()
   const [mintedNFTs, setMintedNFTs] = useState<Order[]>([])
   const [ppoRewards, setPpoRewards] = useState<Record<any, any>>({})
-
+  const [refreshMint, setRefreshMint] = useState(false)
   const { address, chainId } = useAccount()
   const { onInvest, onClaim, onGetOrder } = useInvestment()
 
@@ -66,11 +66,11 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
       return toast.warning('This chain is not supported yet')
     }
     if (!ppoAmount || isNaN(ppoAmount))
-      return toast.warning('Please enter a valid BNB amount')
+      return toast.warning('Please enter a valid PPO amount')
 
     if (ppoAmount < packages[chainId][0].min) {
       return toast.warning(
-        `BNB amount must be greater than ${packages[chainId][0].min}`
+        `PPO amount must be greater than ${packages[chainId][0].min}`
       )
     }
     let nftType: keyof typeof nftImages = 'copper'
@@ -93,6 +93,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     const referrer = ref || ethers.ZeroAddress
 
     await onInvest(token, address, packageId, amountBN, referrer, chainId)
+    setRefreshMint(pre => !pre)
   }
 
   useEffect(() => {
@@ -100,7 +101,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
     onGetOrder(address, chainId).then((orders) => {
       setMintedNFTs(orders)
     })
-  }, [address, chainId])
+  }, [address, chainId, refreshMint])
 
   // Giả lập cộng PPO mỗi ngày (demo: mỗi 5 giây cộng 1 PPO)
   useEffect(() => {
@@ -131,6 +132,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
   }
 
   const nftInfo = (nft: Order) => {
+    console.log("ntf", nft);
     const [image, name, type] =
       nft.packageId === BigInt(0)
         ? [nftImages.copper, 'Copper NFT', 'copper']

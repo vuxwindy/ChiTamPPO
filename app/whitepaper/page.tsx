@@ -24,7 +24,10 @@ import "@/app/style/whitepaper.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FaChartLine, FaEye, FaCoins, FaMicrochip, FaRoad, FaUsers } from "react-icons/fa";
-import snake from "@/app/access/image/snake-preview.png";
+import ceo from "@/app/access/image/ceo.jpg";
+import cto from "@/app/access/image/cto.jpg";
+import market from "@/app/access/image/market.jpg";
+import gaming from "@/app/access/image/gaming.jpg";
 
 export default function WhitepaperPage() {
   // Table of contents
@@ -123,7 +126,7 @@ export default function WhitepaperPage() {
       name: "Alex Chen",
       role: "CEO & Founder",
       bio: "Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.",
-      avatar: snake || "/images/team/ceo.jpg",
+      avatar: ceo,
       linkedin: "https://linkedin.com/in/alexchen",
       twitter: "https://twitter.com/alexchen",
     },
@@ -132,7 +135,7 @@ export default function WhitepaperPage() {
       name: "Sarah Johnson",
       role: "CTO",
       bio: "Blockchain architect with expertise in smart contracts and gaming infrastructure. Previously at major tech companies.",
-      avatar: snake || "/images/team/cto.jpg",
+      avatar: cto,
       linkedin: "https://linkedin.com/in/sarahjohnson",
       twitter: "https://twitter.com/sarahjohnson",
     },
@@ -141,7 +144,7 @@ export default function WhitepaperPage() {
       name: "Mike Rodriguez",
       role: "Head of Gaming",
       bio: "Game designer and producer with experience in AAA titles. Passionate about creating engaging play-to-earn experiences.",
-      avatar: snake || "/images/team/gaming.jpg",
+      avatar: market,
       linkedin: "https://linkedin.com/in/mikerodriguez",
       twitter: "https://twitter.com/mikerodriguez",
     },
@@ -150,7 +153,7 @@ export default function WhitepaperPage() {
       name: "Lisa Wang",
       role: "Head of Marketing",
       bio: "Marketing strategist specializing in blockchain and gaming. Built communities for multiple successful projects.",
-      avatar: snake || "/images/team/marketing.jpg",
+      avatar: gaming,
       linkedin: "https://linkedin.com/in/lisawang",
       twitter: "https://twitter.com/lisawang",
     },
@@ -507,7 +510,7 @@ export default function WhitepaperPage() {
           </div>
         </div>
       </section>
-      {/* <section data-v-f64e8edb='' id='team' className='content-section padding-large bg-dark'>
+      <section data-v-f64e8edb='' id='team' className='content-section padding-large bg-dark'>
         <div data-v-f64e8edb='' className='container'>
           <div data-v-f64e8edb='' className='row'>
             <div data-v-f64e8edb='' className='col-12'>
@@ -532,14 +535,14 @@ export default function WhitepaperPage() {
                           <p data-v-f64e8edb='' className='member-bio'>
                             {team.bio}
                           </p>
-                          <div data-v-f64e8edb='' className='member-social'>
+                          {/* <div data-v-f64e8edb='' className='member-social'>
                             <Link data-v-f64e8edb='' href={team.linkedin} target='_blank' className='social-link'>
                               <FaLinkedin />
                             </Link>
                             <Link data-v-f64e8edb='' href={team.twitter} target='_blank' className='social-link'>
                               <FaTwitter />
                             </Link>
-                          </div>
+                          </div> */}
                         </div>
                       );
                     })}
@@ -549,7 +552,7 @@ export default function WhitepaperPage() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       <section id='contact' className='content-section padding-large !bg-[#140135]' data-v-f64e8edb=''>
         <div className='container' data-v-f64e8edb=''>
           <div className='row' data-v-f64e8edb=''>

@@ -44,12 +44,12 @@ export default function Footer() {
                         <FaXTwitter />
                       </Link>
                     </li>
-                    
+{/*                     
                     <li className='bg-blue-trans border-rounded-circle'>
                       <Link href='https://www.youtube.com/watch?v=4n3GelvSiG4' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaYoutube />
                       </Link>
-                    </li>
+                    </li> */}
 
 
                     <li className='bg-blue-trans border-rounded-circle'>
@@ -106,7 +106,7 @@ export default function Footer() {
                       Collectibles
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link
                       onClick={(e) => {
                         e.preventDefault();
@@ -116,7 +116,7 @@ export default function Footer() {
                     >
                       Virtual world
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function Footer() {
                       Features
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link
                       href='/creators'
                       onClick={(e) => {
@@ -211,11 +211,11 @@ export default function Footer() {
                     >
                       Top Creators
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
-            <div className='col-lg-2 col-md-6'>
+            {/* <div className='col-lg-2 col-md-6'>
               <div className='footer-item item-005 content-light'>
                 <h4>Resources</h4>
                 <ul className='footer-menu list-unstyled'>
@@ -267,7 +267,7 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>

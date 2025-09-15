@@ -33,7 +33,7 @@ import {
   FaTrophy,
   FaUsers
 } from 'react-icons/fa'
-import { FaBitcoinSign } from 'react-icons/fa6'
+import { FaBitcoinSign, FaSackDollar } from 'react-icons/fa6'
 import planetArrow from '@/app/access/image/planet-arrow-BTo6e6jt.png'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
@@ -54,9 +54,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { Task, TaskKey, User, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
-import { on } from 'events'
-import { useRouter } from 'next/navigation'
-import { headers } from 'next/headers'
 import { ReferralComponent } from '@/components/Referral'
 
 export default function Home() {
@@ -93,6 +90,11 @@ export default function Home() {
       setMyRefLink(undefined)
     }
   }, [address])
+
+
+  console.log("balance", balance);
+  
+
 
   const formatBalance = (balance?: string) => {
     if (!balance) return '0.00'
@@ -154,18 +156,8 @@ export default function Home() {
       return [isDaily, isJoinTeleGroup, isFollowX, isShare, `${completed}/4`]
     }, [task])
 
-  console.log(
-    'isDaily',
-    isDaily,
-    isJoinTeleGroup,
-    isFollowX,
-    isShare,
-    progressTask
-  )
-
+ 
   const handleTask = async (taskKey: TaskKey) => {
-    console.log('taskKey', taskKey)
-
     try {
       if (taskKey === TaskKey.JoinTeleGroup && !checkTaskTele()) {
         window.open(linkTelegram, '_blank')
@@ -642,7 +634,7 @@ export default function Home() {
 
                       <div className='card-body'>
                         <div className='stats-grid max-md:!flex max-md:!flex-col'>
-                          <div className='stat-item'>
+                          <div className='stat-item md:!flex-col'>
                             <div className='stat-icon wallet !mb-0'>
                               <FaWallet />
                             </div>
@@ -653,8 +645,7 @@ export default function Home() {
                               <span className='stat-label'>PPO Balance</span>
                             </div>
                           </div>
-
-                          <div className='stat-item'>
+                          <div className='stat-item md:!flex-col'>
                             <div className='stat-icon referral !mb-0'>
                               <FaUsers />
                             </div>
@@ -663,6 +654,17 @@ export default function Home() {
                                 {user ? user.totalRef.toString() : 0}
                               </span>
                               <span className='stat-label'>Referrals</span>
+                            </div>
+                          </div>
+                          <div className='stat-item md:!flex-col'>
+                            <div className='stat-icon referral !mb-0 !bg-[linear-gradient(135deg,#ae5c43,#eea142)]'>
+                              <FaSackDollar />
+                            </div>
+                            <div className='stat-content'>
+                              <span className='stat-value max-md:!text-base'>
+                                {user ? user.totalRef.toString() : 0}
+                              </span>
+                              <span className='stat-label'>Total Earnings</span>
                             </div>
                           </div>
                         </div>
@@ -1142,9 +1144,9 @@ export default function Home() {
                 </div> */}
               </div>
             </section>
-            <ReferralComponent />
+            {/* <ReferralComponent /> */}
 
-            <section className='nft-investment-section'>
+            {/* <section className='nft-investment-section'>
               <div className='container'>
                 <div className='section-header text-center mb-5'>
                   <div className='section-badge'>
@@ -1167,7 +1169,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-            </section>
+            </section> */}
             <Footer />
           </div>
         </div>
