@@ -131,10 +131,11 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
   }
 
   const nftInfo = (nft: Order) => {
+    if (!chainId) return { image: '', name: '', type: '', interest: '0' }
     const [image, name, type] =
-      nft.packageId === BigInt(0)
+      nft.packageId === BigInt(packages[chainId][0].packageId)
         ? [nftImages.copper, 'Copper NFT', 'copper']
-        : nft.packageId === BigInt(1)
+        : nft.packageId === BigInt(packages[chainId][1].packageId)
           ? [nftImages.silver, 'Silver NFT', 'silver']
           : [nftImages.gold, 'Gold NFT', 'gold']
     return {
