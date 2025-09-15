@@ -167,23 +167,18 @@ export default function WhitepaperPage() {
     }
   };
 
-  //   const downloadPDF = () => {
-  //     console.log("Downloading whitepaper PDF...");
-  //     // thực tế có thể dùng window.open("/whitepaper.pdf")
-  //   };
-
-  //   const shareWhitepaper = () => {
-  //     if (navigator.share) {
-  //       navigator.share({
-  //         title: "PixelPayot Whitepaper",
-  //         text: "Check out the PixelPayot whitepaper - the future of gaming and NFTs!",
-  //         url: window.location.href,
-  //       });
-  //     } else {
-  //       navigator.clipboard.writeText(window.location.href);
-  //       alert("Link copied to clipboard!");
-  //     }
-  //   };
+    const shareWhitepaper = () => {
+      if (navigator.share) {
+        navigator.share({
+          title: "PixelPayot Whitepaper",
+          text: "Check out the PixelPayot whitepaper - the future of gaming and NFTs!",
+          url: "https://gio2d.gitbook.io/pixelpayotwhitepaperdocs",
+        });
+      } else {
+        navigator.clipboard.writeText("https://gio2d.gitbook.io/pixelpayotwhitepaperdocs");
+        alert("Link copied to clipboard!");
+      }
+    };
 
   return (
     <div className='whitepaper-page'>
@@ -194,14 +189,17 @@ export default function WhitepaperPage() {
         <div className='container text-center'>
           <h1 className='whitepaper-title text-white'>PixelPayot Whitepaper</h1>
           <p className='whitepaper-subtitle'>The Future of Gaming and NFT Ecosystem</p>
-          {/* <div className='whitepaper-actions'>
-            <button className='btn btn-linear btn-large' onClick={downloadPDF}>
-              <i className='fas fa-download me-2'></i>Download PDF
-            </button>
-            <button className='btn btn-outline-linear btn-large' onClick={shareWhitepaper}>
+          <div className='whitepaper-actions'>
+            <Link target="_blank" href={"https://gio2d.gitbook.io/pixelpayotwhitepaperdocs"} className='btn btn-linear !px-6 !py-3 !rounded-xl'>
+              <i className='fas fa-download me-2'></i>Open
+            </Link>
+            <Link href={"#"} className='btn btn-linear !px-6 !py-3 !rounded-xl !border-none !ml-2 !mb-0' onClick={(e) => {
+              e.preventDefault()
+              shareWhitepaper()
+            }}>
               <i className='fas fa-share me-2'></i>Share
-            </button>
-          </div> */}
+            </Link>
+          </div>
         </div>
       </section>
 

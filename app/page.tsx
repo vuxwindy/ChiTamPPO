@@ -55,6 +55,8 @@ import { Task, TaskKey, User, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
 import { ReferralComponent } from '@/components/Referral'
+import { usePpoBalance } from '@/hooks/usePpoBalance'
+import { formatUnits } from 'viem'
 
 export default function Home() {
   const [user, setUser] = useState<User>()
@@ -79,7 +81,7 @@ export default function Home() {
     address,
     token: '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A'
   })
-
+ const { balance: balancePpo } = usePpoBalance()
   // Lấy query từ URL hiện tại
   const [myRefLink, setMyRefLink] = useState<string>()
 
@@ -90,10 +92,6 @@ export default function Home() {
       setMyRefLink(undefined)
     }
   }, [address])
-
-
-  console.log("balance", balance);
-  
 
 
   const formatBalance = (balance?: string) => {
@@ -662,7 +660,7 @@ export default function Home() {
                             </div>
                             <div className='stat-content'>
                               <span className='stat-value max-md:!text-base'>
-                                {user ? user.totalRef.toString() : 0}
+                                {balancePpo ? formatUnits(balancePpo, 18) : 0}
                               </span>
                               <span className='stat-label'>Total Earnings</span>
                             </div>

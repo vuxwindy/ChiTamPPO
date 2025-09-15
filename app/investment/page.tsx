@@ -132,7 +132,6 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
   }
 
   const nftInfo = (nft: Order) => {
-    console.log("ntf", nft);
     const [image, name, type] =
       nft.packageId === BigInt(0)
         ? [nftImages.copper, 'Copper NFT', 'copper']
