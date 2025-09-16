@@ -590,7 +590,7 @@ export default function WhitepaperPage() {
                       </a>
                     </div>
 
-                    <div className='contact-item' data-v-f64e8edb=''>
+                    {/* <div className='contact-item' data-v-f64e8edb=''>
                       <div className='contact-icon' data-v-f64e8edb=''>
                         <FaYoutube data-v-f64e8edb='' />
                       </div>
@@ -598,7 +598,7 @@ export default function WhitepaperPage() {
                       <a href='https://www.youtube.com/watch?v=4n3GelvSiG4' data-v-f64e8edb=''>
                         @pixelpayot
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
