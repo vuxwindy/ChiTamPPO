@@ -57,7 +57,7 @@ import { useTask } from '@/hooks/useTask'
 import { ReferralComponent } from '@/components/Referral'
 import { usePpoBalance } from '@/hooks/usePpoBalance'
 import { formatUnits } from 'viem'
-
+import { AiOutlineLineChart } from "react-icons/ai";
 export default function Home() {
   const [user, setUser] = useState<User>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -405,6 +405,13 @@ export default function Home() {
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
                           <FaGamepad className='me-2' /> Modern Archery
+                        </Link>
+                        <Link
+                          href='https://www.coinstore.com/spot/PPOUSDT?ts=1758016987854'
+                          target='_blank'
+                          className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
+                        >
+                          <AiOutlineLineChart className='me-2' /> Trade Coinstore
                         </Link>
                       </div>
                     </div>

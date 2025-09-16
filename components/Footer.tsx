@@ -14,18 +14,16 @@ export default function Footer() {
 
   return (
     <>
-      <footer id='footer' className='padding-large pattern-blur'>
-        <div className='pattern-overlay pattern-blur-footer right-side-pattern'>
-          <img src='https://pixelpayot.com/assets/footer-pattern-BU5Dn35q.png' alt="" />
-        </div>
+      <footer id='footer' className='padding-large pattern-blur !py-20'>
+        
         <div className='container'>
-          <div className='row d-flex flex-wrap justify-content-between'>
-            <div className='col-lg-4 col-md-6'>
+          <div className='row d-flex flex-wrap justify-center'>
+            <div className='col-lg-4'>
               <div className='footer-item md:item-001'>
-                <Image src={headerIcon} alt='logo' className='!object-contain' />
-                <p> PixelPayot is a platform that allows you to earn money by playing games. </p>
+                <Image src={headerIcon} alt='logo'className='!object-contain !h-20 !w-full mx-auto' />
+                <p className="text-center"> PixelPayot is a platform that allows you to earn money by playing games. </p>
                 <div className='social-media'>
-                  <ul className='d-flex list-unstyled'>
+                  <ul className='d-flex list-unstyled justify-center'>
                     <li className='bg-blue-trans border-rounded-circle'>
                       <Link href='https://x.com/pixelpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaXTwitter />
