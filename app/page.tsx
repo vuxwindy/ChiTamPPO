@@ -660,7 +660,7 @@ export default function Home() {
                             </div>
                             <div className='stat-content'>
                               <span className='stat-value max-md:!text-base'>
-                                {balancePpo ? formatUnits(balancePpo, 18) : 0}
+                                {user ? user.refEarned.toString() : 0}
                               </span>
                               <span className='stat-label'>Total Earnings</span>
                             </div>

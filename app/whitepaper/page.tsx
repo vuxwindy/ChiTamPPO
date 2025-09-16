@@ -359,7 +359,7 @@ export default function WhitepaperPage() {
                             Initial Price:
                           </span>
                           <span className='value' data-v-f64e8edb=''>
-                            $0.01 USD
+                            $0.05 USD
                           </span>
                         </div>
                         <div className='detail' data-v-f64e8edb=''>

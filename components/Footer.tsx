@@ -12,19 +12,6 @@ import { FaXTwitter } from "react-icons/fa6";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  // const openSocialLink = useCallback((platform: string) => {
-  //   const socialLinks: Record<string, string> = {
-  //     facebook: "https://facebook.com/coinpayot",
-  //     twitter: "https://twitter.com/coinpayot",
-  //     instagram: "https://instagram.com/coinpayot",
-  //     youtube: "https://youtube.com/coinpayot",
-  //     linkedin: "https://linkedin.com/company/coinpayot",
-  //   };
-  //   if (socialLinks[platform]) {
-  //     window.open(socialLinks[platform], "_blank");
-  //   }
-  // }, []);
-
   return (
     <>
       <footer id='footer' className='padding-large pattern-blur'>
@@ -57,16 +44,16 @@ export default function Footer() {
                         <FaTelegramPlane />
                       </Link>
                     </li>
-                    <li className='bg-blue-trans border-rounded-circle'>
+                    {/* <li className='bg-blue-trans border-rounded-circle'>
                       <Link href='mailto:contract@pixelpayot.com' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaGoogle />
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
             </div>
-            <div className='col-lg-2 col-md-6'>
+            {/* <div className='col-lg-2 col-md-6'>
               <div className='footer-item item-002 content-light'>
                 <h4>Marketplace</h4>
                 <ul className='footer-menu list-unstyled'>
@@ -106,7 +93,7 @@ export default function Footer() {
                       Collectibles
                     </Link>
                   </li>
-                  {/* <li>
+                  <li>
                     <Link
                       onClick={(e) => {
                         e.preventDefault();
@@ -116,7 +103,7 @@ export default function Footer() {
                     >
                       Virtual world
                     </Link>
-                  </li> */}
+                  </li>
                 </ul>
               </div>
             </div>
@@ -200,7 +187,7 @@ export default function Footer() {
                       Features
                     </Link>
                   </li>
-                  {/* <li>
+                  <li>
                     <Link
                       href='/creators'
                       onClick={(e) => {
@@ -211,11 +198,11 @@ export default function Footer() {
                     >
                       Top Creators
                     </Link>
-                  </li> */}
+                  </li>
                 </ul>
               </div>
             </div>
-            {/* <div className='col-lg-2 col-md-6'>
+            <div className='col-lg-2 col-md-6'>
               <div className='footer-item item-005 content-light'>
                 <h4>Resources</h4>
                 <ul className='footer-menu list-unstyled'>
