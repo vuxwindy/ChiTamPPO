@@ -411,7 +411,14 @@ export default function Home() {
                           target='_blank'
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
-                          <AiOutlineLineChart className='me-2' /> Buy $PPO
+                          <AiOutlineLineChart className='me-2' /> Buy $PPO on Coinstore
+                        </Link>
+                         <Link
+                          href='https://pancakeswap.finance/swap?outputCurrency=0x3Fc74aFFE64777e2AAC5202B9cF158F061EB473f&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+                          target='_blank'
+                          className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
+                        >
+                          <AiOutlineLineChart className='me-2' /> Buy $PPO on PancakeSwap
                         </Link>
                       </div>
                     </div>
