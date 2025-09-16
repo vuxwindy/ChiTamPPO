@@ -123,12 +123,12 @@ export default function WhitepaperPage() {
   const teams = [
     {
       id: 1,
-      name: "Alex Chen",
+      name: "Anh Chen",
       role: "CEO & Founder",
       bio: "Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.",
       avatar: ceo,
       linkedin: "https://linkedin.com/in/alexchen",
-      twitter: "https://twitter.com/alexchen",
+      twitter: "https://x.com/AnhCryptoX",
     },
     {
       id: 2,
@@ -533,14 +533,17 @@ export default function WhitepaperPage() {
                           <p data-v-f64e8edb='' className='member-bio'>
                             {team.bio}
                           </p>
-                          {/* <div data-v-f64e8edb='' className='member-social'>
-                            <Link data-v-f64e8edb='' href={team.linkedin} target='_blank' className='social-link'>
-                              <FaLinkedin />
-                            </Link>
+                          <div data-v-f64e8edb='' className='member-social'>
+                         {/* <Link data-v-f64e8edb='' href={team.linkedin} target='_blank' className='social-link'>
+                             <FaLinkedin />
+                            </Link> */}
+                             {team.id === 1 && team.twitter && (
                             <Link data-v-f64e8edb='' href={team.twitter} target='_blank' className='social-link'>
-                              <FaTwitter />
-                            </Link>
-                          </div> */}
+                              <FaTwitter /> 
+
+                            </Link>  
+                        )}
+                          </div> 
                         </div>
                       );
                     })}
