@@ -638,7 +638,7 @@ export default function Home() {
                             </div>
                             <div className='stat-content'>
                               <span className='stat-value max-md:!text-base'>
-                                {formatBalance(balance?.formatted)}
+                                {balancePpo ? formatUnits(balancePpo, 18) : 0}
                               </span>
                               <span className='stat-label'>PPO Balance</span>
                             </div>
