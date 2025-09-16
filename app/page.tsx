@@ -411,7 +411,7 @@ export default function Home() {
                           target='_blank'
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
-                          <AiOutlineLineChart className='me-2' /> Trade Coinstore
+                          <AiOutlineLineChart className='me-2' /> Buy $PPO
                         </Link>
                       </div>
                     </div>
