@@ -24,10 +24,6 @@ import "@/app/style/whitepaper.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FaChartLine, FaEye, FaCoins, FaMicrochip, FaRoad, FaUsers } from "react-icons/fa";
-import ceo from "@/app/access/image/ceo.jpg";
-import cto from "@/app/access/image/cto.jpg";
-import market from "@/app/access/image/market.jpg";
-import gaming from "@/app/access/image/gaming.jpg";
 
 export default function WhitepaperPage() {
   // Table of contents
@@ -119,45 +115,6 @@ export default function WhitepaperPage() {
     },
   ];
 
-  // Team data
-  const teams = [
-    {
-      id: 1,
-      name: "Alex Chen",
-      role: "CEO & Founder",
-      bio: "Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.",
-      avatar: ceo,
-      linkedin: "https://linkedin.com/in/alexchen",
-      twitter: "https://twitter.com/alexchen",
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      role: "CTO",
-      bio: "Blockchain architect with expertise in smart contracts and gaming infrastructure. Previously at major tech companies.",
-      avatar: cto,
-      linkedin: "https://linkedin.com/in/sarahjohnson",
-      twitter: "https://twitter.com/sarahjohnson",
-    },
-    {
-      id: 3,
-      name: "Mike Rodriguez",
-      role: "Head of Gaming",
-      bio: "Game designer and producer with experience in AAA titles. Passionate about creating engaging play-to-earn experiences.",
-      avatar: market,
-      linkedin: "https://linkedin.com/in/mikerodriguez",
-      twitter: "https://twitter.com/mikerodriguez",
-    },
-    {
-      id: 4,
-      name: "Lisa Wang",
-      role: "Head of Marketing",
-      bio: "Marketing strategist specializing in blockchain and gaming. Built communities for multiple successful projects.",
-      avatar: gaming,
-      linkedin: "https://linkedin.com/in/lisawang",
-      twitter: "https://twitter.com/lisawang",
-    },
-  ];
 
   // Methods
   const scrollToSection = (id: string) => {
@@ -498,49 +455,6 @@ export default function WhitepaperPage() {
                               })}
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section data-v-f64e8edb='' id='team' className='content-section padding-large bg-dark'>
-        <div data-v-f64e8edb='' className='container'>
-          <div data-v-f64e8edb='' className='row'>
-            <div data-v-f64e8edb='' className='col-12'>
-              <div data-v-f64e8edb='' className='content-card'>
-                <h2 data-v-f64e8edb='' className='content-title'>
-                  <i data-v-f64e8edb='' className='fas fa-users me-3' /> Team
-                </h2>
-                <div data-v-f64e8edb='' className='content-body'>
-                  <div data-v-f64e8edb='' className='team-grid'>
-                    {teams.map((team) => {
-                      return (
-                        <div key={team.id} data-v-f64e8edb='' className='team-member'>
-                          <div data-v-f64e8edb='' className='member-avatar'>
-                            <Image data-v-f64e8edb='' src={team.avatar} alt='Alex Chen' className='avatar-image' />
-                          </div>
-                          <h4 data-v-f64e8edb='' className='member-name'>
-                            {team.name}
-                          </h4>
-                          <p data-v-f64e8edb='' className='member-role'>
-                            {team.role}
-                          </p>
-                          <p data-v-f64e8edb='' className='member-bio'>
-                            {team.bio}
-                          </p>
-                          {/* <div data-v-f64e8edb='' className='member-social'>
-                            <Link data-v-f64e8edb='' href={team.linkedin} target='_blank' className='social-link'>
-                              <FaLinkedin />
-                            </Link>
-                            <Link data-v-f64e8edb='' href={team.twitter} target='_blank' className='social-link'>
-                              <FaTwitter />
-                            </Link>
-                          </div> */}
                         </div>
                       );
                     })}
