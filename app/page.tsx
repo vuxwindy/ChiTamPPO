@@ -50,22 +50,28 @@ import uniswapLogo from '@/app/access/image/uniswap-logo.png'
 import imageRemovebgPreview from '@/app/access/image/image-removebg-preview.png'
 import { toast } from 'react-toastify'
 import { useAccount, useBalance } from 'wagmi'
-import { useEffect, useMemo, useState } from 'react'
-import { Task, TaskKey, User, UserTask } from '@/hooks/type'
+import { use, useEffect, useMemo, useState } from 'react'
+import { Task, TaskKey, User, UserData, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
 import { on } from 'events'
 import { useRouter } from 'next/navigation'
 import { headers } from 'next/headers'
 import { ReferralComponent } from '@/components/Referral'
+import { useGetUserData } from '@/hooks/useGetUserData'
 
-export default function Home() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+export default function Home(props: { searchParams: SearchParams }) {
   const [user, setUser] = useState<User>()
+  const [userData, setUserData] = useState<UserData>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [userTask, setUserTask] = useState<UserTask>()
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
   const { onGetUser } = useInvestment()
+  const { getUserData } = useGetUserData()
+
   const [refreshTask, setRefreshTask] = useState<boolean>(false)
   const {
     onGetAllTasks,
@@ -86,9 +92,12 @@ export default function Home() {
   // Lấy query từ URL hiện tại
   const [myRefLink, setMyRefLink] = useState<string>()
 
+  const searchParams = use(props.searchParams)
+  const ref = searchParams.ref as string | undefined
+
   useEffect(() => {
     if (typeof window !== 'undefined' && address) {
-      setMyRefLink(`${window.location.origin}/investment?ref=${address}`)
+      setMyRefLink(`${window.location.origin}/?ref=${address}`)
     } else {
       setMyRefLink(undefined)
     }
@@ -107,6 +116,13 @@ export default function Home() {
     if (!address || !chainId) return
     onGetUser(address, chainId).then((res) => {
       setUser(res)
+    })
+
+    getUserData(address, ref ?? null).then((res) => {
+      setUserData({
+        refAddress: res.current?.refAddress ?? null,
+        refs: res.ref.map((r: any) => r.address)
+      })
     })
 
     onGetAllTasks(address, chainId).then((res) => {
@@ -660,7 +676,7 @@ export default function Home() {
                             </div>
                             <div className='stat-content'>
                               <span className='stat-value max-md:!text-base'>
-                                {user ? user.totalRef.toString() : 0}
+                                {userData ? userData.refs.length : 0}
                               </span>
                               <span className='stat-label'>Referrals</span>
                             </div>
