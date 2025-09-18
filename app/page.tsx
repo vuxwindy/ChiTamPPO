@@ -59,7 +59,6 @@ import { usePpoBalance } from '@/hooks/usePpoBalance'
 import { formatUnits } from 'viem'
 import { AiOutlineLineChart } from "react-icons/ai";
 import "@/app/style/whitepaper.css";
-
 import ceo from "@/app/access/image/ceo.jpg";
 import cto from "@/app/access/image/cto.jpg";
 import market from "@/app/access/image/market.jpg";
@@ -249,6 +248,8 @@ export default function Home() {
       toast.error('Failed to copy code')
     }
   }
+
+ 
 
   return (
     <>
@@ -460,7 +461,14 @@ export default function Home() {
                           target='_blank'
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
-                          <AiOutlineLineChart className='me-2' /> Trade Coinstore
+                          <AiOutlineLineChart className='me-2' /> Buy $PPO on Coinstore
+                        </Link>
+                         <Link
+                          href='https://pancakeswap.finance/swap?outputCurrency=0x3Fc74aFFE64777e2AAC5202B9cF158F061EB473f&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
+                          target='_blank'
+                          className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
+                        >
+                          <AiOutlineLineChart className='me-2' /> Buy $PPO on PancakeSwap
                         </Link>
                       </div>
                     </div>
@@ -1124,107 +1132,8 @@ export default function Home() {
                     </a>
                   </div>
                 </Marquee>
-                {/* <div className='grid grid-cols-5 gap-4'>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={Binance}
-                      alt='Binance'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={Coinbase}
-                      alt='Coinbase'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={KuCoin}
-                      alt='KuCoin'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={blockfiLogo}
-                      alt='BlockFi'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={okxLogo}
-                      alt='OKX'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={coingeckoLogo}
-                      alt='Coin Gecko'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={injectiveInjCoinLogo}
-                      alt='Injective'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={pancakeswapLogo}
-                      alt='PancakeSwap'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={sushiswapLogo}
-                      alt='SushiSwap'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                  <div className='flex items-center justify-center'>
-                    <Image
-                      src={uniswapLogo}
-                      alt='Uniswap'
-                      className='img-fluid w-[120px]'
-                    />
-                  </div>
-                </div> */}
-              </div>
-            </section>
-            {/* <ReferralComponent /> */}
-
-            {/* <section className='nft-investment-section'>
-              <div className='container'>
-                <div className='section-header text-center mb-5'>
-                  <div className='section-badge'>
-                    <i className='fas fa-chart-line me-2' />
-                    <span>NFT Investment</span>
-                  </div>
-                  <h2 className='section-title max-md:text-[24px] '>
-                    Invest in Premium NFTs
-                  </h2>
-                  <p className='section-description'>
-                    {' '}
-                    Discover high-value NFTs with potential for significant
-                    returns{' '}
-                  </p>
-                </div>
-                <div className='w-full flex items-center justify-center'>
-                  <Image
-                    src={imageRemovebgPreview}
-                    alt='comming soon'
-                  />
-                </div>
-              </div>
-            </section> */}
-            
+               </div>
+               </section>
                   <section data-v-f64e8edb='' id='team' className='content-section padding-large bg-dark'>
                     <div data-v-f64e8edb='' className='container'>
                       <div data-v-f64e8edb='' className='row'>
