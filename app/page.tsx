@@ -58,11 +58,7 @@ import { ReferralComponent } from '@/components/Referral'
 import { usePpoBalance } from '@/hooks/usePpoBalance'
 import { formatUnits } from 'viem'
 import { AiOutlineLineChart } from "react-icons/ai";
-// Image Team data
-import ceo from "@/app/access/image/ceo.jpg";
-import cto from "@/app/access/image/cto.jpg";
-import market from "@/app/access/image/market.jpg";
-import gaming from "@/app/access/image/gaming.jpg"; 
+
 
 
 export default function Home() {
@@ -208,46 +204,7 @@ export default function Home() {
     }
   }
 
-  // Team data
-  const teams = [
-    {
-      id: 1,
-      name: "Anh Chen",
-      role: "CEO & Founder",
-      bio: "Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.",
-      avatar: ceo,
-      linkedin: "https://linkedin.com/in/alexchen",
-      twitter: "https://x.com/AnhCryptoX",
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      role: "CTO",
-      bio: "Blockchain architect with expertise in smart contracts and gaming infrastructure. Previously at major tech companies.",
-      avatar: cto,
-      linkedin: "https://linkedin.com/in/sarahjohnson",
-      twitter: "https://twitter.com/sarahjohnson",
-    },
-    {
-      id: 3,
-      name: "Mike Rodriguez",
-      role: "Head of Gaming",
-      bio: "Game designer and producer with experience in AAA titles. Passionate about creating engaging play-to-earn experiences.",
-      avatar: market,
-      linkedin: "https://linkedin.com/in/mikerodriguez",
-      twitter: "https://twitter.com/mikerodriguez",
-    },
-    {
-      id: 4,
-      name: "Lisa Wang",
-      role: "Head of Marketing",
-      bio: "Marketing strategist specializing in blockchain and gaming. Built communities for multiple successful projects.",
-      avatar: gaming,
-      linkedin: "https://linkedin.com/in/lisawang",
-      twitter: "https://twitter.com/lisawang",
-    },
-  ];
-
+ 
 
   return (
     <>
@@ -1202,51 +1159,8 @@ export default function Home() {
                     />
                   </div>
                 </div> */}
-              </div>
-{/* team show */}
-               <section className="py-16 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Meet Our Team
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {teams.map((team) => (
-            <div
-              key={team.id}
-              className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-xl transition"
-            >
-              <div className="relative w-32 h-32 mb-4">
-                <Image
-                  src={team.avatar}
-                  alt={team.name}
-                  fill
-                  className="rounded-full object-cover"
-                />
-              </div>
-
-              <h4 className="text-lg font-semibold">{team.name}</h4>
-              <p className="text-sm text-indigo-600">{team.role}</p>
-              <p className="text-gray-600 text-sm mt-2">{team.bio}</p>
-
-              <div className="flex space-x-4 mt-4">
-                {team.twitter && (
-                  <Link
-                    href={team.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-blue-500 transition"
-                  >
-                    <FaTwitter size={20} />
-                  </Link>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
             
+
             {/* <ReferralComponent /> */}
 
             {/* <section className='nft-investment-section'>
