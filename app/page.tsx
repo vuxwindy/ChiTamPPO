@@ -1203,53 +1203,49 @@ export default function Home() {
                   </div>
                 </div> */}
               </div>
-            </section>
-  <section data-v-f64e8edb='' id='team' className='content-section padding-large bg-dark'>
-        <div data-v-f64e8edb='' className='container'>
-          <div data-v-f64e8edb='' className='row'>
-            <div data-v-f64e8edb='' className='col-12'>
-              <div data-v-f64e8edb='' className='content-card'>
-                <h2 data-v-f64e8edb='' className='content-title'>
-                  <i data-v-f64e8edb='' className='fas fa-users me-3' /> Team
-                </h2>
-                <div data-v-f64e8edb='' className='content-body'>
-                  <div data-v-f64e8edb='' className='team-grid'>
-                    {teams.map((team) => {
-                      return (
-                        <div key={team.id} data-v-f64e8edb='' className='team-member'>
-                          <div data-v-f64e8edb='' className='member-avatar'>
-                            <Image data-v-f64e8edb='' src={team.avatar} alt='Alex Chen' className='avatar-image' />
-                          </div>
-                          <h4 data-v-f64e8edb='' className='member-name'>
-                            {team.name}
-                          </h4>
-                          <p data-v-f64e8edb='' className='member-role'>
-                            {team.role}
-                          </p>
-                          <p data-v-f64e8edb='' className='member-bio'>
-                            {team.bio}
-                          </p>
-                          <div data-v-f64e8edb='' className='member-social'>
-                         {/* <Link data-v-f64e8edb='' href={team.linkedin} target='_blank' className='social-link'>
-                             <FaLinkedin />
-                            </Link> */}
-                             {team.id === 1 && team.twitter && (
-                            <Link data-v-f64e8edb='' href={team.twitter} target='_blank' className='social-link'>
-                              <FaTwitter /> 
+{/* team show */}
+               <section className="py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Meet Our Team
+        </h2>
 
-                            </Link>  
-                        )}
-                          </div> 
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {teams.map((team) => (
+            <div
+              key={team.id}
+              className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-xl transition"
+            >
+              <div className="relative w-32 h-32 mb-4">
+                <Image
+                  src={team.avatar}
+                  alt={team.name}
+                  fill
+                  className="rounded-full object-cover"
+                />
+              </div>
+
+              <h4 className="text-lg font-semibold">{team.name}</h4>
+              <p className="text-sm text-indigo-600">{team.role}</p>
+              <p className="text-gray-600 text-sm mt-2">{team.bio}</p>
+
+              <div className="flex space-x-4 mt-4">
+                {team.twitter && (
+                  <Link
+                    href={team.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-blue-500 transition"
+                  >
+                    <FaTwitter size={20} />
+                  </Link>
+                )}
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
             
             {/* <ReferralComponent /> */}
 
