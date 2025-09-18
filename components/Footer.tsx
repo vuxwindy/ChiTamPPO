@@ -12,44 +12,29 @@ import { FaXTwitter } from "react-icons/fa6";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  // const openSocialLink = useCallback((platform: string) => {
-  //   const socialLinks: Record<string, string> = {
-  //     facebook: "https://facebook.com/coinpayot",
-  //     twitter: "https://twitter.com/coinpayot",
-  //     instagram: "https://instagram.com/coinpayot",
-  //     youtube: "https://youtube.com/coinpayot",
-  //     linkedin: "https://linkedin.com/company/coinpayot",
-  //   };
-  //   if (socialLinks[platform]) {
-  //     window.open(socialLinks[platform], "_blank");
-  //   }
-  // }, []);
-
   return (
     <>
-      <footer id='footer' className='padding-large pattern-blur'>
-        <div className='pattern-overlay pattern-blur-footer right-side-pattern'>
-          <img src='https://pixelpayot.com/assets/footer-pattern-BU5Dn35q.png' alt="" />
-        </div>
+      <footer id='footer' className='padding-large pattern-blur !py-20'>
+        
         <div className='container'>
-          <div className='row d-flex flex-wrap justify-content-between'>
-            <div className='col-lg-4 col-md-6'>
+          <div className='row d-flex flex-wrap justify-center'>
+            <div className='col-lg-4'>
               <div className='footer-item md:item-001'>
-                <Image src={headerIcon} alt='logo' className='!object-contain' />
-                <p> PixelPayot is a platform that allows you to earn money by playing games. </p>
+                <Image src={headerIcon} alt='logo'className='!object-contain !h-20 !w-full mx-auto' />
+                <p className="text-center"> PixelPayot is a platform that allows you to earn money by playing games. </p>
                 <div className='social-media'>
-                  <ul className='d-flex list-unstyled'>
+                  <ul className='d-flex list-unstyled justify-center'>
                     <li className='bg-blue-trans border-rounded-circle'>
                       <Link href='https://x.com/pixelpayot' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaXTwitter />
                       </Link>
                     </li>
-                    
+{/*                     
                     <li className='bg-blue-trans border-rounded-circle'>
                       <Link href='https://www.youtube.com/watch?v=4n3GelvSiG4' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaYoutube />
                       </Link>
-                    </li>
+                    </li> */}
 
 
                     <li className='bg-blue-trans border-rounded-circle'>
@@ -57,16 +42,16 @@ export default function Footer() {
                         <FaTelegramPlane />
                       </Link>
                     </li>
-                    <li className='bg-blue-trans border-rounded-circle'>
+                    {/* <li className='bg-blue-trans border-rounded-circle'>
                       <Link href='mailto:contract@pixelpayot.com' target='_blank' className='flex justify-center items-center w-full h-full'>
                         <FaGoogle />
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
             </div>
-            <div className='col-lg-2 col-md-6'>
+            {/* <div className='col-lg-2 col-md-6'>
               <div className='footer-item item-002 content-light'>
                 <h4>Marketplace</h4>
                 <ul className='footer-menu list-unstyled'>
@@ -267,7 +252,7 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
