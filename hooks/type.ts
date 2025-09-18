@@ -37,3 +37,19 @@ export interface TaskResponse {
   task: string
   createdAt: number
 }
+
+export interface UserStorage {
+  address: string
+  refAddress: string
+  createdAt: number
+}
+
+export interface UserResponse {
+  current: UserStorage | null
+  ref: UserStorage[]
+}
+
+export interface UserData {
+  refAddress: string | null
+  refs: UserStorage[]
+}

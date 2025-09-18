@@ -50,69 +50,73 @@ import uniswapLogo from '@/app/access/image/uniswap-logo.png'
 import imageRemovebgPreview from '@/app/access/image/image-removebg-preview.png'
 import { toast } from 'react-toastify'
 import { useAccount, useBalance } from 'wagmi'
-import { useEffect, useMemo, useState } from 'react'
-import { Task, TaskKey, User, UserTask } from '@/hooks/type'
+import { use, useEffect, useMemo, useState } from 'react'
+import { Task, TaskKey, User, UserData, UserTask } from '@/hooks/type'
 import { useInvestment } from '@/hooks/useInvestment'
 import { useTask } from '@/hooks/useTask'
 import { ReferralComponent } from '@/components/Referral'
+import { useGetUserData } from '@/hooks/useGetUserData'
 import { usePpoBalance } from '@/hooks/usePpoBalance'
 import { formatUnits } from 'viem'
-import { AiOutlineLineChart } from "react-icons/ai";
-import "@/app/style/whitepaper.css";
-import ceo from "@/app/access/image/ceo.jpg";
-import cto from "@/app/access/image/cto.jpg";
-import market from "@/app/access/image/market.jpg";
-import gaming from "@/app/access/image/gaming.jpg";
+import { AiOutlineLineChart } from 'react-icons/ai'
+import '@/app/style/whitepaper.css'
+import ceo from '@/app/access/image/ceo.jpg'
+import cto from '@/app/access/image/cto.jpg'
+import market from '@/app/access/image/market.jpg'
+import gaming from '@/app/access/image/gaming.jpg'
 
-  // Team data
-  const teams = [
-    {
-      id: 1,
-      name: "Alex Chen",
-      role: "CEO & Founder",
-      bio: "Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.",
-      avatar: ceo,
-      linkedin: "https://linkedin.com/in/alexchen",
-      twitter: "https://twitter.com/alexchen",
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      role: "CTO",
-      bio: "Blockchain architect with expertise in smart contracts and gaming infrastructure. Previously at major tech companies.",
-      avatar: cto,
-      linkedin: "https://linkedin.com/in/sarahjohnson",
-      twitter: "https://twitter.com/sarahjohnson",
-    },
-    {
-      id: 3,
-      name: "Mike Rodriguez",
-      role: "Head of Gaming",
-      bio: "Game designer and producer with experience in AAA titles. Passionate about creating engaging play-to-earn experiences.",
-      avatar: market,
-      linkedin: "https://linkedin.com/in/mikerodriguez",
-      twitter: "https://twitter.com/mikerodriguez",
-    },
-    {
-      id: 4,
-      name: "Lisa Wang",
-      role: "Head of Marketing",
-      bio: "Marketing strategist specializing in blockchain and gaming. Built communities for multiple successful projects.",
-      avatar: gaming,
-      linkedin: "https://linkedin.com/in/lisawang",
-      twitter: "https://twitter.com/lisawang",
-    },
-  ];
+// Team data
+const teams = [
+  {
+    id: 1,
+    name: 'Alex Chen',
+    role: 'CEO & Founder',
+    bio: 'Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.',
+    avatar: ceo,
+    linkedin: 'https://linkedin.com/in/alexchen',
+    twitter: 'https://twitter.com/alexchen'
+  },
+  {
+    id: 2,
+    name: 'Sarah Johnson',
+    role: 'CTO',
+    bio: 'Blockchain architect with expertise in smart contracts and gaming infrastructure. Previously at major tech companies.',
+    avatar: cto,
+    linkedin: 'https://linkedin.com/in/sarahjohnson',
+    twitter: 'https://twitter.com/sarahjohnson'
+  },
+  {
+    id: 3,
+    name: 'Mike Rodriguez',
+    role: 'Head of Gaming',
+    bio: 'Game designer and producer with experience in AAA titles. Passionate about creating engaging play-to-earn experiences.',
+    avatar: market,
+    linkedin: 'https://linkedin.com/in/mikerodriguez',
+    twitter: 'https://twitter.com/mikerodriguez'
+  },
+  {
+    id: 4,
+    name: 'Lisa Wang',
+    role: 'Head of Marketing',
+    bio: 'Marketing strategist specializing in blockchain and gaming. Built communities for multiple successful projects.',
+    avatar: gaming,
+    linkedin: 'https://linkedin.com/in/lisawang',
+    twitter: 'https://twitter.com/lisawang'
+  }
+]
 
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
-
-export default function Home() {
+export default function Home(props: { searchParams: SearchParams }) {
   const [user, setUser] = useState<User>()
+  const [userData, setUserData] = useState<UserData>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [userTask, setUserTask] = useState<UserTask>()
   const [task, setTask] = useState<Task>()
   const { address, chainId } = useAccount()
   const { onGetUser } = useInvestment()
+  const { getUserData } = useGetUserData()
+
   const [refreshTask, setRefreshTask] = useState<boolean>(false)
   const {
     onGetAllTasks,
@@ -129,18 +133,20 @@ export default function Home() {
     address,
     token: '0x1F9bfDc9839dbe0C01B6B56a959974d22b38C29A'
   })
- const { balance: balancePpo } = usePpoBalance()
+  const { balance: balancePpo } = usePpoBalance()
   // Lấy query từ URL hiện tại
   const [myRefLink, setMyRefLink] = useState<string>()
 
+  const searchParams = use(props.searchParams)
+  const ref = searchParams.ref as string | undefined
+
   useEffect(() => {
     if (typeof window !== 'undefined' && address) {
-      setMyRefLink(`${window.location.origin}/investment?ref=${address}`)
+      setMyRefLink(`${window.location.origin}/?ref=${address}`)
     } else {
       setMyRefLink(undefined)
     }
   }, [address])
-
 
   const formatBalance = (balance?: string) => {
     if (!balance) return '0.00'
@@ -155,6 +161,13 @@ export default function Home() {
     if (!address || !chainId) return
     onGetUser(address, chainId).then((res) => {
       setUser(res)
+    })
+
+    getUserData(address, ref ?? null).then((res) => {
+      setUserData({
+        refAddress: res.current?.refAddress ?? null,
+        refs: res.ref.map((r: any) => r.address)
+      })
     })
 
     onGetAllTasks(address, chainId).then((res) => {
@@ -202,7 +215,6 @@ export default function Home() {
       return [isDaily, isJoinTeleGroup, isFollowX, isShare, `${completed}/4`]
     }, [task])
 
- 
   const handleTask = async (taskKey: TaskKey) => {
     try {
       if (taskKey === TaskKey.JoinTeleGroup && !checkTaskTele()) {
@@ -248,8 +260,6 @@ export default function Home() {
       toast.error('Failed to copy code')
     }
   }
-
- 
 
   return (
     <>
@@ -461,14 +471,16 @@ export default function Home() {
                           target='_blank'
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
-                          <AiOutlineLineChart className='me-2' /> Buy $PPO on Coinstore
+                          <AiOutlineLineChart className='me-2' /> Buy $PPO on
+                          Coinstore
                         </Link>
-                         <Link
+                        <Link
                           href='https://pancakeswap.finance/swap?outputCurrency=0x3Fc74aFFE64777e2AAC5202B9cF158F061EB473f&inputCurrency=0x55d398326f99059fF775485246999027B3197955'
                           target='_blank'
                           className='btn btn-hero-primary !flex gap-1 items-center !rounded-md hover:!text-[#d42aff] transition-colors'
                         >
-                          <AiOutlineLineChart className='me-2' /> Buy $PPO on PancakeSwap
+                          <AiOutlineLineChart className='me-2' /> Buy $PPO on
+                          PancakeSwap
                         </Link>
                       </div>
                     </div>
@@ -713,7 +725,7 @@ export default function Home() {
                             </div>
                             <div className='stat-content'>
                               <span className='stat-value max-md:!text-base'>
-                                {user ? user.totalRef.toString() : 0}
+                                {userData ? userData.refs.length : 0}
                               </span>
                               <span className='stat-label'>Referrals</span>
                             </div>
@@ -1132,34 +1144,84 @@ export default function Home() {
                     </a>
                   </div>
                 </Marquee>
-               </div>
-               </section>
-                  <section data-v-f64e8edb='' id='team' className='content-section padding-large bg-dark'>
-                    <div data-v-f64e8edb='' className='container'>
-                      <div data-v-f64e8edb='' className='row'>
-                        <div data-v-f64e8edb='' className='col-12'>
-                          <div data-v-f64e8edb='' className='content-card'>
-                            <h2 data-v-f64e8edb='' className='content-title'>
-                              <i data-v-f64e8edb='' className='fas fa-users me-3' /> Team
-                            </h2>
-                            <div data-v-f64e8edb='' className='content-body'>
-                              <div data-v-f64e8edb='' className='team-grid'>
-                                {teams.map((team) => {
-                                  return (
-                                    <div key={team.id} data-v-f64e8edb='' className='team-member'>
-                                      <div data-v-f64e8edb='' className='member-avatar'>
-                                        <Image data-v-f64e8edb='' src={team.avatar} alt='Alex Chen' className='avatar-image' />
-                                      </div>
-                                      <h4 data-v-f64e8edb='' className='member-name'>
-                                        {team.name}
-                                      </h4>
-                                      <p data-v-f64e8edb='' className='member-role'>
-                                        {team.role}
-                                      </p>
-                                      <p data-v-f64e8edb='' className='member-bio'>
-                                        {team.bio}
-                                      </p>
-                                      {/* <div data-v-f64e8edb='' className='member-social'>
+              </div>
+            </section>
+            <section
+              data-v-f64e8edb=''
+              id='team'
+              className='content-section padding-large bg-dark'
+            >
+              <div
+                data-v-f64e8edb=''
+                className='container'
+              >
+                <div
+                  data-v-f64e8edb=''
+                  className='row'
+                >
+                  <div
+                    data-v-f64e8edb=''
+                    className='col-12'
+                  >
+                    <div
+                      data-v-f64e8edb=''
+                      className='content-card'
+                    >
+                      <h2
+                        data-v-f64e8edb=''
+                        className='content-title'
+                      >
+                        <i
+                          data-v-f64e8edb=''
+                          className='fas fa-users me-3'
+                        />{' '}
+                        Team
+                      </h2>
+                      <div
+                        data-v-f64e8edb=''
+                        className='content-body'
+                      >
+                        <div
+                          data-v-f64e8edb=''
+                          className='team-grid'
+                        >
+                          {teams.map((team) => {
+                            return (
+                              <div
+                                key={team.id}
+                                data-v-f64e8edb=''
+                                className='team-member'
+                              >
+                                <div
+                                  data-v-f64e8edb=''
+                                  className='member-avatar'
+                                >
+                                  <Image
+                                    data-v-f64e8edb=''
+                                    src={team.avatar}
+                                    alt='Alex Chen'
+                                    className='avatar-image'
+                                  />
+                                </div>
+                                <h4
+                                  data-v-f64e8edb=''
+                                  className='member-name'
+                                >
+                                  {team.name}
+                                </h4>
+                                <p
+                                  data-v-f64e8edb=''
+                                  className='member-role'
+                                >
+                                  {team.role}
+                                </p>
+                                <p
+                                  data-v-f64e8edb=''
+                                  className='member-bio'
+                                >
+                                  {team.bio}
+                                </p>
+                                {/* <div data-v-f64e8edb='' className='member-social'>
                                         <Link data-v-f64e8edb='' href={team.linkedin} target='_blank' className='social-link'>
                                           <FaLinkedin />
                                         </Link>
@@ -1167,16 +1229,16 @@ export default function Home() {
                                           <FaTwitter />
                                         </Link>
                                       </div> */}
-                                    </div>
-                                  );
-                                })}
                               </div>
-                            </div>
-                          </div>
+                            )
+                          })}
                         </div>
                       </div>
                     </div>
-                  </section>
+                  </div>
+                </div>
+              </div>
+            </section>
             <Footer />
           </div>
         </div>
