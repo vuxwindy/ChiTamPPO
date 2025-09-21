@@ -19,20 +19,35 @@ import { useRouter } from 'next/router'
 import { ethers } from 'ethers'
 import { on } from 'events'
 import { packages } from '@/config/investment'
+import { UserData } from '@/hooks/type'
+import { useGetUserData } from '@/hooks/useGetUserData'
+
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default function InvestmentPage(props: { searchParams: SearchParams }) {
   const [isWalletConnected, setIsWalletConnected] = useState(false)
+  const [userData, setUserData] = useState<UserData>()
   const [ppoAmount, setBnbAmount] = useState<number>()
   const [mintedNFTs, setMintedNFTs] = useState<Order[]>([])
   const [ppoRewards, setPpoRewards] = useState<Record<any, any>>({})
   const [refreshMint, setRefreshMint] = useState(false)
   const { address, chainId } = useAccount()
   const { onInvest, onClaim, onGetOrder } = useInvestment()
+  const { getUserData } = useGetUserData()
 
   const searchParams = use(props.searchParams)
-
   const ref = searchParams.ref as string
+
+  useEffect(() => {
+    if (address) {
+      getUserData(address, ref || null).then((res) => {
+        setUserData({
+          refAddress: res.current?.refAddress ?? null,
+          refs: res.ref.map((r: any) => r.address)
+        })
+      })
+    }
+  }, [address, getUserData, ref])
 
   const personalStats = useMemo(() => {
     if (!isWalletConnected) {
@@ -58,6 +73,10 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
   }
 
   const handleMint = async () => {
+    if (!userData) {
+      return toast.warning('Please connect your wallet first')
+    }
+
     if (!address || !chainId) {
       return toast.warning('Please connect your wallet first')
     }
@@ -73,6 +92,7 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
         `PPO amount must be greater than ${packages[chainId][0].min}`
       )
     }
+
     let nftType: keyof typeof nftImages = 'copper'
     if (
       ppoAmount >= packages[chainId][1].min &&
@@ -90,10 +110,11 @@ export default function InvestmentPage(props: { searchParams: SearchParams }) {
           ? packages[chainId][1].packageId
           : packages[chainId][2].packageId
     const amountBN = ethers.parseUnits(ppoAmount.toString(), 18)
-    const referrer = ref || ethers.ZeroAddress
+    const referrer =
+      userData && userData.refAddress ? userData.refAddress : ethers.ZeroAddress
 
     await onInvest(token, address, packageId, amountBN, referrer, chainId)
-    setRefreshMint(pre => !pre)
+    setRefreshMint((pre) => !pre)
   }
 
   useEffect(() => {
