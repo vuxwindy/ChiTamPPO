@@ -65,45 +65,45 @@ import cto from '@/app/access/image/cto.jpg'
 import market from '@/app/access/image/market.jpg'
 import gaming from '@/app/access/image/gaming.jpg'
 
-// Team data
-const teams = [
-  {
-    id: 1,
-    name: 'Alex Chen',
-    role: 'CEO & Founder',
-    bio: 'Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.',
-    avatar: ceo,
-    linkedin: 'https://linkedin.com/in/alexchen',
-    twitter: 'https://twitter.com/alexchen'
-  },
-  {
-    id: 2,
-    name: 'Sarah Johnson',
-    role: 'CTO',
-    bio: 'Blockchain architect with expertise in smart contracts and gaming infrastructure. Previously at major tech companies.',
-    avatar: cto,
-    linkedin: 'https://linkedin.com/in/sarahjohnson',
-    twitter: 'https://twitter.com/sarahjohnson'
-  },
-  {
-    id: 3,
-    name: 'Mike Rodriguez',
-    role: 'Head of Gaming',
-    bio: 'Game designer and producer with experience in AAA titles. Passionate about creating engaging play-to-earn experiences.',
-    avatar: market,
-    linkedin: 'https://linkedin.com/in/mikerodriguez',
-    twitter: 'https://twitter.com/mikerodriguez'
-  },
-  {
-    id: 4,
-    name: 'Lisa Wang',
-    role: 'Head of Marketing',
-    bio: 'Marketing strategist specializing in blockchain and gaming. Built communities for multiple successful projects.',
-    avatar: gaming,
-    linkedin: 'https://linkedin.com/in/lisawang',
-    twitter: 'https://twitter.com/lisawang'
-  }
-]
+  // Team data
+  const teams = [
+    {
+      id: 1,
+      name: "Alex Chen",
+      role: "CEO & Founder",
+      bio: "Former gaming executive with 15+ years in the industry. Led successful game studios and blockchain projects.",
+      avatar: ceo,
+      linkedin: "https://linkedin.com/in/alexchen",
+      twitter: "https://twitter.com/alexchen",
+    },
+    {
+      id: 2,
+      name: "Sarah Johnson",
+      role: "CTO",
+      bio: "Blockchain architect with expertise in smart contracts and gaming infrastructure. Previously at major tech companies.",
+      avatar: cto,
+      linkedin: "https://linkedin.com/in/sarahjohnson",
+      twitter: "https://twitter.com/sarahjohnson",
+    },
+    {
+      id: 3,
+      name: "Mike Rodriguez",
+      role: "Head of Gaming",
+      bio: "Game designer and producer with experience in AAA titles. Passionate about creating engaging play-to-earn experiences.",
+      avatar: gaming,
+      linkedin: "https://linkedin.com/in/mikerodriguez",
+      twitter: "https://twitter.com/mikerodriguez",
+    },
+    {
+      id: 4,
+      name: "Lisa Wang",
+      role: "Head of Marketing",
+      bio: "Marketing strategist specializing in blockchain and gaming. Built communities for multiple successful projects.",
+      avatar:  market,
+      linkedin: "https://linkedin.com/in/lisawang",
+      twitter: "https://twitter.com/lisawang",
+    },
+  ];
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 

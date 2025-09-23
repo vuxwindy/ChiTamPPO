@@ -7,65 +7,9 @@ import { FaChartLine, FaWallet } from "react-icons/fa";
 import ppoIcon from "@/app/access/image/ppo-icon.png";
 import { SwapForm } from "@/components/SwapForm";
 import Image from "next/image";
-// import { ethers } from "ethers";
-
+import PPOPage from "@/components/Trading";
+import OrderBook from "@/components/OrderBook";
 export default function SwapPage() {
-  //   const chainId = useChainId();
-
-  //   const [isLoading, setIsLoading] = useState(false);
-  //   const [fromAmount, setFromAmount] = useState("");
-  //   const [toAmount, setToAmount] = useState("");
-  //   const [showFromTokenModal, setShowFromTokenModal] = useState(false);
-  //   const [showToTokenModal, setShowToTokenModal] = useState(false);
-  //   const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
-
-  //   const [selectedFromToken, setSelectedFromToken] = useState({
-  //     symbol: "BNB",
-  //     name: "Binance Coin",
-  //     icon: "https://pixelpayot.com/images/bnb-icon.png",
-  //     address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-  //   });
-
-  //   const [selectedToToken, setSelectedToToken] = useState({
-  //     symbol: "PPO",
-  //     name: "PixelPayot Token",
-  //     icon: "https://pixelpayot.com/images/ppo-icon.png",
-  //     address: "0xCdA7eBb5005aaC33B6F4f32c17647698b020eFC9",
-  //   });
-
-  //   const [balances, setBalances] = useState<{ [k: string]: number }>({
-  //     BNB: 1.23,
-  //     PPO: 2000,
-  //   });
-
-  //   const exchangeRate = useMemo(() => {
-  //     if (selectedFromToken.symbol === "BNB" && selectedToToken.symbol === "PPO") {
-  //       return "2222.22";
-  //     }
-  //     if (selectedFromToken.symbol === "PPO" && selectedToToken.symbol === "BNB") {
-  //       return "0.00045";
-  //     }
-  //     return "1";
-  //   }, [selectedFromToken, selectedToToken]);
-
-  //   const canSwap = useMemo(() => {
-  //     return !!fromAmount && parseFloat(fromAmount) > 0;
-  //   }, [fromAmount]);
-
-  //   const handleSwap = async () => {
-  //     if (!canSwap) return;
-  //     setIsLoading(true);
-  //     try {
-  //       // gọi smart contract ở đây
-  //       setToast({ message: "Swap success!", type: "success" });
-  //       setFromAmount("");
-  //       setToAmount("");
-  //     } catch (e) {
-  //       setToast({ message: "Swap failed!", type: "error" });
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-[#0f0f23] via-[#1a1a3a] to-[#2d1b69] text-white'>
@@ -172,8 +116,14 @@ export default function SwapPage() {
                 </div>
               </div>
             </section>
-            {/**/}
-            {/**/}
+            <section className='swap-interface padding-large'>
+              <div className='container swap-container'>
+                <div className="flex">
+                  <PPOPage />
+                  <OrderBook />
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
