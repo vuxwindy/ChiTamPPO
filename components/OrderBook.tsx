@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Order {
   price: number;
@@ -9,7 +9,7 @@ export default function OrderBook() {
   const [bids, setBids] = useState<Order[]>([]);
   const [asks, setAsks] = useState<Order[]>([]);
   const [lastPrice, setLastPrice] = useState<number | null>(null);
-
+  const divRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     let ws: WebSocket | null = null;
 
@@ -98,6 +98,12 @@ export default function OrderBook() {
     };
   }, []);
 
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollTop = divRef.current.scrollHeight;
+    }
+  }, [lastPrice]); // chạy 1 lần khi mount
+
 
   return (
     <div style={{ padding: 20, color: "#fff", background: "#111" }}>
@@ -118,9 +124,10 @@ export default function OrderBook() {
           data-v-ac1a387c=""
           className="spot-quotation-dish-box"
           style={{ position: "relative" }}
+          ref={divRef}
         >
 
-          {calcCumulative(bids).slice(0, 10).map((bid, i) => (
+          {calcCumulative(asks).reverse().map((bid, i) => (
             <div
               data-v-7579d873=""
               data-v-ac1a387c=""
@@ -157,7 +164,7 @@ export default function OrderBook() {
           style={{ position: "relative" }}
         >
 
-          {calcCumulative(asks).slice(0, 10).map((ask, i) => (
+          {calcCumulative(bids).map((ask, i) => (
             <div
               data-v-7579d873=""
               data-v-ac1a387c=""
@@ -192,7 +199,7 @@ export default function OrderBook() {
 
 const calcCumulative = (orders: { price: number; amount: number }[]) => {
   let total = 0;
-  return orders.map((o) => {
+  return !orders?.length ? [] : orders.map((o) => {
     total += o.amount;
     return { ...o, total };
   });
