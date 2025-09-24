@@ -60,10 +60,9 @@ export default function SwapPage() {
                         </div>
                       </div>
                       <div className='price-chart'>
-                        <h5>PPO Price Chart</h5>
-                        <div className='chart-placeholder'>
-                          <FaChartLine />
-                          <p>Price chart will be displayed here</p>
+                        <h5>PPO Price Chart Of Coinstore</h5>
+                        <div className='chart-placeholder !p-4'>
+                          <PPOPage />
                         </div>
                       </div>
                       <div className='popular-pairs'>
@@ -116,14 +115,7 @@ export default function SwapPage() {
                 </div>
               </div>
             </section>
-            <section className='swap-interface padding-large'>
-              <div className='container swap-container'>
-                <div className="flex">
-                  <PPOPage />
-                  <OrderBook />
-                </div>
-              </div>
-            </section>
+
           </div>
         </div>
       </div>
